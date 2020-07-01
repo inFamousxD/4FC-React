@@ -1,0 +1,57 @@
+.link-button {
+color: #222
+}
+.link-button:hover {
+color: #eee;
+text-decoration: none;
+}
+
+.link {
+color: #444
+}
+.link:hover {
+color: #111;
+text-decoration: none;
+}
+
+.form-register {
+align-items: center;
+align-content: center;
+vertical-align: middle;
+}
+.form-input {
+margin-bottom: 3vh;
+}
+.form-label {
+font-size: small;
+}
+
+.ml, img {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.logo {
+    float: right;
+}
+
+.form-control {
+    border-radius: 4px;
+}
+
+.image-small {
+    padding-bottom: 1vh;
+}
+
+.image {
+    padding-left: 0px;
+}
+
+.auth-nav {
+    margin-top: 81.5%;
+    padding-bottom: 20px;
+}
+
+.auth-nav-reg {
+    padding-bottom: 19px;
+}

@@ -1,0 +1,27 @@
+.card-class {
+    width: 65%;
+    margin-top: 40px;
+}
+
+.desc-key {
+    font-weight: 500;
+}
+.desk-item {
+    font-weight: lighter;
+}
+
+.item-desc {
+    margin-top: 30px;
+}
+
+#mapid, #map {
+    max-height: 283px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.side-card {
+    width: 30%;
+    position: relative;
+    top: -185px;
+}

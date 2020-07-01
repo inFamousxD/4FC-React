@@ -1,0 +1,192 @@
+import React, { Component } from 'react'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
+import ListGroup from 'react-bootstrap/ListGroup'
+import warehouseImage from '../../image/warehouse_placeholder1.jpg'
+import './description.css'
+import Button from 'react-bootstrap/Button'
+import map_placeholder from '../../image/map_placeholder.jpg'
+
+export class Description extends Component {
+    render() {
+        return (
+            <React.Fragment>
+                <div>
+                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
+                </div>
+                <div class='side-card float-right mr-5'>
+                    <Card>
+                        <Card.Header>
+                            <Row>
+                                <Col>
+                                    <div>
+                                        Monthly Rental
+                                    </div>
+                                    <div style={{fontSize:30}}>
+                                        500 / sq. ft.
+                                    </div>
+                                </Col>
+                                <Col> 
+                                    <div class='float-right mt-3'>
+                                    <Button>Send Request</Button>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Card.Header>
+                        <Card.Body>
+                            <ListGroup variant='flush'>
+                                <ListGroup.Item>
+                                    <b>Address : </b> Some random address
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <b>Area Covered : </b> 25,000 sq. ft
+                                </ListGroup.Item>
+                                <ListGroup.Item>
+                                    <b>Deposit : </b> 100,000/- (negotiable)
+                                </ListGroup.Item>
+                            </ListGroup>
+                        </Card.Body>
+                        <Card.Footer>
+                            <Row>
+                                <Col>
+                                    Interested, but not sure to book?
+                                </Col>
+                                <Col>   
+                                    <div class='float-right'>
+                                        <Button variant='light'> <i class="fa fa-heart-o mt-2" style={{color:'red'}} aria-hidden="true"></i> Add to wishlist</Button>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </Card.Footer>
+                    </Card>
+                </div>
+                <div class="card-class">
+                    <Container fluid> 
+                        <h3>
+                            <b>Transport Corp India - Phase 2 </b><i class="fa fa-twitter float-right" aria-hidden="true"></i> <i class="fa fa-facebook-square float-right mr-4" aria-hidden="true"></i>
+                        </h3>
+
+                        <p class='item-desc'>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.     
+                        </p>    
+                    </Container> 
+                    <Container fluid>
+                        <Card>
+                            <Card.Header>Details about this warehouse</Card.Header>
+                            <Card.Body>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Dock Placement: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> Two sided </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Flooring Type: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> FM2 Grade </p> </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Flooring Type: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> FM2 Grade </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Truck Capacity: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 500 </p> </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Access Road Width: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 750m </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Distance from Highway: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 2km </p> </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Environmental Clearance: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> Yes </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Approving Authority: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> Panchayat </p> </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Clear height: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 700m </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Center Height: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 700m </p> </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Safety Precaution: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> Water Sprikler </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Area Covered: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 2500 sq. ft. </p> </Col>
+                                </Row>
+                                <Row>
+                                    <Col sm={3}> <p class='desc-key'> Access road Width: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> 300m </p> </Col>
+                                    <Col sm={3}> <p class='desc-key'> Warehouse Type: </p> </Col>
+                                    <Col sm={3}> <p class='desc-val'> Within Logistics Park </p> </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    </Container>
+
+                    <div class="mt-4">
+                        <Container fluid>
+                            <Row>
+                                <Col>
+                                    <Card>
+                                        <Card.Header>Location <i class="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
+                                        <Card.Body>
+                                            <div id='mapid'>
+                                                <img src={map_placeholder} alt='Map' id='map'></img>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                                <Col>
+                                    <Card>
+                                        <Card.Header>Nearby Landmarks</Card.Header>
+                                        <Card.Body>
+                                            <ListGroup variant='flush'>
+                                                <ListGroup.Item>
+                                                    <Row>
+                                                        <Col>Nearest Highway: </Col>
+                                                        <Col>Desc</Col>
+                                                    </Row>
+                                                </ListGroup.Item>
+                                                <ListGroup.Item>
+                                                    <Row>
+                                                        <Col>Nearest Railway Station: </Col>
+                                                        <Col>Desc</Col>
+                                                    </Row>
+                                                </ListGroup.Item>   
+                                                <ListGroup.Item>
+                                                    <Row>
+                                                        <Col>Nearest Bus Stand: </Col>
+                                                        <Col>Desc</Col>
+                                                    </Row>
+                                                </ListGroup.Item>
+                                                <ListGroup.Item>
+                                                    <Row>
+                                                        <Col>Nearest Bank: </Col>
+                                                        <Col>Desc</Col>
+                                                    </Row>
+                                                </ListGroup.Item>
+                                                <ListGroup.Item>
+                                                    <Row>
+                                                        <Col>Nearest Petrol Pump: </Col>
+                                                        <Col>Desc</Col>
+                                                    </Row> 
+                                                </ListGroup.Item>
+                                                <ListGroup.Item>
+                                                    <Row>    
+                                                        <Col>Nearest Park: </Col>
+                                                        <Col>Desc</Col>
+                                                    </Row>
+                                                </ListGroup.Item>
+                                            </ListGroup>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            </Row>
+                        </Container>
+                    </div>
+                </div>
+            </React.Fragment>
+        )
+    }
+}
+
+export default Description;
