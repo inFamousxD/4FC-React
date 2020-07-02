@@ -10,7 +10,7 @@ import './App.css';
 
 const App = () =>  {
 
-  axios.get('http://4fcapi-env.eba-zxpamdfp.ap-south-1.elasticbeanstalk.com/users/read/all').then((data) => {
+  axios.get('https://d2ptygpwftf1gm.cloudfront.net/users/read/all').then((data) => {
     console.log(data)
   })
 
