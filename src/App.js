@@ -1,21 +1,29 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavigationBar from './components/layout/NavigationBar';
 import Description from './components/warehouse/Description';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Landing from './components/layout/Landing'
-import axios from 'axios'
+import Landing from './components/layout/Landing';
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 import './App.css';
 
-const App = () =>  {
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
-  axios.get('https://d2ptygpwftf1gm.cloudfront.net/users/read/all').then((data) => {
-    console.log(data)
-  })
+const App = () =>  {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, [])
 
   return (
-    <Router>
+    <Provider store={store}>
+      <Router>
         <Fragment>
           <NavigationBar/> 
           <Route exact path='/' component = { Landing } />
@@ -28,6 +36,7 @@ const App = () =>  {
 
         </Fragment>
     </Router>
+    </Provider>
   );
 }
 

@@ -1,4 +1,4 @@
-import React,{Fragment} from 'react';
+import React,{ Fragment, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -6,14 +6,45 @@ import PlaceholderImage from '../../image/warehouse_auth.jpg';
 import Form from 'react-bootstrap/Form';
 import Logo from '../../image/Logo.png';
 import PhoneInput from 'react-phone-input-2';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+import PropTypes from 'prop-types'
+import Alert from '../layout/Alert';
+
 import 'react-phone-input-2/lib/style.css';
 import './authstyles.css';
 
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
 
-const Register = () => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
+
+    const [ formData, setFormData ] = useState({
+        name: '',
+        contact: '+911234567890',
+        company: '',
+        email: '',
+        password: ''
+    });
+
+    const { name, email, contact, company, password } = formData;
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const onSubmit = async e => {
+        e.preventDefault();
+
+        if (password.length < 6) {
+            setAlert('Passwords should be of length greater than 5', 'danger')
+        } else {
+            register({ name, identity: email, password, contact, company });
+        }
+    }
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />
+    }
+
     return (
         <Fragment>
             <Container fluid className="ml">
@@ -23,71 +54,83 @@ const Register = () => {
                         <img height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                     <Col sm={4}>
-                    <div class="row mt-2">
-                        <div class="col-md-10 m-auto">
-                        <div class="card card-body border-0">
-                            <h2 class="text-center mb-3"> 
+                    
+                    <div className="row mt-2">
+                        <div className="col-md-10 m-auto">
+                        <div className="card card-body border-0">
+                            <h2 className="text-center mb-3"> 
                             <b>Register to 4FC</b>
                             <img className="ml-2 image-small" height='74px' style={{objectFit: "cover"}} src={Logo} alt='Warehouse'/>
                             </h2>
-                            <Form action="/users/save" method="POST">
-                                <Form.Group class="form-group">
-                                    <Form.Label for="name">Full Name</Form.Label>
+                            <Form onSubmit={e => onSubmit(e)}>
+
+                            <Alert/>
+                                <Form.Group className="form-group">
+                                    <Form.Label>Full Name</Form.Label>
                                     <input
-                                    type="name"
-                                    id="name"
-                                    name="name"
-                                    class="form-control"
-                                    placeholder="Enter your Full Name"
+                                        type="name"
+                                        id="name"
+                                        name="name"
+                                        className="form-control"
+                                        placeholder="Enter your Full Name"
+                                        value={name}
+                                        onChange={e => onChange(e)}
                                     />
                                 </Form.Group>
-                                <Form.Group class="form-group">
-                                    <Form.Label for="contact">Contact</Form.Label>
+                                <Form.Group className="form-group">
+                                    <Form.Label>Contact</Form.Label>
                                     <PhoneInput
-                                    type="number"
-                                    id="contact"
-                                    name="contact"
-                                    class="form-control"
-                                    placeholder="Enter your contact number"
-                                    value="+91"
+                                        type="contact"
+                                        id="contact"
+                                        name="contact"
+                                        className="form-control"
+                                        placeholder="Enter your contact number"
+                                        value={contact}
+                                        onChange={e => console.log(e)}
                                     />
                                 </Form.Group>
-                                <Form.Group class="form-group">
-                                    <Form.Label for="company">Confirm Password</Form.Label>
+                                <Form.Group className="form-group">
+                                    <Form.Label>Company</Form.Label>
                                     <input
-                                    type="name"
-                                    id="company"
-                                    name="company"
-                                    class="form-control"
-                                    placeholder="Enter company name"
+                                        type="name"
+                                        id="company"
+                                        name="company"
+                                        className="form-control"
+                                        placeholder="Enter company name"
+                                        value={company}
+                                        onChange={e => onChange(e)}
                                     />
                                 </Form.Group>
-                                <Form.Group class="form-group">
-                                    <Form.Label for="email">Email</Form.Label>
+                                <Form.Group className="form-group">
+                                    <Form.Label>Email</Form.Label>
                                     <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    class="form-control"
-                                    placeholder="Enter your email"
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        className="form-control"
+                                        placeholder="Enter your email"
+                                        value={email}
+                                        onChange={e => onChange(e)}
                                     />
                                 </Form.Group>                
-                                <Form.Group class="form-group">
-                                    <Form.Label for="password">Password</Form.Label>
+                                <Form.Group className="form-group">
+                                    <Form.Label>Password</Form.Label>
                                     <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    class="form-control"
-                                    placeholder="Create a password"
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        className="form-control"
+                                        placeholder="Create a password"
+                                        value={password}
+                                        onChange={e => onChange(e)}
                                     />
                                 </Form.Group>
-                                <button class="mt-5 btn btn-secondary btn-block">
+                                <button className="mt-5 btn btn-secondary btn-block">
                                     Create a New Account
                                 </button>
-                                <h5 class="auth-nav-reg mt-5">
+                                <h5 className="auth-nav-reg mt-5">
                                     Already have an account?  
-                                    <Link to='/login' class="link-light float-right">
+                                    <Link to='/login' className="link-light float-right">
                                         Click here to log in
                                     </Link> 
                                 </h5>
@@ -103,4 +146,14 @@ const Register = () => {
     )
 }
 
-export default Register
+Register.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

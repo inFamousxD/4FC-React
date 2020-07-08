@@ -1,15 +1,44 @@
-import React,{Fragment} from 'react';
+import React,{ Fragment, useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import PlaceholderImage from '../../image/warehouse_auth.jpg';
 import Form from 'react-bootstrap/Form';
 import Logo from '../../image/Logo.png'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+import Alert from '../layout/Alert';
+import { login } from '../../actions/auth';
 import './authstyles.css';
 
 
-const Login = () => {
+const Login = ({ setAlert, login, isAuthenticated }) => {
+    const [ formData, setFormData ] = useState({
+        email: '',
+        password: ''
+    });
+    const { email, password } = formData;
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const onSubmit = async e => {
+        e.preventDefault();
+
+        if (password.length < 6) {
+            setAlert('Passwords should be of length greater than 5', 'danger')
+        } else {
+            login({
+                identity: email,
+                password
+            });
+        }
+    }
+    if (isAuthenticated) {
+        console.log('Authenticated')
+        return <Redirect to="/" />
+    }
     return (
         <Fragment>
             <Container fluid className="ml">
@@ -19,43 +48,46 @@ const Login = () => {
                         <img height='100%' style={{objectFit: "cover", backgroundSize: "100%"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                     <Col sm={4}>
-                    <div class="row mt-2">
-                        <div class="col-md-10 m-auto">
-                        <div class="card card-body border-0">
-                            <h2 class="text-center mb-3"> 
+                    <div className="row mt-2">
+                        <div className="col-md-10 m-auto">
+                        <div className="card card-body border-0">
+                            <h2 className="text-center mb-3"> 
                             <b>Login to 4FC</b>
                             <img className="ml-2 image-small" height='74px' style={{objectFit: "cover"}} src={Logo} alt='Warehouse'/>
                             </h2>
-                            <Form action="/users/read/one" method="POST">
-                                <Form.Group class="form-group">
-                                    <Form.Label for="email">Email</Form.Label>
+                            <Form onSubmit={e => onSubmit(e)}>
+                            <Alert/>
+                                <Form.Group className="form-group">
+                                    <Form.Label htmlFor="email">Email</Form.Label>
                                     <input
                                     type="email"
                                     id="email"
                                     name="email"
-                                    class="form-control"
+                                    className="form-control"
                                     placeholder="Enter your email"
+                                    onChange={e => onChange(e)}
                                     />
                                 </Form.Group>                
-                                <Form.Group class="form-group">
-                                    <Form.Label for="password">Password</Form.Label>
+                                <Form.Group className="form-group">
+                                    <Form.Label htmlFor="password">Password</Form.Label>
                                     <input
                                     type="password"
                                     id="password"
                                     name="password"
-                                    class="form-control"
+                                    className="form-control"
                                     placeholder="Create a password"
+                                    onChange={e => onChange(e)}
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="formBasicCheckbox">
                                     <Form.Check type="checkbox" label="Remember Me" />
                                 </Form.Group>
-                                <button class="mt-3 btn btn-secondary btn-block">
+                                <button className="mt-3 btn btn-secondary btn-block">
                                     Login to your account
                                 </button>
-                                <h5 class="auth-nav">
+                                <h5 className="auth-nav">
                                     Not a member yet?  
-                                    <Link to='/register' class="link-light float-right">
+                                    <Link to='/register' className="link-light float-right">
                                         Click here to register
                                     </Link> 
                                 </h5>
@@ -71,4 +103,14 @@ const Login = () => {
     )
 }
 
-export default Login
+Login.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+}
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { setAlert, login })(Login);

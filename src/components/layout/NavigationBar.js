@@ -1,11 +1,28 @@
-import React from 'react'
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import NavLink from 'react-bootstrap/NavLink'
-import Button from 'react-bootstrap/Button'
-import { Link } from 'react-router-dom'
+import React, { Fragment } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
-const NavigationBar = () => {
+const NavigationBar = ({ auth: {isAuthenticated, loading }, logout}) => {
+    const authLinks = (
+        <Link to='/' className='link-button'>
+            <i className="fas fa-sign-out-alt"></i>
+            <Button variant='outline-dark' onClick={logout}>
+                Logout
+            </Button>
+        </Link>    
+    );
+    
+    const guestLinks = (
+        <Link to='/register' className='link-button'>
+            <Button variant='outline-dark'>Sign in/Create Account</Button>
+        </Link>    
+    );
+
     return (
         <React.Fragment>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -16,16 +33,23 @@ const NavigationBar = () => {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto"/>
                     <Nav>
-                        <NavLink style={{marginRight:'30px'}}>
+                        <div className='nav-link' style={{marginRight:'30px'}}>
                             <i className="fa fa-phone mr-2" aria-hidden="true"></i> 
                             <Link to='/contact' className='link'>+91 987-654-3210</Link>
-                        </NavLink>
-                        <NavLink style={{marginRight:'30px'}}>
+                        </div>
+                        <div className='nav-link' style={{marginRight:'30px'}}>
                             <Link to='/blog' className='link'>Blog</Link>
-                        </NavLink>
-                        <Link to='/register' className='link-button'>
+                        </div>
+                        {/* <Link to='/register' className='link-button'>
                             <Button variant='outline-dark'>Sign in/Create Account</Button>
-                        </Link>    
+                        </Link>     */}
+                        { !loading && (
+                            <Fragment>
+                                {
+                                    isAuthenticated ? authLinks : guestLinks
+                                }
+                            </Fragment>
+                        ) }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -33,4 +57,13 @@ const NavigationBar = () => {
     )
 }
 
-export default NavigationBar
+NavigationBar.propTypes = {
+    logout: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(NavigationBar)

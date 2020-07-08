@@ -16,7 +16,7 @@ export class Description extends Component {
                 <div>
                     <img height='420px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
                 </div>
-                <div class='side-card float-right mr-5'>
+                <div className='side-card float-right mr-5'>
                     <Card>
                         <Card.Header>
                             <Row>
@@ -29,7 +29,7 @@ export class Description extends Component {
                                     </div>
                                 </Col>
                                 <Col> 
-                                    <div class='float-right mt-3'>
+                                    <div className='float-right mt-3'>
                                     <Button>Send Request</Button>
                                     </div>
                                 </Col>
@@ -54,21 +54,21 @@ export class Description extends Component {
                                     Interested, but not sure to book?
                                 </Col>
                                 <Col>   
-                                    <div class='float-right'>
-                                        <Button variant='light'> <i class="fa fa-heart-o mt-2" style={{color:'red'}} aria-hidden="true"></i> Add to wishlist</Button>
+                                    <div className='float-right'>
+                                        <Button variant='light'> <i className="fa fa-heart-o mt-2" style={{color:'red'}} aria-hidden="true"></i> Add to wishlist</Button>
                                     </div>
                                 </Col>
                             </Row>
                         </Card.Footer>
                     </Card>
                 </div>
-                <div class="card-class">
+                <div className="card-class">
                     <Container fluid> 
                         <h3>
-                            <b>Transport Corp India - Phase 2 </b><i class="fa fa-twitter float-right" aria-hidden="true"></i> <i class="fa fa-facebook-square float-right mr-4" aria-hidden="true"></i>
+                            <b>Transport Corp India - Phase 2 </b><i className="fa fa-twitter float-right" aria-hidden="true"></i> <i className="fa fa-facebook-square float-right mr-4" aria-hidden="true"></i>
                         </h3>
 
-                        <p class='item-desc'>
+                        <p className='item-desc'>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.     
                         </p>    
                     </Container> 
@@ -77,57 +77,57 @@ export class Description extends Component {
                             <Card.Header>Details about this warehouse</Card.Header>
                             <Card.Body>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Dock Placement: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> Two sided </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Flooring Type: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> FM2 Grade </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Dock Placement: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> Two sided </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Flooring Type: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> FM2 Grade </p> </Col>
                                 </Row>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Flooring Type: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> FM2 Grade </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Truck Capacity: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 500 </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Flooring Type: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> FM2 Grade </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Truck Capacity: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 500 </p> </Col>
                                 </Row>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Access Road Width: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 750m </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Distance from Highway: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 2km </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Access Road Width: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 750m </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Distance from Highway: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 2km </p> </Col>
                                 </Row>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Environmental Clearance: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> Yes </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Approving Authority: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> Panchayat </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Environmental Clearance: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> Yes </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Approving Authority: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> Panchayat </p> </Col>
                                 </Row>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Clear height: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 700m </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Center Height: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 700m </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Clear height: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 700m </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Center Height: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 700m </p> </Col>
                                 </Row>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Safety Precaution: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> Water Sprikler </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Area Covered: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 2500 sq. ft. </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Safety Precaution: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> Water Sprikler </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Area Covered: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 2500 sq. ft. </p> </Col>
                                 </Row>
                                 <Row>
-                                    <Col sm={3}> <p class='desc-key'> Access road Width: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> 300m </p> </Col>
-                                    <Col sm={3}> <p class='desc-key'> Warehouse Type: </p> </Col>
-                                    <Col sm={3}> <p class='desc-val'> Within Logistics Park </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Access road Width: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> 300m </p> </Col>
+                                    <Col sm={3}> <p className='desc-key'> Warehouse Type: </p> </Col>
+                                    <Col sm={3}> <p className='desc-val'> Within Logistics Park </p> </Col>
                                 </Row>
                             </Card.Body>
                         </Card>
                     </Container>
 
-                    <div class="mt-4">
+                    <div className="mt-4">
                         <Container fluid>
                             <Row>
                                 <Col>
                                     <Card>
-                                        <Card.Header>Location <i class="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
+                                        <Card.Header>Location <i className="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
                                         <Card.Body>
                                             <div id='mapid'>
                                                 <img src={map_placeholder} alt='Map' id='map'></img>

@@ -35,6 +35,18 @@ body{
   color: #61dafb;
 }
 
+.alert {
+  padding: 0.8 rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: #eee;
+  color: #333;
+}
+.alert-danger {
+  background: #ffa66b;
+  color: #fff;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
