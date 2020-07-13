@@ -12,7 +12,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
   const authLinks = (
         <Fragment>
             <div className='nav-link' style={{marginRight:'30px'}}>
-                <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                <i className="fa fa-user mr-2" aria-hidden="true"></i>
                 <Link to='/dashboard' className='link'>Profile</Link>
             </div>
             <Link to='/' className='link' onClick={logout}>

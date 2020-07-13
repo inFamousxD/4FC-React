@@ -15,13 +15,18 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
     <Fragment>
         <Container>
             <h1 className='large text-primary'>Dashboard</h1>
-            <p className='lead'>
+            <div className='lead'>
                 { user && user[0].identity ? 
                 <Fragment>
                     Logged in as {user[0].identity}
-                    { wishlist.length > 0 ? 
+                    { user[0].wishlist.length > 0 ? 
                     <div>
-                        Wishlist present
+                        Wishlist present.
+                        <ul>
+                        {user[0].wishlist.map((value, index) => {
+                            return <li key={index}>{value}</li>
+                        })}
+                        </ul>
                     </div> : // No wishlist
                     <div>
                         Empty wishlist
@@ -30,7 +35,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                 <Fragment>
                     Null
                 </Fragment> }
-            </p>
+            </div>
         </Container> 
     </Fragment>;
 }
