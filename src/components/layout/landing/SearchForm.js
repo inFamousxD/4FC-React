@@ -39,8 +39,8 @@ const SearchForm = () => {
                                 </Form.Group>   
                                 <Form.Group className="mt-4">
                                     <Form.Label style={{fontSize: '16px'}}>Selected Localities : 
-                                        <Form.Check inline type="radio" label="Enter locality" className="ml-3"></Form.Check>
-                                        <Form.Check inline type="radio" label="Guide me" className="ml-3"></Form.Check>
+                                        <Form.Check inline label="Enter locality" className="ml-3"></Form.Check>
+                                        <Form.Check inline label="Guide me" className="ml-3"></Form.Check>
                                     </Form.Label>
                                     <Form.Control as="select">
                                         <option>Pune</option>

@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
-import './Body.css';
 
 const Body = () => {
     return (
@@ -41,7 +40,7 @@ const Body = () => {
                <Container fluid style={{padding: '0px'}}>
                     <Row>
                         <Col sm={4}>
-                            <img style={{objectFit: "cover", height: '80%', width: '800px', top: '11%', position: 'absolute', verticalAlign: 'middle'}} src={PlaceholderImage} alt='Warehouse'/>
+                            <img style={{objectFit: "cover", height: '80%', width: '800px', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
                         </Col>
                         <Col sm={8}>
                         <Card style={{ backgroundColor: '#CDD5E450', border: 'none' }}>

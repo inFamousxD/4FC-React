@@ -1,67 +1,46 @@
 import React, { Fragment } from 'react';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import PlaceholderImage from '../../../image/warehouse_auth.jpg';
 import Button from 'react-bootstrap/Button';
-import CardDeck from 'react-bootstrap/CardDeck';
-
+import Cards from './Cards';
+import axios from 'axios';
 
 const Featured = () => {
-    return (
-       <Fragment>
-           <Container fluid style={{ backgroundColor: '#EFEFEF', paddingTop: '5%', paddingLeft: '8%', paddingBottom: '5%' }}>
-           
-           <h1 style={{marginBottom: '3rem'}}>Featured Properties</h1>
-        
-           <CardDeck>
-           <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={PlaceholderImage} />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                    </Card.Text>
-                </Card.Body>
-                <Card.Body>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
-            </Card>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={PlaceholderImage} />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                    </Card.Text>
-                </Card.Body>
-                <Card.Body>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
-            </Card>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={PlaceholderImage} />
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                    </Card.Text>
-                </Card.Body>
-                <Card.Body>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
-            </Card>
-           </CardDeck>
-           
-            <Button style={{marginTop: '3rem', width: '10rem'}}>Browse All</Button>
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    
+    async function getData() {
+        try {
+            const response = await axios.get(`http://localhost:9000/properties/warehouses/read/all`, config);
+            response.data.forEach((warehouse) => {
+                console.log(`${warehouse.warehouseDetails.name}, _id:${warehouse.identifier}`);
+            });
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
-           </Container>
-       </Fragment>
+    getData();
+    return (
+        <Fragment>
+            <Container fluid style={{ backgroundColor: '#EFEFEF', paddingTop: '5%', paddingBottom: '5%' }}>  
+                <h1 style={{marginBottom: '3rem', marginLeft: '3rem'}}>Featured Properties</h1>
+
+                <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll'}}>
+                    <Cards/>
+                    <Cards/>
+                    <Cards/>
+                    <Cards/>
+                    <Cards/>
+                    <Cards/>
+                    <Cards/>
+                    <Cards/>
+                </div> 
+                <Button style={{marginTop: '3rem', width: '10rem', marginLeft: '3rem'}}>Browse All</Button>
+            </Container>
+        </Fragment>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import SearchForm from './landing/SearchForm';
-import Body from './landing/Body';
-import Featured from './landing/Featured';
+import SearchForm from './SearchForm';
+import Body from './Body';
+import Featured from './Featured';
 
 const Landing = () => {
     return (

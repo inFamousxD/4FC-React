@@ -4,7 +4,9 @@ import NavigationBar from './components/layout/NavigationBar';
 import Description from './components/warehouse/Description';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Landing from './components/layout/Landing';
+import Landing from './components/layout/landing/Landing';
+import Dashboard from './components/layout/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -32,6 +34,7 @@ const App = () =>  {
             <Route exact path='/register' component={ Register } />
             <Route exact path='/login' component={ Login } />
             <Route exact path='/description' component={ Description } />
+            <PrivateRoute exact path='/dashboard' component={ Dashboard } />
           </Switch>
 
         </Fragment>
