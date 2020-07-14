@@ -18,7 +18,9 @@ const Cards = () => {
                     </Card.Text>
                 </Card.Body>
                 <Card.Body>
+                    <Link to='/description'>
                     <Button variant="outline-primary">Card Link</Button>
+                    </Link>
                 </Card.Body>
             </Card>
         </Fragment>
