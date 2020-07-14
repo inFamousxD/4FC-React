@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Card from 'react-bootstrap/Card';
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const Cards = () => {
     return (

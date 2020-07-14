@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Container from 'react-bootstrap/Container'
-import ListGroup from 'react-bootstrap/ListGroup'
-import warehouseImage from '../../image/warehouse_placeholder1.jpg'
-import './description.css'
-import Button from 'react-bootstrap/Button'
-import map_placeholder from '../../image/map_placeholder.jpg'
+import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import ListGroup from 'react-bootstrap/ListGroup';
+import warehouseImage from '../../image/warehouse_placeholder1.jpg';
+import './description.css';
+import Button from 'react-bootstrap/Button';
+import map_placeholder from '../../image/map_placeholder.jpg';
+import Featured from './Featured';
 
 export class Description extends Component {
     render() {
@@ -184,6 +185,7 @@ export class Description extends Component {
                         </Container>
                     </div>
                 </div>
+                <Featured />
             </React.Fragment>
         )
     }
