@@ -13,8 +13,8 @@ const Featured = () => {
     
     async function getData() {
         try {
-            const response = await axios.get(`http://localhost:9000/properties/warehouses/read/all`, config);
-            // const response = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/properties/warehouses/read/all`, config);
+            // const response = await axios.get(`http://localhost:9000/properties/warehouses/read/all`, config);
+            const response = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/properties/warehouses/read/all`, config);
             response.data.forEach((warehouse) => {
                 console.log(`${warehouse.warehouseDetails.name}, _id:${warehouse.identifier}`);
             });

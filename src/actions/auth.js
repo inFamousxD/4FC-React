@@ -19,8 +19,8 @@ export const loadUser = () => async dispatch => {
     }
 
     try {
-        const res = await axios.get(`http://localhost:9000/auth`);
-        // const res = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/auth`);
+        // const res = await axios.get(`http://localhost:9000/auth`);
+        const res = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/auth`);
         console.log(res.data)
         dispatch({
             type: USER_LOADED,
@@ -42,8 +42,8 @@ export const register = ({ name, identity, password, contact, company }) => asyn
     }
     const body = JSON.stringify({ name, identity, password, contact, company });
     try {
-        const res = await axios.post(`http://localhost:9000/users/save`, body, config);
-        // const res = await axios.post(`https://d2ptygpwftf1gm.cloudfront.net/users/save`, body, config);
+        // const res = await axios.post(`http://localhost:9000/users/save`, body, config);
+        const res = await axios.post(`https://d2ptygpwftf1gm.cloudfront.net/users/save`, body, config);
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
@@ -71,8 +71,8 @@ export const login = ({ identity, password }) => async dispatch => {
     }
     const body = JSON.stringify({ identity, password });
     try {
-        const res = await axios.post(`http://localhost:9000/auth`, body, config);
-        // const res = await axios.post(`https://d2ptygpwftf1gm.cloudfront.net/auth`, body, config);
+        // const res = await axios.post(`http://localhost:9000/auth`, body, config);
+        const res = await axios.post(`https://d2ptygpwftf1gm.cloudfront.net/auth`, body, config);
         
         dispatch({
             type: LOGIN_SUCCESS,

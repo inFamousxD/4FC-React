@@ -8,8 +8,8 @@ import {
 
 export const getCurrentProfile = () => async dispatch => {
     try {
-        const res = await axios.get(`http://localhost:9000/auth`);
-        // const res = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/auth`);
+        // const res = await axios.get(`http://localhost:9000/auth`);
+        const res = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/auth`);
         dispatch({
             type: GET_PROFILE,
             payload: res.data
