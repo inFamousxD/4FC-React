@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import PlaceholderImage from '../../image/warehouse_auth.jpg';
 import Form from 'react-bootstrap/Form';
 import Logo from '../../image/Logo.png';
-import PhoneInput from 'react-phone-input-2';
+// import PhoneInput from 'react-phone-input-2';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
@@ -21,7 +21,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     const [ formData, setFormData ] = useState({
         name: '',
-        contact: '+911234567890',
+        contact: '+91 ',
         company: '',
         email: '',
         password: ''
@@ -47,6 +47,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     return (
         <Fragment>
+            <div className="auth-class">
             <Container fluid className="ml">
             <Col>
                 <Row>
@@ -79,14 +80,14 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                                 </Form.Group>
                                 <Form.Group className="form-group">
                                     <Form.Label>Contact</Form.Label>
-                                    <PhoneInput
+                                    <input
                                         type="contact"
                                         id="contact"
                                         name="contact"
                                         className="form-control"
                                         placeholder="Enter your contact number"
                                         value={contact}
-                                        onChange={e => console.log(e)}
+                                        onChange={e => onChange(e)}
                                     />
                                 </Form.Group>
                                 <Form.Group className="form-group">
@@ -128,12 +129,18 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                                 <button className="mt-5 btn btn-secondary btn-block">
                                     Create a New Account
                                 </button>
-                                <h5 className="auth-nav-reg mt-5">
-                                    Already have an account?  
+                                <div className="auth-nav-reg mt-5">
+                                <Row>
+                                    <Col>
+                                        <h5>Already have an account?</h5>
+                                    </Col>
+                                    <Col>
                                     <Link to='/login' className="link-light float-right">
-                                        Click here to log in
+                                        <h5>Click here to log in</h5>
                                     </Link> 
-                                </h5>
+                                    </Col>
+                                </Row>
+                                </div>
                             </Form>
                         </div>
                         </div>
@@ -142,6 +149,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                 </Row>
             </Col>
             </Container>
+            </div>
         </Fragment>
     )
 }

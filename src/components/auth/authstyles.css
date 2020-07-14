@@ -55,3 +55,9 @@ font-size: small;
 .auth-nav-reg {
     padding-bottom: 19px;
 }
+
+.auth-class {
+    overflow: hidden;
+    height: 100%;
+    position: fixed;
+}

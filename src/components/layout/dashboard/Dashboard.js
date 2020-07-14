@@ -8,7 +8,6 @@ import Container from 'react-bootstrap/Container'
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading, wishlist } }) => {
     useEffect(() => {
         getCurrentProfile();
-        console.log('Profile loaded')
     }, []);
 
     return loading && profile===null ? <Spinner /> : 

@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
+import { Link } from 'react-router-dom';
 
 
 const SearchForm = () => {
@@ -16,11 +17,17 @@ const SearchForm = () => {
                     <Col sm={5}>
                         <Container className="pr-5 pl-5 mt-5">
                             <Form>
-                                <Form.Text><h1><b>Find the perfect warehouse for your needs</b></h1></Form.Text>
+                                <Form.Text><h1 style={{fontWeight: '400'}}><b>Find the perfect warehouse for your needs</b></h1></Form.Text>
                                 <Form.Group>
                                     <ButtonGroup className="mt-3">
-                                        <Button variant="primary" size="lg">READY TO LEASE</Button>
-                                        <Button variant="outline-primary" size="lg">BUILT TO SUIT</Button>
+                                        <Button variant="primary" size="lg" style={{
+                                            borderTopLeftRadius: '5px',
+                                            borderBottomLeftRadius: '5px',
+                                        }}>READY TO LEASE</Button>
+                                        <Button variant="outline-primary" size="lg" style={{
+                                            borderTopRightRadius: '5px',
+                                            borderBottomRightRadius: '5px',
+                                        }}>BUILT TO SUIT</Button>
                                     </ButtonGroup>
                                 </Form.Group>
                                 <Form.Group className="mt-4">
@@ -46,9 +53,11 @@ const SearchForm = () => {
                                         <option>Pune</option>
                                     </Form.Control>
                                 </Form.Group>
-                                <Button className="mt-4 mb-5"> Search Warehouses
-
-                                </Button>
+                                <Link to='/category'>
+                                    <Button className="mt-4 mb-5" style={{
+                                        borderRadius: '5px'
+                                    }}> Search Warehouses</Button>
+                                </Link>
                             </Form>
                         </Container>
                     </Col>

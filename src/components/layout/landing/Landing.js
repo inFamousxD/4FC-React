@@ -1,15 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import SearchForm from './SearchForm';
 import Body from './Body';
 import Featured from './Featured';
 
 const Landing = () => {
     return (
-       <Fragment>
+       <div className="prevent-hor-scroll">
            <SearchForm/>
            <Body/>
            <Featured/>
-       </Fragment>
+       </div>
     )
 }
 

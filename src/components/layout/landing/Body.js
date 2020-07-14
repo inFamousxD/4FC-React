@@ -54,7 +54,15 @@ const Body = () => {
                                         <Card style={{marginTop: '60px', width: '60%', border: '1px solid #aaaaaa'}}>
                                             <Card.Body>
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
-                                                <h5 className="mt-5">Transport Corp India Phase-2 -- $500 / sq. ft.</h5>
+                                                <Row>
+                                                    <Col sm={8}>
+                                                        <h5 className="mt-5">Transport Corp India Phase-2</h5>
+                                                    </Col>
+                                                    <Col sm={4} style={{float: 'right', paddingTop: '3rem'}}>
+                                                        <div style={{color: 'blue', fontSize: '16px'}}>₹ 500/sq.ft.</div>
+                                                    </Col>
+                                                </Row>
+                                                
                                                 <div className="mt-4">
                                                     Area covered : 20,000 sq. ft. <br></br>
                                                     Deposit : $1,00,000 (Negotiable)

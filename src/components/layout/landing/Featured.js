@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Cards from './Cards';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Featured = () => {
     const config = {
@@ -27,9 +28,9 @@ const Featured = () => {
     return (
         <Fragment>
             <Container fluid style={{ backgroundColor: '#EFEFEF', paddingTop: '5%', paddingBottom: '5%' }}>  
-                <h1 style={{marginBottom: '3rem', marginLeft: '3rem'}}>Featured Properties</h1>
+                <h1 style={{marginBottom: '2rem', marginLeft: '3rem'}}>Featured Properties</h1>
 
-                <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll'}}>
+                <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll', marginLeft: '1rem'}}>
                     <Cards/>
                     <Cards/>
                     <Cards/>
@@ -39,7 +40,9 @@ const Featured = () => {
                     <Cards/>
                     <Cards/>
                 </div> 
-                <Button style={{marginTop: '3rem', width: '10rem', marginLeft: '3rem'}}>Browse All</Button>
+                <Link to='/category'>
+                <Button style={{marginTop: '1rem', width: '10rem', marginLeft: '3rem', borderRadius: '5px'}}>Browse All</Button>
+                </Link>
             </Container>
         </Fragment>
     )

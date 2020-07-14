@@ -41,6 +41,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
     }
     return (
         <Fragment>
+            <div className="auth-class">
             <Container fluid className="ml">
             <Col>
                 <Row>
@@ -99,6 +100,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
                 </Row>
             </Col>
             </Container>
+            </div>
         </Fragment>
     )
 }

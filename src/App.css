@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;1,600&display=swap');
 
 body{
-  font-family: Roboto Condensed, sans-serif;
+  font-family: IBM Plex Sans, sans-serif;
 }
 
 .App {
@@ -45,6 +46,10 @@ body{
 .alert-danger {
   background: #ffa66b;
   color: #fff;
+}
+
+.prevent-hor-scroll {
+  overflow-x: hidden;
 }
 
 @keyframes App-logo-spin {
