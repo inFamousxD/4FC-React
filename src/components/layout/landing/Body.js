@@ -10,27 +10,27 @@ const Body = () => {
     return (
        <Fragment>
            <Container fluid style={{borderTop: '1px solid #cccccc', backgroundColor: '#EFEFEF', padding: '0px'}}>
-               <Container fluid style={{ padding: "50px 100px" }}>
+               <Container fluid style={{ padding: "20px" }}>
                <h1>Discover RealEstate trends in market.</h1>
                 <h5>Custom Text here.</h5>
 
-                <Row className="mt-4">
-                    <Col>
+                <Row className="mt-4 d-flex flex-row flex-nowrap" style={{overflowX: 'scroll'}}>
+                    <Col style={{minWidth: '20rem'}}>
                         <h1 style={{ fontSize: "50px" }}>01.</h1>
                         <h5>Post Requirements.</h5>
                         <h6 className="mt-4">Enter Requirements for the warehouse you are looking for.</h6>
                     </Col>
-                    <Col>
+                    <Col style={{minWidth: '20rem'}}>
                         <h1 style={{ fontSize: "50px" }}>02.</h1>
                         <h5>Explore Warehouse.</h5>
                         <h6 className="mt-4">Enter Requirements for the warehouse you are looking for.</h6>
                     </Col>
-                    <Col>
+                    <Col style={{minWidth: '20rem'}}>
                         <h1 style={{ fontSize: "50px" }}>03.</h1>
                         <h5>Request a Call Back.</h5>
                         <h6 className="mt-4">Enter Requirements for the warehouse you are looking for.</h6>
                     </Col>
-                    <Col>
+                    <Col style={{minWidth: '20rem'}}>
                         <h1 style={{ fontSize: "50px" }}>04.</h1>
                         <h5>Finalise and Book</h5>
                         <h6 className="mt-4">Enter Requirements for the warehouse you are looking for.</h6>
@@ -43,7 +43,7 @@ const Body = () => {
                             <img style={{objectFit: "cover", height: '80%', width: '800px', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
                         </Col>
                         <Col sm={8}>
-                        <Card style={{ backgroundColor: '#CDD5E450', border: 'none' }}>
+                        <div style={{ backgroundColor: '#CDD5E450', border: 'none', height: '45rem' }}>
                             <Row>
                                 <Col sm={4}>
                                 </Col>
@@ -51,7 +51,7 @@ const Body = () => {
                                     <Card.Body>
                                         <h1>Explore Amongst Best Warehouses</h1>
                                         <h5>Another set of custom text here.</h5>
-                                        <Card style={{marginTop: '60px', width: '60%', border: '1px solid #aaaaaa'}}>
+                                        <Card style={{ marginTop: '5rem', width: '60%', border: '1px solid #aaaaaa', minWidth: '18rem'}}>
                                             <Card.Body>
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
                                                 <Row>
@@ -73,7 +73,7 @@ const Body = () => {
                                     </Card.Body>
                                 </Col>
                             </Row>
-                        </Card>
+                        </div>
                         </Col>
                     </Row>
                </Container>             

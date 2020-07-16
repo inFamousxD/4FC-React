@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 const Cards = () => {
     return (
         <Fragment>
-             <Card>
+             <Card style={{marginBottom: '1rem'}}>
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>
                     <Card.Title>
@@ -27,19 +27,11 @@ const Cards = () => {
                             </Col>
                         </Row>
                     </Card.Title>
-                    <Card.Text>
-                        <hr/>
-                        <div style={{
+                    <Card.Text style={{
                             opacity: '0.75'
                         }}>
-                            Area covered: 36,000 sq. ft.
-                        </div>
-                        <div style={{
-                            opacity: '0.75'
-                        }}>
+                            Area covered: 36,000 sq. ft. <br />                       
                             Locality: Koramangala, Bangalore
-                        </div>
-                    
                     </Card.Text>
                 </Card.Body>
             </Card>

@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const Cards = () => {
+const Cards = ({ warehouse }) => {
+    
     return (
         <Fragment>
              <Card style={{marginLeft: '2rem', marginBottom: '3rem', minWidth: '21rem', maxWidth: '21rem'}}>
@@ -15,7 +16,7 @@ const Cards = () => {
                     <Card.Title>
                         <Row>
                             <Col sm={8}>
-                                Transport Corp India Phase-2
+                            {warehouse.warehouseDetails.name}
                             </Col>
                             <Col sm={4} style={{float: 'right', color: 'blue', fontSize: '14px'}}>
                                 ₹ 500/sq.ft.
@@ -23,11 +24,15 @@ const Cards = () => {
                         </Row>
                     </Card.Title>
                     <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
+                        {warehouse.warehouseDetails.address}
                     </Card.Text>
                 </Card.Body>
                 <Card.Body>
+                    Deposit: ₹ {warehouse.warehouseDetails.deposit}/-
+                </Card.Body>
+                <Card.Body style={{
+                    paddingTop: '0px'
+                }}>
                     <Link to='/description'>
                     <Button variant="outline-secondary" style={{ borderRadius: '5px' }}>Check Details</Button>
                     </Link>

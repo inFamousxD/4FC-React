@@ -2,7 +2,6 @@ import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from "../actions/types";
 
 const initialState = {
     profile: null,
-    wishlist: [],
     loading: true,
     error: {}
 }
@@ -21,14 +20,13 @@ export default function(state = initialState, action) {
         case PROFILE_ERROR:
             return {
                 ...state,
-                err: payload,
+                error: payload,
                 loading: false
             }
         case CLEAR_PROFILE:
             return {
                 ...state,
                 profile: null,
-                wishlist: [],
                 loading: false
             }
         default: 

@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NavigationBar from './components/layout/NavigationBar';
-import Description from './components/warehouse/Description';
+import Description from './components/layout/warehouse/Description';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Landing from './components/layout/landing/Landing';
@@ -28,8 +28,7 @@ const App = () =>  {
   return (
     <Provider store={store}>
       <Router>
-  
-        <Fragment>
+
           <NavigationBar/> 
           <Route exact path='/' component = { Landing } />
 
@@ -41,7 +40,6 @@ const App = () =>  {
             <PrivateRoute exact path='/dashboard' component={ Dashboard } />
           </Switch>
 
-        </Fragment>
     </Router>
     </Provider>
   );

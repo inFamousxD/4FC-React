@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../../actions/profile';
 import Spinner from '../Spinner';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
+import Wishlist from './Wishlist';
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading, wishlist } }) => {
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
         getCurrentProfile();
-    }, []);
+    }, [getCurrentProfile]);
 
     return loading && profile===null ? <Spinner /> : 
     <Fragment>
@@ -21,11 +22,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                     { user[0].wishlist.length > 0 ? 
                     <div>
                         Wishlist present.
-                        <ul>
-                        {user[0].wishlist.map((value, index) => {
-                            return <li key={index}>{value}</li>
-                        })}
-                        </ul>
+                        <Wishlist wishlist={user[0].wishlist} />
                     </div> : // No wishlist
                     <div>
                         Empty wishlist

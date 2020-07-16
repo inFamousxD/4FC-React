@@ -62,7 +62,7 @@ const SearchForm = () => {
                         </Container>
                     </Col>
                     <Col sm={7}>
-                        <img height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
+                        <img className='hide-sm' height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                 </Row>
             </Container>

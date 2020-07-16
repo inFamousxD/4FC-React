@@ -12,8 +12,8 @@ const Sorter = () => {
             <Form.Control type="range" className="mt-2"/>
             <Form.Group>
                 <div style={{marginTop: '0.5rem'}}>sq. ft.</div>
-                <input type="Number" value="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
-                <input type="Number" value="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
+                <input type="Number" defaultValue="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
+                <input type="Number" defaultValue="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
             </Form.Group>
             </div>
             
@@ -25,7 +25,7 @@ const Sorter = () => {
                             Localities Nearby
                         </Col>
                         <Col>
-                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <i className="fa fa-search" aria-hidden="true"></i>
                         </Col>
                     </Row>
                 </Card.Header>
@@ -67,8 +67,8 @@ const Sorter = () => {
             <Form.Control type="range" className="mt-2"/>
             <Form.Group>
                 <div style={{marginTop: '0.5rem'}}>sq. ft.</div>
-                <input type="Number" value="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
-                <input type="Number" value="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
+                <input type="Number" defaultValue="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
+                <input type="Number" defaultValue="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
             </Form.Group>
             </div>
             <div>
@@ -76,8 +76,8 @@ const Sorter = () => {
             <Form.Control type="range" className="mt-2"/>
             <Form.Group>
                 <div style={{marginTop: '0.5rem'}}>sq. ft.</div>
-                <input type="Number" value="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
-                <input type="Number" value="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
+                <input type="Number" defaultValue="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
+                <input type="Number" defaultValue="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
             </Form.Group>
             </div>
             <div>
@@ -85,8 +85,8 @@ const Sorter = () => {
             <Form.Control type="range" className="mt-2"/>
             <Form.Group>
                 <div style={{marginTop: '0.5rem'}}>sq. ft.</div>
-                <input type="Number" value="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
-                <input type="Number" value="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
+                <input type="Number" defaultValue="0" style={{width: '4rem', marginTop: '0rem', paddingLeft: '15px'}}/>
+                <input type="Number" defaultValue="10000" style={{width: '5rem', marginTop: '0rem', paddingLeft: '15px', float: 'right'}}/>
             </Form.Group>
             </div>
 

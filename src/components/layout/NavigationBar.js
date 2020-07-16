@@ -16,7 +16,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
                 <Link to='/dashboard' className='link'>Profile</Link>
             </div>
             <Link to='/' className='link' onClick={logout}>
-                <Button variant='outline-dark' style={{borderRadius: '5px'}}>
+                <Button variant='dark' style={{borderRadius: '5px'}}>
                     Logout
                 </Button>
             </Link>
@@ -30,12 +30,12 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
     );
 
     return (
-        <React.Fragment>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{height: '4rem'}}>
+        <Fragment>
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '4rem'}} >
                 <Navbar.Brand>
                     <Link to='/' className='link'>4FC-LOGO</Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto"/>
                     <Nav>
@@ -44,7 +44,8 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
                             <Link to='/contact' className='link'>+91 987-654-3210</Link>
                         </div>
                         <div className='nav-link' style={{marginRight:'30px'}}>
-                            <Link to='/blog' className='link'>Blog</Link>
+                            <Link to='/blog' className='link'>
+                            <i className="fa fa-bookmark mr-2" aria-hidden="true"/>Blog</Link>
                         </div>
                         { !loading && (
                             <Fragment>
@@ -56,7 +57,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        </React.Fragment>
+        </Fragment>
     )
 }
 
