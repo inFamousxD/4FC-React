@@ -13,13 +13,13 @@ const Cards = ({ warehouse }) => {
              <Card style={{marginRight: '2rem', marginBottom: '3rem', minWidth: '21rem', maxWidth: '21rem'}}>
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>
-                    <Card.Title>
+                    <Card.Title style={{ minHeight: '3rem' }}>
                         <Row>
                             <Col sm={8}>
-                            {warehouse.warehouseDetails.name}
+                            { warehouse.warehouseDetails.name }
                             </Col>
                             <Col sm={4} style={{float: 'right', color: 'blue', fontSize: '14px'}}>
-                                ₹ 500/sq.ft.
+                                ₹ { warehouse.warehouseDetails.pricing }/sq.ft.
                             </Col>
                         </Row>
                     </Card.Title>

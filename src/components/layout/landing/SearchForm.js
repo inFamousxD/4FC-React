@@ -45,10 +45,8 @@ const SearchForm = () => {
                                     <Form.Control type="range" />
                                 </Form.Group>   
                                 <Form.Group className="mt-4">
-                                    <Form.Label style={{fontSize: '16px'}}>Selected Localities : 
-                                        <Form.Check inline label="Enter locality" className="ml-3"></Form.Check>
+                                        <Form.Check inline label="Enter locality" style={{ marginBottom: '10px' }}></Form.Check>
                                         <Form.Check inline label="Guide me" className="ml-3"></Form.Check>
-                                    </Form.Label>
                                     <Form.Control as="select">
                                         <option>Pune</option>
                                     </Form.Control>
