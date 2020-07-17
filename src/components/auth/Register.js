@@ -137,12 +137,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                                     Create a New Account
                                 </button>
                                 <Row style={{marginTop: '2rem'}}>
-                                    <Col>
-                                        <h5>Already have an account?</h5>
+                                    <Col style={{ textAlign: 'center' }} sm={6}>
+                                        <p style={{fontSize: '16px'}}>Have an account?</p>
                                     </Col>
-                                    <Col>
+                                    <Col style={{ textAlign: 'center' }} sm={6}>
                                     <Link to='/login' className="link-light">
-                                        <h5>Click here to log in</h5>
+                                        <p style={{fontSize: '16px'}}>Click here to log in</p>
                                     </Link> 
                                     </Col>
                                 </Row>

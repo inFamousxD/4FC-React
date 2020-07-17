@@ -15,8 +15,7 @@ const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, war
     return (
         <Fragment>
             <Container fluid style={{ paddingTop: '5%', paddingBottom: '5%' }}>  
-            <h1 style={{marginBottom: '2rem', marginLeft: '3rem'}}>Featured Properties</h1>
-
+            <h1 style={{marginBottom: '2rem', marginLeft: '1%'}}>Featured Properties</h1>
             <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll', marginLeft: '1rem'}}>
 
                 {/* Fetch warehouses and pass to cards. */}
@@ -27,7 +26,7 @@ const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, war
                 }
             </div> 
             <Link to='/category'>
-            <Button style={{marginTop: '1rem', width: '10rem', marginLeft: '3rem', borderRadius: '5px'}}>Browse All</Button>
+            <Button style={{marginTop: '1rem', width: '10rem', marginLeft: '1%', borderRadius: '5px'}}>Browse All</Button>
             </Link>
             </Container>
         </Fragment>

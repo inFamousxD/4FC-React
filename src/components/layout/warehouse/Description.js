@@ -18,60 +18,24 @@ const Description = () => {
             <div>
                 <img height='420px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
             </div>
-            <div className='side-card float-right mr-5'>
-                <Card>
-                    <Card.Header>
-                        <Row>
-                            <Col>
-                                <div>
-                                    Monthly Rental
-                                </div>
-                                <div style={{fontSize:30}}>
-                                    500 / sq. ft.
-                                </div>
-                            </Col>
-                            <Col> 
-                                <div className='float-right mt-3'>
-                                <Button style={{borderRadius: '3px'}}>Send Request</Button>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Card.Header>
-                    <Card.Body>
-                        <ListGroup variant='flush'>
-                            <ListGroup.Item>
-                                <b>Address : </b> Some random address
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                <b>Area Covered : </b> 25,000 sq. ft
-                            </ListGroup.Item>
-                            <ListGroup.Item>
-                                <b>Deposit : </b> 100,000/- (negotiable)
-                            </ListGroup.Item>
-                        </ListGroup>
-                    </Card.Body>
-                    <Card.Footer>
-                        <Row>
-                            <Col>
-                                Interested, but not sure to book?
-                            </Col>
-                            <Col>   
-                                <div className='float-right'>
-                                    <Button variant='light'> <i className="fa fa-heart-o mt-2" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Card.Footer>
-                </Card>
-            </div>
-            <div className="card-class">
-                <Container fluid> 
-                    <h3>
-                        <b>Transport Corp India - Phase 2 </b><i className="fa fa-twitter float-right" aria-hidden="true"></i> <i className="fa fa-facebook-square float-right mr-4" aria-hidden="true"></i>
-                    </h3>
 
+            <Row className="card-class">
+                <Col sm={8}>
+                <Container fluid> 
+                        <Row>
+                            <Col sm={10}>
+                                <h3><b>Transport Corp India - Phase 2 </b></h3>
+                            </Col>
+                            <Col sm={2}>
+                                <i className="fa fa-twitter mr-2" aria-hidden="true"/>
+                                <i className="fa fa-facebook-square" aria-hidden="true"/>
+                            </Col>
+                        </Row>
                     <p className='item-desc'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.     
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
+                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
+                        galley of type and scrambled it to make a type specimen book. It has survived not only five 
+                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged.     
                     </p>    
                 </Container> 
                 <Container fluid>
@@ -123,79 +87,125 @@ const Description = () => {
                         </Card.Body>
                     </Card>
                 </Container>
-
-                <div className="mt-4">
-                    <Container fluid>
-                        <Row>
-                            <Col>
-                                <Card style={{ maxHeight: '22rem' }}>
-                                    <Card.Header>Location <i className="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
-                                    <Card.Body style={{ 
-                                        margin: '0px',
-                                        padding: '0px',
-                                    }}>
-                                        <div id='mapid'>
-                                            <img src={map_placeholder} alt='Map' style={{ objectFit: 'cover' }} id='map'></img>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col>
-                                <Card style={{
-                                    overflow: 'hidden',
-                                    overflowY: 'scroll',
-                                    maxHeight: '21rem'
+                <Container fluid className="mt-4">
+                    <Row>
+                        <Col>
+                            <Card style={{ maxHeight: '22rem' }}>
+                                <Card.Header>Location <i className="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
+                                <Card.Body style={{ 
+                                    margin: '0px',
+                                    padding: '0px',
                                 }}>
-                                    <Card.Header>Nearby Landmarks</Card.Header>
-                                    <Card.Body style={{
-                                        margin: '0px',
-                                        padding: '0px'
-                                    }}>
-                                        <ListGroup variant='flush'>
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Nearest Highway: </Col>
-                                                    <Col>Desc</Col>
-                                                </Row>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Nearest Railway Station: </Col>
-                                                    <Col>Desc</Col>
-                                                </Row>
-                                            </ListGroup.Item>   
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Nearest Bus Stand: </Col>
-                                                    <Col>Desc</Col>
-                                                </Row>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Nearest Bank: </Col>
-                                                    <Col>Desc</Col>
-                                                </Row>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Nearest Petrol Pump: </Col>
-                                                    <Col>Desc</Col>
-                                                </Row> 
-                                            </ListGroup.Item>
-                                            <ListGroup.Item>
-                                                <Row>    
-                                                    <Col>Nearest Park: </Col>
-                                                    <Col>Desc</Col>
-                                                </Row>
-                                            </ListGroup.Item>
-                                        </ListGroup>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
+                                    <div id='mapid'>
+                                        <img src={map_placeholder} alt='Map' style={{ objectFit: 'cover' }} id='map'></img>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card style={{
+                                overflow: 'hidden',
+                                overflowY: 'scroll',
+                                maxHeight: '21rem'
+                            }}>
+                                <Card.Header>Nearby Landmarks</Card.Header>
+                                <Card.Body style={{
+                                    margin: '0px',
+                                    padding: '0px'
+                                }}>
+                                    <ListGroup variant='flush'>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Nearest Highway: </Col>
+                                                <Col>Desc</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Nearest Railway Station: </Col>
+                                                <Col>Desc</Col>
+                                            </Row>
+                                        </ListGroup.Item>   
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Nearest Bus Stand: </Col>
+                                                <Col>Desc</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Nearest Bank: </Col>
+                                                <Col>Desc</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>Nearest Petrol Pump: </Col>
+                                                <Col>Desc</Col>
+                                            </Row> 
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>    
+                                                <Col>Nearest Park: </Col>
+                                                <Col>Desc</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                    </ListGroup>
+                                  </Card.Body>
+                            </Card>
+                        </Col>
                         </Row>
                     </Container>
+                </Col> 
+                <Col sm={4}>
+                <div className='side-card mr-5'>
+                <Card>
+                    <Card.Header>
+                        <Row>
+                            <Col>
+                                <div>
+                                    Monthly Rental
+                                </div>
+                                <div style={{fontSize:30}}>
+                                    500 / sq. ft.
+                                </div>
+                            </Col>
+                            <Col> 
+                                <div className='float-right mt-3'>
+                                <Button style={{borderRadius: '3px'}}>Send Request</Button>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Card.Header>
+                    <Card.Body>
+                        <ListGroup variant='flush'>
+                            <ListGroup.Item>
+                                <b>Address : </b> Some random address
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <b>Area Covered : </b> 25,000 sq. ft
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <b>Deposit : </b> 100,000/- (negotiable)
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card.Body>
+                    <Card.Footer>
+                        <Row>
+                            <Col>
+                                Interested, but not sure to book?
+                            </Col>
+                            <Col>   
+                                <div className='float-right'>
+                                    <Button variant='light'> <i className="fa fa-heart-o mt-2" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Card.Footer>
+                </Card>
                 </div>
-            </div>
+                </Col>
+            </Row>
             <Featured />
         </Fragment>
     )

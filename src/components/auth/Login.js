@@ -91,12 +91,12 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
                                     Login to your account
                                 </button>
                                 <Row style={{marginTop: '2rem'}}>
-                                    <Col>
-                                        <h5>Not a member yet?</h5>
+                                    <Col sm={6} style={{ textAlign: 'center' }}>
+                                        <p style={{fontSize: '16px'}}>Not a member yet?</p>
                                     </Col>
-                                    <Col>
+                                    <Col sm={6} style={{ textAlign: 'center' }}>
                                     <Link to='/register' className="link-light">
-                                        <h5>Click here to register</h5>
+                                        <p style={{fontSize: '16px'}}>Click here to register</p>
                                     </Link> 
                                     </Col>
                                 </Row>

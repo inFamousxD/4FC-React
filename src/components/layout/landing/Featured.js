@@ -23,7 +23,7 @@ const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, war
                     {/* Fetch warehouses and pass to cards. */}
                     {
                         warehouses.map((warehouse, key) => {
-                            return !loading && warehouse && <Cards warehouse = {warehouse} key={key}/>
+                            return warehouse && <Cards warehouse = {warehouse} key={key}/>
                         })
                     }
                 </div> 

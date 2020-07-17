@@ -4,7 +4,7 @@ import PlaceholderImage from '../../../image/warehouse_auth.jpg';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const Cards = () => {
+const Cards = ({ warehouse }) => {
     return (
         <Fragment>
              <Card style={{marginBottom: '1rem'}}>
@@ -15,14 +15,14 @@ const Cards = () => {
                             <Col sm={8}>
                                 <div style={{
                                     fontSize: '18px'
-                                }}>Transport Corp India - Phase 2</div>
+                                }}>{ warehouse.warehouseDetails.name }</div>
                             </Col>
                             <Col sm={4}>
                                 <div style={{
                                     color: 'blue',
                                     fontSize: '14px',
                                     float: 'right',
-                                    marginTop: '10%'
+                                    marginTop: '1%'
                                 }}>₹ 500/sq.ft.</div>
                             </Col>
                         </Row>
@@ -30,7 +30,7 @@ const Cards = () => {
                     <Card.Text style={{
                             opacity: '0.75'
                         }}>
-                            Area covered: 36,000 sq. ft. <br />                       
+                            Area covered: { warehouse.warehouseDetails.areaCovered } sq.ft. <br />                       
                             Locality: Koramangala, Bangalore
                     </Card.Text>
                 </Card.Body>
