@@ -21,7 +21,6 @@ const Cards = ({ warehouse }) => {
                                 <div style={{
                                     color: 'blue',
                                     fontSize: '14px',
-                                    float: 'right',
                                     marginTop: '1%'
                                 }}>₹ 500/sq.ft.</div>
                             </Col>
