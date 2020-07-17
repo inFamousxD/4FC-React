@@ -11,6 +11,7 @@ import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import Alert from '../layout/Alert';
 import { login } from '../../actions/auth';
+import ScrollToTop from '../layout/ScrollToTop';
 import './authstyles.css';
 
 
@@ -41,6 +42,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
     }
     return (
         <Fragment>
+            <ScrollToTop />
             <div className="auth-class">
             <Container fluid className="ml">
             <Col>

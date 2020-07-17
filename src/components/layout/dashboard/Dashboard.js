@@ -5,6 +5,7 @@ import { getCurrentProfile } from '../../../actions/profile';
 import Spinner from '../Spinner';
 import Container from 'react-bootstrap/Container';
 import Wishlist from './Wishlist';
+import ScrollToTop from '../ScrollToTop';
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
     useEffect(() => {
@@ -13,6 +14,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
 
     return loading && profile===null ? <Spinner /> : 
     <Fragment>
+        <ScrollToTop />
         <Container>
             <h1 className='large text-primary'>Dashboard</h1>
             <div className='lead'>

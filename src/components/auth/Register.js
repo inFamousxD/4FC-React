@@ -12,7 +12,7 @@ import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types'
 import Alert from '../layout/Alert';
-
+import ScrollToTop from '../layout/ScrollToTop';
 import 'react-phone-input-2/lib/style.css';
 import './authstyles.css';
 
@@ -47,6 +47,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     return (
         <Fragment>
+            <ScrollToTop />
             <div className="auth-class">
             <Container fluid className="ml">
             <Col>

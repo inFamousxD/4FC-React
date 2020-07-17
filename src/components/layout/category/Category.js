@@ -8,11 +8,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
+import ScrollToTop from '../ScrollToTop';
 
 
 const Category = () => {
     return (
         <Fragment>
+            <ScrollToTop />
             <Container fluid>
                 <Row>
                     <img alt={{}} src={warehouseImage} style={{
