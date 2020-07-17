@@ -89,20 +89,20 @@ const Description = () => {
                 </Container>
                 <Container fluid className="mt-4">
                     <Row>
-                        <Col>
-                            <Card style={{ maxHeight: '22rem' }}>
+                        <Col style={{ marginBottom: '2rem' }} sm={6}>
+                            <Card style={{ height: '20rem' }}>
                                 <Card.Header>Location <i className="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
                                 <Card.Body style={{ 
                                     margin: '0px',
                                     padding: '0px',
                                 }}>
                                     <div id='mapid'>
-                                        <img src={map_placeholder} alt='Map' style={{ objectFit: 'cover' }} id='map'></img>
+                                        <img src={map_placeholder} alt='Map' style={{ objectFit: 'cover', height: '20rem' }} id='map'></img>
                                     </div>
                                 </Card.Body>
                             </Card>
                         </Col>
-                        <Col>
+                        <Col sm={6}>
                             <Card style={{
                                 overflow: 'hidden',
                                 overflowY: 'scroll',
@@ -157,9 +157,13 @@ const Description = () => {
                         </Row>
                     </Container>
                 </Col> 
+                {/* STICKY ONLY FOR PC BROWSERS */}
+
                 <Col sm={4}>
-                <div className='side-card mr-5'>
-                <Card>
+                <Card className='side-card mr-5 d-sm-none d-xs-none d-md-block d-lg-block d-xl-block' style={{
+                    minWidth: '21rem',
+                    marginLeft: '1rem'
+                }}>
                     <Card.Header>
                         <Row>
                             <Col>
@@ -192,18 +196,15 @@ const Description = () => {
                     </Card.Body>
                     <Card.Footer>
                         <Row>
-                            <Col>
+                            <Col sm={6}>
                                 Interested, but not sure to book?
                             </Col>
-                            <Col>   
-                                <div className='float-right'>
-                                    <Button variant='light'> <i className="fa fa-heart-o mt-2" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
-                                </div>
+                            <Col sm={6}>   
+                                <Button variant='light'> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
                             </Col>
                         </Row>
                     </Card.Footer>
                 </Card>
-                </div>
                 </Col>
             </Row>
             <Featured />

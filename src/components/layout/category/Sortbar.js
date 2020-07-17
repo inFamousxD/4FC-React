@@ -2,12 +2,12 @@ import React, { Fragment } from 'react'
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-const Sortbar = () => {
+const Sortbar = ({ warehouses: { warehouses } }) => {
     return (
         <Fragment>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '4rem', width: '100%'}}>
                     <Navbar.Brand>
-                        Loaded 0 Warehouse Results
+                        Loaded {warehouses.length} Warehouse Results
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">

@@ -1,16 +1,18 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 
 const Cards = ({ warehouse }) => {
     return (
-        <Fragment>
-             <Card style={{marginBottom: '1rem', minHeight: '23rem'}}>
+        <Col sm={4}>
+            <Link to='/description' className="nav-link card-link" style={{ color: 'black', padding: '0px', margin: '0px' }}>
+            <Card style={{marginBottom: '2rem', maxHeight: '30rem', border: '1px solid #ccc'}}>
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>
-                    <Card.Title>
+                    <Card.Title style={{height: '4rem', overflow: 'hidden'}}>
                         <Row>
                             <Col sm={8}>
                                 <div style={{
@@ -27,15 +29,19 @@ const Cards = ({ warehouse }) => {
                         </Row>
                     </Card.Title>
                     <Card.Text style={{
-                            opacity: '0.75'
+                            opacity: '0.75',
+                            height: '4rem',
+                            overflow: 'hidden'
                         }}>
                             Area covered: { warehouse.warehouseDetails.areaCovered } sq.ft. <br />                       
                             Locality: { warehouse.location.locality ? warehouse.location.locality : 'unspecified' }, {' '}
-                            { warehouse.location.city ? warehouse.location.city : 'unspecified' }
+                            { warehouse.location.city ? warehouse.location.city : 'unspecified' } <br />
+                            #id = {warehouse.identifier}
                     </Card.Text>
                 </Card.Body>
             </Card>
-        </Fragment>
+            </Link>
+        </Col>
     )
 }
 

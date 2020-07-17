@@ -12,8 +12,9 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
   const authLinks = (
         <Fragment>
             <div className='nav-link' style={{marginRight:'30px'}}>
+                <Link to='/dashboard' className='link'>
                 <i className="fa fa-user mr-2" aria-hidden="true"></i>
-                <Link to='/dashboard' className='link'>Profile</Link>
+                Profile</Link>
             </div>
             <Link to='/' className='link' onClick={logout}>
                 <Button variant='dark' style={{borderRadius: '5px'}}>
@@ -25,7 +26,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
     
     const guestLinks = (
         <Link to='/register' className='link-button'>
-            <Button variant='outline-dark' style={{borderRadius: '5px'}}>Sign in/Create Account</Button>
+            <Button variant='dark' style={{borderRadius: '5px'}}>Sign in/Create Account</Button>
         </Link>    
     );
 
@@ -40,8 +41,9 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
                     <Nav className="mr-auto"/>
                     <Nav>
                         <div className='nav-link' style={{marginRight:'30px'}}>
+                            <Link to='/contact' className='link'>
                             <i className="fa fa-phone mr-2" aria-hidden="true"></i> 
-                            <Link to='/contact' className='link'>+91 987-654-3210</Link>
+                            +91 987-654-3210</Link>
                         </div>
                         <div className='nav-link' style={{marginRight:'30px'}}>
                             <Link to='/blog' className='link'>

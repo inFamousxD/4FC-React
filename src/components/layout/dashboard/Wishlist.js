@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
 const Wishlist = ({ wishlist }) => {
-    const warehouses = wishlist.map((id, index) => (
-        <li key={index}>{id}</li>
-    ))
+    const warehouses = wishlist.map((id, index) => {
+        return <li key={index}>{id}</li>
+    })
     return (
         <Fragment>
             <ul>

@@ -21,7 +21,6 @@ export const loadUser = () => async dispatch => {
     try {
         // const res = await axios.get(`http://localhost:9000/auth`);
         const res = await axios.get(`https://d2ptygpwftf1gm.cloudfront.net/auth`);
-        console.log(res.data)
         dispatch({
             type: USER_LOADED,
             payload: res.data
