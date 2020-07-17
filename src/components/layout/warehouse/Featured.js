@@ -16,7 +16,7 @@ const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, war
         <Fragment>
             <Container fluid style={{ paddingTop: '5%', paddingBottom: '5%' }}>  
             <h1 style={{marginBottom: '2rem', marginLeft: '1%'}}>Featured Properties</h1>
-            <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll', marginLeft: '1rem'}}>
+            <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll', marginLeft: '1%'}}>
 
                 {/* Fetch warehouses and pass to cards. */}
                 {
