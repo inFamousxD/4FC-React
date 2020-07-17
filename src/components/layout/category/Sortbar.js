@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 const Sortbar = () => {
     return (
         <Fragment>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{height: '3rem', width: '100%'}}>
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '4rem', width: '100%'}}>
                     <Navbar.Brand>
                         Loaded 0 Warehouse Results
                     </Navbar.Brand>

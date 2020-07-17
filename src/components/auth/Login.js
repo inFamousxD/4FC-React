@@ -45,7 +45,11 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
             <Container fluid className="ml">
             <Col>
                 <Row>
-                    <Col sm={8} className="image">
+                    <Col sm={8} className="image d-md-table d-none" style={{
+                        position: 'sticky',
+                        overflow: 'hidden',
+                        height: '715px'
+                    }}>
                         <img height='100%' style={{objectFit: "cover", backgroundSize: "100%"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                     <Col sm={4}>
@@ -86,12 +90,16 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
                                 <button className="mt-3 btn btn-secondary btn-block">
                                     Login to your account
                                 </button>
-                                <h5 className="auth-nav">
-                                    Not a member yet?  
-                                    <Link to='/register' className="link-light float-right">
-                                        Click here to register
+                                <Row style={{marginTop: '2rem'}}>
+                                    <Col>
+                                        <h5>Not a member yet?</h5>
+                                    </Col>
+                                    <Col>
+                                    <Link to='/register' className="link-light">
+                                        <h5>Click here to register</h5>
                                     </Link> 
-                                </h5>
+                                    </Col>
+                                </Row>
                             </Form>
                         </div>
                         </div>

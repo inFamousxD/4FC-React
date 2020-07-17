@@ -61,8 +61,8 @@ const SearchForm = () => {
                             </Form>
                         </Container>
                     </Col>
-                    <Col sm={7}>
-                        <img className='hide-sm' height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
+                    <Col sm={7} className="d-sm-none d-md-table">
+                        <img height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                 </Row>
             </Container>

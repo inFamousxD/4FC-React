@@ -51,10 +51,17 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             <Container fluid className="ml">
             <Col>
                 <Row>
-                    <Col sm={8} className="image">
-                        <img height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
+                    <Col sm={8} className="image d-md-table d-none" style={{
+                        position: 'sticky',
+                        overflow: 'hidden',
+                        height: '715px'
+                    }}>
+                        <img height='100%' style={{objectFit: "cover", overflow: 'hidden'}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
-                    <Col sm={4}>
+                    <Col sm={4} style={{
+                        overflowY: 'scroll',
+                        overflow: 'hidden'
+                    }}>
                     
                     <div className="row mt-2">
                         <div className="col-md-10 m-auto">
@@ -129,18 +136,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                                 <button className="mt-5 btn btn-secondary btn-block">
                                     Create a New Account
                                 </button>
-                                <div className="auth-nav-reg mt-5">
-                                <Row>
+                                <Row style={{marginTop: '2rem'}}>
                                     <Col>
                                         <h5>Already have an account?</h5>
                                     </Col>
                                     <Col>
-                                    <Link to='/login' className="link-light float-right">
+                                    <Link to='/login' className="link-light">
                                         <h5>Click here to log in</h5>
                                     </Link> 
                                     </Col>
                                 </Row>
-                                </div>
                             </Form>
                         </div>
                         </div>

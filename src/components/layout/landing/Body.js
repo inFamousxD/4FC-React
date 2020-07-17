@@ -51,7 +51,7 @@ const Body = () => {
                                     <Card.Body>
                                         <h1>Explore Amongst Best Warehouses</h1>
                                         <h5>Another set of custom text here.</h5>
-                                        <Card style={{ marginTop: '5rem', width: '60%', border: '1px solid #aaaaaa', minWidth: '18rem'}}>
+                                        <Card style={{ marginTop: '5rem', width: '60%', border: '1px solid #aaaaaa', minWidth: '19rem'}}>
                                             <Card.Body>
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
                                                 <Row>

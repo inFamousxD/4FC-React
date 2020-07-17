@@ -47,17 +47,7 @@ font-size: small;
     padding-left: 0px;
 }
 
-.auth-nav {
-    margin-top: 81.5%;
-    padding-bottom: 20px;
-}
-
-.auth-nav-reg {
-    padding-bottom: 19px;
-}
-
 .auth-class {
-    overflow: hidden;
     height: 100%;
-    position: fixed;
+    overflow: hidden;
 }
