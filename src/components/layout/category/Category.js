@@ -1,5 +1,5 @@
 import React from 'react';
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import Attributes from './Attributes';
 import Sortbar from './Sortbar';
 import Results from './Results';
@@ -23,7 +23,7 @@ const Category = ({ getWarehouseList, auth, warehouses }) => {
 
     return (
         !warehouses.loading ? 
-        <Fragment>
+        <div style={{ backgroundColor: 'white' }}>
             <ScrollToTop />
             <Container fluid>
                 <Row>
@@ -45,7 +45,7 @@ const Category = ({ getWarehouseList, auth, warehouses }) => {
                     </Col>
                 </Row>
             </Container>
-        </Fragment> : <Spinner></Spinner>
+        </div> : <Spinner style={{ backgroundColor: 'white' }}></Spinner>
     )
 }
 

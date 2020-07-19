@@ -13,7 +13,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
     }, [getCurrentProfile]);
 
     return loading && profile===null ? <Spinner /> : 
-    <Fragment>
+    <div style={{ backgroundColor: 'white', height: '93vh', overflow: 'hidden'}}>
         <ScrollToTop />
         <Container>
             <h1 className='large text-primary'>Dashboard</h1>
@@ -35,7 +35,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                 </Fragment> }
             </div>
         </Container> 
-    </Fragment>;
+    </div>;
 }
 
 Dashboard.propTypes = {

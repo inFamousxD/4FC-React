@@ -1,0 +1,10 @@
+.ad-card {
+    width: 30rem;
+}
+
+
+@media screen and (max-width: 800px) {
+    .ad-card {
+      width: 22rem;
+    }
+  }

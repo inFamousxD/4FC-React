@@ -32,7 +32,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
 
     return (
         <Fragment>
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '4rem'}} >
+            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '7vh'}} >
                 <Navbar.Brand>
                     <Link to='/' className='link'>4FC-LOGO</Link>
                 </Navbar.Brand>

@@ -14,8 +14,8 @@ const SearchForm = () => {
         <Fragment>
             <Container fluid style={{padding: '0px'}}>
                 <Row>
-                    <Col sm={5}>
-                        <Container className="pr-5 pl-5 mt-5">
+                    <Col sm={5} style={{ backgroundColor: 'white' }}>
+                        <Container className="mt-5">
                             <Form>
                                 <Form.Text><h1 style={{fontWeight: '400'}}><b>Find the perfect warehouse for your needs</b></h1></Form.Text>
                                 <Form.Group>
@@ -59,7 +59,7 @@ const SearchForm = () => {
                             </Form>
                         </Container>
                     </Col>
-                    <Col sm={7} className="d-sm-none d-md-table">
+                    <Col sm={7} className="d-sm-none d-md-table" style={{ padding: '0', margin: '0' }}>
                         <img height='100%' style={{objectFit: "cover"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                 </Row>

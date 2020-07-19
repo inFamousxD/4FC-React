@@ -1,4 +1,4 @@
-import React,{ Fragment, useState } from 'react';
+import React,{ useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -46,7 +46,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     return (
-        <Fragment>
+        <div style={{backgroundColor: 'white', height: '93vh'}}>
             <ScrollToTop />
             <div className="auth-class">
             <Container fluid className="ml">
@@ -57,7 +57,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         overflow: 'hidden',
                         height: '715px'
                     }}>
-                        <img height='100%' style={{objectFit: "cover", overflow: 'hidden'}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
+                        <img height='1000px' style={{objectFit: "cover", overflow: 'hidden'}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                     <Col sm={4} style={{
                         overflowY: 'scroll',
@@ -156,7 +156,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             </Col>
             </Container>
             </div>
-        </Fragment>
+        </div>
     )
 }
 

@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
+import './Body.css'
 
 const Body = () => {
     return (
@@ -40,7 +41,7 @@ const Body = () => {
                <Container fluid style={{padding: '0px'}}>
                     <Row>
                         <Col sm={4}>
-                            <img style={{objectFit: "cover", height: '80%', width: '800px', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
+                            <img style={{objectFit: "cover", height: '80%', width: '900px', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
                         </Col>
                         <Col sm={8}>
                         <div style={{ backgroundColor: '#CDD5E450', border: 'none', height: '45rem' }}>
@@ -51,7 +52,7 @@ const Body = () => {
                                     <Card.Body>
                                         <h1>Explore Amongst Best Warehouses</h1>
                                         <h5>Another set of custom text here.</h5>
-                                        <Card style={{ marginTop: '5rem', width: '60%', border: '1px solid #aaaaaa', minWidth: '19rem'}}>
+                                        <Card className='ad-card' style={{ marginTop: '5rem', border: '1px solid #aaa'}}>
                                             <Card.Body>
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
                                                 <Row>
@@ -67,7 +68,11 @@ const Body = () => {
                                                     Area covered : 20,000 sq. ft. <br></br>
                                                     Deposit : $1,00,000 (Negotiable)
                                                 </div>
-                                                <Button variant="outline-secondary" style={{ marginTop: '25px', borderRadius: '5px' }}>Check Details</Button>
+                                                <Row>
+                                                    <Col sm={6}>
+                                                        <Button variant="outline-secondary" style={{ marginTop: '25px', borderRadius: '5px' }}>Check Details</Button>
+                                                    </Col>
+                                                </Row>
                                             </Card.Body>
                                         </Card>
                                     </Card.Body>

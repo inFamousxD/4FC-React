@@ -49,5 +49,6 @@ font-size: small;
 
 .auth-class {
     height: 100%;
+    position: relative;
     overflow: hidden;
 }

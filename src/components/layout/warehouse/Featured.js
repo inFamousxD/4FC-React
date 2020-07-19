@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import Cards from '../landing/Cards';
+import Cards from './Cards';
 import { Link } from 'react-router-dom';
 import { getWarehouseList } from '../../../actions/warehouses';
 import { connect } from 'react-redux';

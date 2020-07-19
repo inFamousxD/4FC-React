@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -7,147 +7,153 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import './description.css';
 import Button from 'react-bootstrap/Button';
-import map_placeholder from '../../../image/map_placeholder.jpg';
+import LeafletMap from './LeafletMap';
 import Featured from './Featured';
 import ScrollToTop from '../ScrollToTop';
+import Spinner from 'react-bootstrap/Spinner';
+import Details from './Details';
 
-const Description = () => {
+
+const Description = (object) => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+    const { warehouse } = object.location.state;
+    console.log(warehouse)
     return (
-        <Fragment>
-            <ScrollToTop />
+        warehouse.location.state ? 
+        <div style={{ backgroundColor: 'white', overflowX: 'hidden' }}>
+            <ScrollToTop location={ warehouse.location }/>
             <div>
                 <img height='420px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
             </div>
 
             <Row className="card-class">
                 <Col sm={8}>
+                <Card className='side-card-mobile mr-3 ml-3'>
+                    <Card.Header>
+                        <Row>
+                            <Col>
+                                <div>
+                                    Monthly Rental
+                                </div>
+                                <div style={{fontSize:25}}>
+                                { warehouse.warehouseDetails.pricing } / sq. ft.
+                                </div>
+                            </Col>
+                            <Col> 
+                                <div className='float-right mt-3'>
+                                <Button style={{borderRadius: '3px'}}>Send Request</Button>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Card.Header>
+                    <Card.Body>
+                        <ListGroup variant='flush'>
+                            <ListGroup.Item>
+                                <b>Address : </b> { warehouse.warehouseDetails.address }
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <b>Area Covered : </b> { warehouse.warehouseDetails.areaCovered } sq. ft
+                            </ListGroup.Item>
+                            <ListGroup.Item>
+                                <b>Deposit : </b> { warehouse.warehouseDetails.deposit }/- (negotiable)
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card.Body>
+                    <Card.Footer>
+                        <Row>
+                            <Col sm={6}>
+                                Interested, but not sure to book?
+                            </Col>
+                            <Col sm={6}>   
+                                <Button variant='light' style={{
+                                    paddingLeft: '0px',
+                                    paddingRight: '0px'
+                                }}> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
+                            </Col>
+                        </Row>
+                    </Card.Footer>
+                </Card>
                 <Container fluid> 
                         <Row>
                             <Col sm={10}>
-                                <h3><b>Transport Corp India - Phase 2 </b></h3>
+                                <div style={{ marginBottom: '1rem', fontSize: '30px' }}><b>{ warehouse.warehouseDetails.name }</b></div>
                             </Col>
-                            <Col sm={2}>
-                                <i className="fa fa-twitter mr-2" aria-hidden="true"/>
+                            <Col sm={2} style={{
+                                fontSize: '30px',
+                                float: 'right'
+                            }}>
+                                <i className="fa fa-twitter mr-3" aria-hidden="true"/>
                                 <i className="fa fa-facebook-square" aria-hidden="true"/>
                             </Col>
                         </Row>
                     <p className='item-desc'>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five 
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged.     
+                        Details : { warehouse.warehouseDetails.details } <br/>
+                        Address : { warehouse.warehouseDetails.address }{', '}{ warehouse.location.locality }{', '}
+                        { warehouse.location.city }{', '} { warehouse.location.state } 
+                            
                     </p>    
                 </Container> 
-                <Container fluid>
-                    <Card>
-                        <Card.Header>Details about this warehouse</Card.Header>
-                        <Card.Body>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Dock Placement: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> Two sided </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Flooring Type: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> FM2 Grade </p> </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Flooring Type: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> FM2 Grade </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Truck Capacity: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 500 </p> </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Access Road Width: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 750m </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Distance from Highway: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 2km </p> </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Environmental Clearance: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> Yes </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Approving Authority: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> Panchayat </p> </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Clear height: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 700m </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Center Height: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 700m </p> </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Safety Precaution: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> Water Sprikler </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Area Covered: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 2500 sq. ft. </p> </Col>
-                            </Row>
-                            <Row>
-                                <Col sm={3}> <p className='desc-key'> Access road Width: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> 300m </p> </Col>
-                                <Col sm={3}> <p className='desc-key'> Warehouse Type: </p> </Col>
-                                <Col sm={3}> <p className='desc-val'> Within Logistics Park </p> </Col>
-                            </Row>
-                        </Card.Body>
-                    </Card>
-                </Container>
+                <Details warehouse={ warehouse }/>
                 <Container fluid className="mt-4">
                     <Row>
                         <Col style={{ marginBottom: '2rem' }} sm={6}>
-                            <Card style={{ height: '20rem' }}>
+                            <Card style={{ height: '22rem' }}>
                                 <Card.Header>Location <i className="fa fa-map-marker float-right" aria-hidden="true"></i></Card.Header>
                                 <Card.Body style={{ 
                                     margin: '0px',
                                     padding: '0px',
+                                    width: '100%'
                                 }}>
-                                    <div id='mapid'>
-                                        <img src={map_placeholder} alt='Map' style={{ objectFit: 'cover', height: '20rem' }} id='map'></img>
-                                    </div>
+                                <LeafletMap details={ warehouse }/>
                                 </Card.Body>
                             </Card>
                         </Col>
                         <Col sm={6}>
-                            <Card style={{
-                                overflow: 'hidden',
-                                overflowY: 'scroll',
-                                maxHeight: '21rem'
-                            }}>
+                            <Card style={{height: '22rem'}}>
                                 <Card.Header>Nearby Landmarks</Card.Header>
                                 <Card.Body style={{
+                                    overflow: 'hidden',
+                                    overflowY: 'scroll',
                                     margin: '0px',
                                     padding: '0px'
                                 }}>
                                     <ListGroup variant='flush'>
                                         <ListGroup.Item>
-                                            <Row>
-                                                <Col>Nearest Highway: </Col>
-                                                <Col>Desc</Col>
+                                            <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
+                                                <Col sm={5}><b>Nearest Highway:</b> </Col>
+                                                <Col sm={7}>Description Placeholder Line</Col>
                                             </Row>
                                         </ListGroup.Item>
                                         <ListGroup.Item>
-                                            <Row>
-                                                <Col>Nearest Railway Station: </Col>
-                                                <Col>Desc</Col>
+                                            <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
+                                                <Col sm={5}><b>Nearest Railway Station:</b> </Col>
+                                                <Col sm={7}>Description Placeholder Line</Col>
                                             </Row>
                                         </ListGroup.Item>   
                                         <ListGroup.Item>
-                                            <Row>
-                                                <Col>Nearest Bus Stand: </Col>
-                                                <Col>Desc</Col>
+                                            <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
+                                                <Col sm={5}><b>Nearest Bus Stand:</b> </Col>
+                                                <Col sm={7}>Description Placeholder Line</Col>
                                             </Row>
                                         </ListGroup.Item>
                                         <ListGroup.Item>
-                                            <Row>
-                                                <Col>Nearest Bank: </Col>
-                                                <Col>Desc</Col>
+                                            <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
+                                                <Col sm={5}><b>Nearest Bank:</b> </Col>
+                                                <Col sm={7}>Description Placeholder Line</Col>
                                             </Row>
                                         </ListGroup.Item>
                                         <ListGroup.Item>
-                                            <Row>
-                                                <Col>Nearest Petrol Pump: </Col>
-                                                <Col>Desc</Col>
+                                            <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
+                                                <Col sm={5}><b>Nearest Petrol Pump:</b> </Col>
+                                                <Col sm={7}>Description Placeholder Line</Col>
                                             </Row> 
                                         </ListGroup.Item>
                                         <ListGroup.Item>
-                                            <Row>    
-                                                <Col>Nearest Park: </Col>
-                                                <Col>Desc</Col>
+                                            <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>    
+                                                <Col sm={5}><b>Nearest Park:</b> </Col>
+                                                <Col sm={7}>Description Placeholder Line</Col>
                                             </Row>
                                         </ListGroup.Item>
                                     </ListGroup>
@@ -171,7 +177,7 @@ const Description = () => {
                                     Monthly Rental
                                 </div>
                                 <div style={{fontSize:30}}>
-                                    500 / sq. ft.
+                                { warehouse.warehouseDetails.pricing } / sq. ft.
                                 </div>
                             </Col>
                             <Col> 
@@ -184,13 +190,13 @@ const Description = () => {
                     <Card.Body>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
-                                <b>Address : </b> Some random address
+                                <b>Address : </b> { warehouse.warehouseDetails.address }
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <b>Area Covered : </b> 25,000 sq. ft
+                                <b>Area Covered : </b> { warehouse.warehouseDetails.areaCovered } sq. ft
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <b>Deposit : </b> 100,000/- (negotiable)
+                                <b>Deposit : </b> { warehouse.warehouseDetails.deposit }/- (negotiable)
                             </ListGroup.Item>
                         </ListGroup>
                     </Card.Body>
@@ -208,8 +214,15 @@ const Description = () => {
                 </Col>
             </Row>
             <Featured />
-        </Fragment>
+        </div> : <div style={{
+            padding: '2% 5%',
+            display: 'block',
+            backgroundColor: 'white',
+            height: '1000px'
+        }}>
+            <h1>Failed to fetch data <Spinner></Spinner></h1>
+        </div>
     )
 }
 
-export default Description;
+export default Description

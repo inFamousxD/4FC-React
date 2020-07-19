@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Cards = ({ warehouse }) => {
     return (
         <Col sm={4}>
-            <Link to='/description' className="nav-link card-link" style={{ color: 'black', padding: '0px', margin: '0px' }}>
+            <Link to={{ pathname:'/description', state: { warehouse: warehouse } }} className="nav-link card-link" style={{ color: 'black', padding: '0px', margin: '0px' }}>
             <Card style={{marginBottom: '2rem', maxHeight: '30rem', border: '1px solid #ccc'}}>
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>

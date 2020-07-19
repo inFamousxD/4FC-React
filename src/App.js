@@ -28,8 +28,7 @@ const App = () =>  {
   return (
     <Provider store={store}>
       <Router>
-
-          <NavigationBar/> 
+        <NavigationBar/> 
           <Route exact path='/' component = { Landing } />
 
           <Switch>
@@ -39,7 +38,6 @@ const App = () =>  {
             <Route exact path='/category' component={ Category } />
             <PrivateRoute exact path='/dashboard' component={ Dashboard } />
           </Switch>
-
     </Router>
     </Provider>
   );
