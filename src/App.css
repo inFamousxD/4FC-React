@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;1,600&display=swap');
 
-
 body{
   font-family: IBM Plex Sans, sans-serif;
   margin: 0px 5%;
@@ -76,5 +75,29 @@ body{
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.side-card {
+  position: relative;
+  top: -220px;
+}
+
+.side-card-mobile {
+  position: relative;
+  top: -100px;
+  margin-bottom: -75px;
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .side-card {
+      display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .side-card-mobile {
+      display: block;
   }
 }

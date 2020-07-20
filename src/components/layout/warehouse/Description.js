@@ -5,19 +5,20 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
-import './description.css';
 import Button from 'react-bootstrap/Button';
 import LeafletMap from './LeafletMap';
 import Featured from './Featured';
 import ScrollToTop from '../ScrollToTop';
 import Spinner from 'react-bootstrap/Spinner';
 import Details from './Details';
+import './description.css';
 
 
 const Description = (object) => {
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+    }, [])
+    
     const { warehouse } = object.location.state;
     console.log(warehouse)
     return (

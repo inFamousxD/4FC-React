@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
-import './Body.css'
 
 const Body = () => {
     return (
@@ -52,7 +51,7 @@ const Body = () => {
                                     <Card.Body>
                                         <h1>Explore Amongst Best Warehouses</h1>
                                         <h5>Another set of custom text here.</h5>
-                                        <Card className='ad-card' style={{ marginTop: '5rem', border: '1px solid #aaa'}}>
+                                        <Card className='ad-card' style={{ marginTop: '5rem', border: '1px solid #aaa', zIndex: '2'}}>
                                             <Card.Body>
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
                                                 <Row>
@@ -70,7 +69,7 @@ const Body = () => {
                                                 </div>
                                                 <Row>
                                                     <Col sm={6}>
-                                                        <Button variant="outline-secondary" style={{ marginTop: '25px', borderRadius: '5px' }}>Check Details</Button>
+                                                        <Button variant="outline-dark" style={{ marginTop: '25px', borderRadius: '5px' }}>Check Details</Button>
                                                     </Col>
                                                 </Row>
                                             </Card.Body>

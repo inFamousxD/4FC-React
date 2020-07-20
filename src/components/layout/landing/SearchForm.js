@@ -19,10 +19,10 @@ const SearchForm = () => {
                             <Form>
                                 <Form.Text><h1 style={{fontWeight: '400'}}><b>Find the perfect warehouse for your needs</b></h1></Form.Text>
                                 <Form.Group>
-                                    <ButtonGroup className="mt-3">
+                                    <ButtonGroup className="mt-3 search-form dual-button">
                                         <Button variant="primary" size="lg" style={{
                                             borderTopLeftRadius: '5px',
-                                            borderBottomLeftRadius: '5px',
+                                            borderBottomLeftRadius: '5px'
                                         }}>READY TO LEASE</Button>
                                         <Button variant="outline-primary" size="lg" style={{
                                             borderTopRightRadius: '5px',

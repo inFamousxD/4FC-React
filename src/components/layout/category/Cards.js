@@ -12,25 +12,26 @@ const Cards = ({ warehouse }) => {
             <Card style={{marginBottom: '2rem', maxHeight: '30rem', border: '1px solid #ccc'}}>
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>
-                    <Card.Title style={{height: '4rem', overflow: 'hidden'}}>
+                    <Card.Title style={{height: '3rem', overflow: 'hidden'}}>
                         <Row>
-                            <Col sm={8}>
+                            <Col sm={7}>
                                 <div style={{
-                                    fontSize: '18px'
+                                    fontSize: '20px',
+                                    fontWeight: 'bold'
                                 }}>{ warehouse.warehouseDetails.name }</div>
                             </Col>
-                            <Col sm={4}>
+                            <Col sm={5}>
                                 <div style={{
                                     color: 'blue',
-                                    fontSize: '14px',
-                                    marginTop: '1%'
+                                    fontSize: '20px',
+                                    marginTop: '1%',
                                 }}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
                             </Col>
                         </Row>
                     </Card.Title>
                     <Card.Text style={{
                             opacity: '0.75',
-                            height: '4rem',
+                            height: '5rem',
                             overflow: 'hidden'
                         }}>
                             Area covered: { warehouse.warehouseDetails.areaCovered } sq.ft. <br />                       

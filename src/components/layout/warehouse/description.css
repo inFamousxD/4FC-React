@@ -19,26 +19,3 @@
     object-fit: cover;
 }
 
-.side-card {
-    position: relative;
-    top: -220px;
-}
-
-.side-card-mobile {
-    position: relative;
-    top: -100px;
-    margin-bottom: -75px;
-    display: none;
-}
-
-@media screen and (max-width: 800px) {
-    .side-card {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .side-card-mobile {
-        display: block;
-    }
-}

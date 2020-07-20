@@ -10,7 +10,7 @@ const Cards = ({ warehouse }) => {
     
     return (
         <Fragment>
-             <Card style={{marginRight: '2rem', marginBottom: '3rem', minWidth: '22.5rem', maxWidth: '23rem'}} className="mobile-card">
+            <Card style={{marginRight: '2rem', marginBottom: '3rem', minWidth: '22.5rem', maxWidth: '23rem'}} className="mobile-card">
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>
                     <Card.Title style={{ minHeight: '3rem' }}>

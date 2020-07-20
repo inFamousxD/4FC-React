@@ -10,7 +10,7 @@ const Cards = ({ warehouse }) => {
     
     return (
         <Fragment>
-             <Card style={{marginRight: '2rem', marginBottom: '3rem', minWidth: '22rem', maxWidth: '23rem'}} className="mobile-card">
+             <Card style={{marginRight: '2rem', marginBottom: '1rem', minWidth: '22rem', maxWidth: '23rem'}} className="mobile-card">
                 <Card.Img variant="top" src={PlaceholderImage} />
                 <Card.Body>
                     <Card.Title style={{ minHeight: '3rem' }}>
@@ -34,7 +34,7 @@ const Cards = ({ warehouse }) => {
                     paddingTop: '0px'
                 }}>
                     <Link to={{ pathname:'/description', state: { warehouse: warehouse } }} replace>
-                    <Button variant="outline-secondary" style={{ borderRadius: '5px' }}>Check Details</Button>
+                    <Button variant="outline-dark" style={{ borderRadius: '5px' }}>Check Details</Button>
                     </Link>
                 </Card.Body>
             </Card>
