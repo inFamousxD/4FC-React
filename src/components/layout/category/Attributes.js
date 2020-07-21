@@ -6,11 +6,12 @@ import Col from 'react-bootstrap/Col';
 import AttrSlider from './AttrSlider';
 import { Button, ButtonGroup } from 'react-bootstrap';
 
-const Sorter = () => {
+const Attributes = ({ warehouses: { loading, warehouses } }) => {
 
     const boldStyle={
         fontSize: '18px'
     }
+
 
     return (
         <div className="ml-2 mr-2">
@@ -26,10 +27,10 @@ const Sorter = () => {
                 <Card.Header>
                     <Row>
                         <Col sm={6}>
-                            Localities Nearby
+                            Localities
                         </Col>
                         <Col sm={6}>
-                            <i className="fa fa-search" aria-hidden="true"></i>
+                            <i className="fa fa-search float-right" aria-hidden="true"></i>
                         </Col>
                     </Row>
                 </Card.Header>
@@ -39,31 +40,16 @@ const Sorter = () => {
                     paddingTop: '1rem',
                     overflow: 'hidden',
                     overflowY: 'scroll'
-                }}>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
-                    <div style={{ marginBottom: '0.5rem' }}>
-                    <Form.Check inline label="Location" className="ml-3"></Form.Check>
-                    </div>
+                }}> {   
+                        !loading && warehouses.map((warehouse) => {
+                            const {locality} = warehouse.location;
+                            return (
+                            <div key={warehouse.identifier} style={{ marginBottom: '0.5rem' }}>
+                                <Form.Check inline label={locality} key={warehouse.identifier} className="ml-3"/>
+                            </div>)
+                        })
+                    }
+                    
                 </Card.Body>
             </Card>
             <div>
@@ -90,12 +76,12 @@ const Sorter = () => {
                 <ButtonGroup className="mt-3" style={{
                     width: '100%'
                 }}>
-                    <Button variant="outline-primary" size="lg" style={{
+                    <Button variant="outline-dark" size="lg" style={{
                         borderTopLeftRadius: '5px',
                         borderBottomLeftRadius: '5px',
                         maxWidth: '50%'
                     }}>Water Sprinkler</Button>
-                    <Button variant="outline-primary" size="lg" style={{
+                    <Button variant="outline-dark" size="lg" style={{
                         borderTopRightRadius: '5px',
                         borderBottomRightRadius: '5px',
                         maxWidth: '50%'
@@ -107,13 +93,13 @@ const Sorter = () => {
                 <Form.Group>
                     <div style={boldStyle}>Environmental Clearance</div>
                     <Row className='mt-2'>
-                        <Col sm={4}>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                         <Form.Check inline label="Yes"></Form.Check>
                         </Col>
-                        <Col sm={4}>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                         <Form.Check inline label="No"></Form.Check>
                         </Col>
-                        <Col sm={4}>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                         <Form.Check inline label="N/A"></Form.Check>
                         </Col>
                     </Row>
@@ -145,14 +131,14 @@ const Sorter = () => {
                 <Form.Group>
                     <div style={boldStyle}>Access Road Width</div>
                     <Row className='mt-2'>
-                        <Col sm={4}>
-                        <Form.Check inline label="40 ft."></Form.Check>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                        <Form.Check inline label="~40 ft."></Form.Check>
                         </Col>
-                        <Col sm={4}>
-                        <Form.Check inline label="40 - 60 ft."></Form.Check>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                        <Form.Check inline label="~60 ft."></Form.Check>
                         </Col>
-                        <Col sm={4}>
-                        <Form.Check inline label="60+ ft."></Form.Check>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                        <Form.Check inline label="~60+ ft."></Form.Check>
                         </Col>
                     </Row>
                 </Form.Group>
@@ -161,28 +147,26 @@ const Sorter = () => {
                 <Form.Group>
                     <div style={boldStyle}>Parking Available</div>
                     <Row className='mt-2'>
-                        <Col sm={4}>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                         <Form.Check inline label="Yes"></Form.Check>
                         </Col>
-                        <Col sm={4}>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                         <Form.Check inline label="No"></Form.Check>
                         </Col>
-                        <Col sm={4}>
+                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
                         <Form.Check inline label="N/A"></Form.Check>
                         </Col>
                     </Row>
                 </Form.Group>
             </div>
-            <Form.Group style={{
-                fontSize: '15px'
-            }}>
+            <Form.Group>
                 <div style={boldStyle}>Environmental Clearance</div>
                 <Row className='mt-2'>
-                    <Col sm={6}>
-                    <Form.Check inline label="Independant Box"></Form.Check>
+                    <Col className='col-xs-6 col-sm-6 col-md-6 col-lg-6' style={{ height: '2rem', fontSize: '18px' }}>
+                    <Form.Check inline label="Independant"></Form.Check>
                     </Col>
-                    <Col sm={6}>
-                    <Form.Check inline label="Within Logistics Park"></Form.Check>
+                    <Col className='col-xs-6 col-sm-6 col-md-6 col-lg-6' style={{ height: '4rem', fontSize: '18px' }}>
+                    <Form.Check inline label="Logistics Park"></Form.Check>
                     </Col>
                 </Row>
             </Form.Group>
@@ -190,4 +174,4 @@ const Sorter = () => {
     )
 }
 
-export default Sorter
+export default Attributes

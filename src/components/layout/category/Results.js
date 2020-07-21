@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Cards from './Cards'
 
 
-const Results = ({ warehouses: { warehouses } }) => {
+const Results = ({ warehouses }) => {
     return (
         <Fragment>
             <Row style={{

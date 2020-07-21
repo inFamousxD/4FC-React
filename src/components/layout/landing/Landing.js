@@ -14,12 +14,14 @@ const Landing = ({ getWarehouseList, auth: { user }, warehouses }) => {
         getWarehouseList();
     }, [getWarehouseList]);
     return (
+        !warehouses.loading ? (
         <div className="prevent-hor-scroll">
             <ScrollToTop />
             <SearchForm/>
-            <Body/>
+            <Body warehouses={warehouses}/>
             <Featured warehouses={warehouses}/>
         </div>
+        ) : ( <div>Loading</div> )
     )
 }
 

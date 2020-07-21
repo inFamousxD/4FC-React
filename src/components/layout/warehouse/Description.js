@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -15,10 +16,16 @@ import './description.css';
 
 
 const Description = (object) => {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-    
+    if (!object.location.state)
+        return (<div style={{
+            padding: '2% 5%',
+            display: 'block',
+            backgroundColor: 'white',
+            height: '93vh'
+        }}>
+            <h1>Unauthorised access. Return back to <Link to='/'>Home</Link>
+ </h1>
+        </div>)
     const { warehouse } = object.location.state;
     console.log(warehouse)
     return (

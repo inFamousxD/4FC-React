@@ -1,13 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button'
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
+import { Link } from 'react-router-dom';
 
-const Body = () => {
+
+const Body = ({ warehouses: { loading, warehouses }}) => {
+    const [count, setCount] = useState(0);
+    const [warehouse, setWarehouse] = useState(warehouses[0]);
+
+    useEffect(() => {
+        if (count >= warehouses.length) setCount(0)
+
+        setWarehouse(warehouses[count])
+    }, [count, warehouses])
+
     return (
+        !loading && warehouses ? 
        <Fragment>
            <Container fluid style={{borderTop: '1px solid #cccccc', backgroundColor: '#EFEFEF', padding: '0px'}}>
                <Container fluid style={{ padding: "20px" }}>
@@ -55,26 +67,39 @@ const Body = () => {
                                             <Card.Body>
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
                                                 <Row>
-                                                    <Col sm={8}>
-                                                        <h5 className="mt-5">Transport Corp India Phase-2</h5>
+                                                    <Col sm={8} style={{height: '8rem'}}>
+                                                        <h3 className="mt-5">{ warehouse.warehouseDetails.name }</h3>
                                                     </Col>
-                                                    <Col sm={4} style={{float: 'right', paddingTop: '3rem'}}>
-                                                        <div style={{color: 'blue', fontSize: '16px'}}>₹ 500/sq.ft.</div>
+                                                    <Col sm={4} style={{float: 'right'}} className='ad-card-pricing'>
+                                                        <div style={{color: 'blue', fontSize: '20px'}}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
                                                     </Col>
                                                 </Row>
                                                 
                                                 <div className="mt-4">
-                                                    Area covered : 20,000 sq. ft. <br></br>
-                                                    Deposit : $1,00,000 (Negotiable)
+                                                    Area covered : { warehouse.warehouseDetails.areaCovered } sq. ft. <br></br>
+                                                    Deposit : ₹ { warehouse.warehouseDetails.deposit } (Negotiable)
                                                 </div>
                                                 <Row>
-                                                    <Col sm={6}>
-                                                        <Button variant="outline-dark" style={{ marginTop: '25px', borderRadius: '5px' }}>Check Details</Button>
+                                                    <Col className='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
+                                                        <Link to={{ pathname:'/description', state: { warehouse: warehouse } }}><Button variant="outline-dark" style={{ marginTop: '25px', borderRadius: '5px', maxHeight: '2.4rem', overflow: 'hidden' }}>Details</Button></Link>
+                                                    </Col>
+                                                    <Col className='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
+                                                        <Button variant="outline-dark" onClick={() => {
+                                                            if (count > 0) setCount(count-1);
+                                                            else setCount(warehouses.length-1)
+                                                        }} style={{ marginTop: '25px', borderRadius: '5px' }}> <i className="fa fa-arrow-left" aria-hidden="true"></i> </Button>
+                                                    </Col>
+                                                    <Col className='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
+                                                        <Button variant="outline-dark" onClick={() => {
+                                                            if (count < warehouses.length-1) setCount(count+1);
+                                                            else setCount(0)
+                                                        }} style={{ marginTop: '25px', borderRadius: '5px' }}> <i className="fa fa-arrow-right" aria-hidden="true"></i> </Button>
                                                     </Col>
                                                 </Row>
                                             </Card.Body>
                                         </Card>
                                     </Card.Body>
+
                                 </Col>
                             </Row>
                         </div>
@@ -82,8 +107,12 @@ const Body = () => {
                     </Row>
                </Container>             
            </Container>
-       </Fragment>
+       </Fragment> : (
+           <Fragment>
+               Loading
+           </Fragment>
+       )
     )
 }
 
-export default Body
+export default Body;

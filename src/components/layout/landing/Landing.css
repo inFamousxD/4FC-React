@@ -1,7 +1,9 @@
 .ad-card {
     width: 30rem;
 }
-
+.ad-card-pricing {
+  margin-top: 4rem;
+}
 
 @media screen and (max-width: 800px) {
     .ad-card {
@@ -9,6 +11,9 @@
     }
     .dual-button {
       width: 100%;
+    }
+    .ad-card-pricing {
+      margin-top: 0rem;
     }
 }
 
