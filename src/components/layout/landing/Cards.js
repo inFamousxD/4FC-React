@@ -18,7 +18,7 @@ const Cards = ({ warehouse }) => {
                             <Col sm={8}>
                             { warehouse.warehouseDetails.name }
                             </Col>
-                            <Col sm={4} style={{float: 'right', color: 'blue', fontSize: '14px'}}>
+                            <Col sm={4} style={{float: 'right', color: '#00097F', fontSize: '14px'}}>
                                 ₹ { warehouse.warehouseDetails.pricing }/sq.ft.
                             </Col>
                         </Row>

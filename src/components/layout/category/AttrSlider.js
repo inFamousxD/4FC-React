@@ -1,28 +1,32 @@
 import React from 'react';
-import { RangeSlider, InputNumber, InputGroup } from 'rsuite';
+import { InputNumber, InputGroup } from 'rsuite';
+import { Slider } from '@material-ui/core';
 
 
-const AttrSlider = () => {
-    const [value, setValue] = React.useState([1000, 9000]);
+const AttrSlider = ({ name, bounds, step, onChange }) => {
+    const [value, setValue] = React.useState(bounds);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     return (
         <div>
-            <RangeSlider
-                progress
+            <Slider
+                name={name}
                 className="slider-class"
-                min={0}
-                max={10000}
-                step={100}
                 style={{ marginTop: 16 }}
                 value={value}
-                onChange={value => {
-                    setValue(value);
-                }}
+                onChange={handleChange}
+                min={0}
+                step={step}
+                max={bounds[0]+bounds[1]}
+                valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
             />
             <InputGroup style={{ marginTop: '1rem' }}>
             <InputNumber
                 min={0}
-                max={10000}
-                step={100}
+                max={bounds[0]+bounds[1]}
+                step={step}
                 value={value[0]}
                 onChange={nextValue => {
                 const [start, end] = value;
@@ -33,8 +37,8 @@ const AttrSlider = () => {
             <InputGroup.Addon>to</InputGroup.Addon>
             <InputNumber
                 min={0}
-                max={10000}
-                step={100}
+                max={bounds[0]+bounds[1]}
+                step={step}
                 value={value[1]}
                 onChange={nextValue => {
                 const [start, end] = value;

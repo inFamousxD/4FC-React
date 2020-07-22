@@ -22,7 +22,7 @@ const Cards = ({ warehouse }) => {
                             </Col>
                             <Col sm={5}>
                                 <div style={{
-                                    color: 'blue',
+                                    color: '#00097F',
                                     fontSize: '20px',
                                     marginTop: '1%',
                                 }}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>

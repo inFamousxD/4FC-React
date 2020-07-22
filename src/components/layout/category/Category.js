@@ -1,41 +1,89 @@
 import React from 'react';
 import { useEffect, useState, Fragment } from 'react';
-// import Attributes from './Attributes';
-// import Sortbar from './Sortbar';
-import Results from './Results';
-import PropTypes from 'prop-types';
-// Bootstrap imports
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
+
+import { Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import ScrollToTop from '../ScrollToTop';
-import { Nav, Form, Navbar } from 'react-bootstrap';
-import {getWarehouseList} from '../../../actions/warehouses';
-import {connect} from 'react-redux'
-import Spinner from 'react-bootstrap/Spinner';
-import Card from 'react-bootstrap/Card';
+import { getWarehouseList } from '../../../actions/warehouses';
+import { connect } from 'react-redux'
 import AttrSlider from './AttrSlider';
-import { Button, ButtonGroup } from 'react-bootstrap';
-
-
+import Results from './Results';
+import PropTypes from 'prop-types';
 
 const Category = props => {
     const { getWarehouseList, warehouses } = props;
-    const { loading } = warehouses
+    // const { loading } = warehouses
     const [sortAttributes, setSortAttributes] = useState({
         price: 'Relevance',
-        dockPlacement: 'none',
-        dockCount: 'none',
-        flooring: 'none',
-        warehouseType: 'none'
+        dockPlacement: 'all',
+        dockCount: 'all',
+        flooring: 'all',
+        warehouseType: 'all'
     });
 
-    const onChange = e => setSortAttributes({ ...sortAttributes, [e.target.name]: e.target.value });
+    const [advancedSort, setAdvancedSort] = useState({
+        areaCovered: [0, 10000],
+        monthlyRental: [0, 1000],
+        clearHeight: [0, 300],
+        centerHeight: [0, 300],
+        safetyPrecautions: {
+            waterSprinkler: false,
+            fireHydrant: false
+        },
+        environmentalClearance: 'N/A',
+        accessRoadWidth: 'N/A',
+        parkingAvailable: 'N/A',
+        warehouseType: 'N/A'
+    });
 
-    console.log(sortAttributes)
     const boldStyle={
         fontSize: '18px'
+    };
+
+    const [warehouseArray, setWarehouseArray] = useState(warehouses.warehouses);
+
+    const onChange = e => {
+        setSortAttributes({ ...sortAttributes, [e.target.name]: e.target.value });
+    };
+
+    const handleAdvancedSortChange = e => {
+        setAdvancedSort({ ...advancedSort, [e.target.name]: e.target.value })
+    }
+
+    var localities = [];
+    warehouses.warehouses.forEach((el) => {
+        localities.push(el.location.locality)
+    });
+    var localitySet = [...new Set(localities)];
+
+    var sorted = [...warehouses.warehouses];
+    const sortFunction = () => {
+        // Price
+        if ( sortAttributes.price === 'Price: Low to High') {
+            sorted = [...sorted].sort((a, b) => a.warehouseDetails.pricing - b.warehouseDetails.pricing )
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.price === 'Price: High to Low') {
+            sorted = [...sorted].sort((a, b) => b.warehouseDetails.pricing - a.warehouseDetails.pricing )
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.price === 'Relevance') {
+            setWarehouseArray(sorted)
+        } 
+        // Dick Placement
+        if ( sortAttributes.dockPlacement === 'Dock: Both Sides') {
+            sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.dockPlacement === 'Two Sided' })
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.dockPlacement === 'Dock: One Side') {
+            sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.dockPlacement === 'One Sided' })
+            setWarehouseArray(sorted)
+        }
+        // Flooring Type
+        if ( sortAttributes.flooring === 'Flooring: FM-2 Grade') {
+            sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.flooringType === 'FM2 Grade' })
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.flooring === 'Flooring: Others') {
+            sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.flooringType !== 'FM2 Grade' })
+            setWarehouseArray(sorted)
+        }
     }
 
     useEffect(() => {
@@ -62,7 +110,7 @@ const Category = props => {
                 <Fragment>
                     <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '4rem', width: '100%'}}>
                         <Navbar.Brand>
-                            Loaded {warehouses.length} Warehouse Results
+                            Loaded {warehouseArray.length} Warehouse Results
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
@@ -116,12 +164,18 @@ const Category = props => {
                 </Row>
                 <Row style={{ borderTop: '1px solid #aaaaaa', paddingTop: '1rem' }}>
                     <Col sm={3}>
-                        {/* <Attributes warehouses={warehouses}/> */}
-                        <div className="ml-2 mr-2">
+                        <div className='ml-2 mr-2 attribute-sidebar'>
+                            {/* APPLY FILTERS ------------------------- */}
                             <div>
-                                <div style={boldStyle}>Area Covered</div>
+                                <Button variant="dark" size="lg" style={{
+                                    width: '100%',
+                                    marginBottom: '1rem'
+                                }} onClick={sortFunction} >Apply Filters</Button>
+                            </div>
+                            <div>
+                                <div style={boldStyle}>Area Covered [ in square feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider />
+                                    <AttrSlider name='areaCovered' bounds={[0, 10000]} step={100} onChange={e => handleAdvancedSortChange(e)}/>
                                 </Form.Group>
                             </div>
                             <Card className="mt-4 mb-4" style={{ maxHeight: '15rem' }}>
@@ -142,11 +196,10 @@ const Category = props => {
                                     overflow: 'hidden',
                                     overflowY: 'scroll'
                                 }}> {   
-                                        !loading && warehouses.warehouses.map((warehouse) => {
-                                            const {locality} = warehouse.location;
+                                        localitySet.map((locality, key) => {
                                             return (
-                                            <div key={warehouse.identifier} style={{ marginBottom: '0.5rem' }}>
-                                                <Form.Check inline label={locality} key={warehouse.identifier} className="ml-3"/>
+                                            <div key={key} style={{ marginBottom: '0.5rem' }}>
+                                                <Form.Check inline label={locality} key={key} className="ml-3"/>
                                             </div>)
                                         })
                                     }
@@ -154,21 +207,21 @@ const Category = props => {
                                 </Card.Body>
                             </Card>
                             <div>
-                                <div style={boldStyle}>Monthly Rental</div>
+                                <div style={boldStyle}>Monthly Rental [ per square feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider />
+                                    <AttrSlider name='monthlyRental' bounds={[0, 1000]} step={100} onChange={e => handleAdvancedSortChange(e)}/>
                                 </Form.Group>
                             </div>
                             <div>
-                                <div style={boldStyle}>Clear Height</div>
+                                <div style={boldStyle}>Clear Height [ in feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider />
+                                    <AttrSlider name='clearHeight' bounds={[0, 300]} step={10} onChange={e => handleAdvancedSortChange(e)}/>
                                 </Form.Group>
                             </div>
                             <div>
-                                <div style={boldStyle}>Center Height</div>
+                                <div style={boldStyle}>Center Height [ in feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider />
+                                    <AttrSlider name='centerHeight' bounds={[0, 300]} step={10} onChange={e => handleAdvancedSortChange(e)}/>
                                 </Form.Group>
                             </div>
                             <div>
@@ -261,7 +314,7 @@ const Category = props => {
                                 </Form.Group>
                             </div>
                             <Form.Group>
-                                <div style={boldStyle}>Environmental Clearance</div>
+                                <div style={boldStyle}>Warehouse Type</div>
                                 <Row className='mt-2'>
                                     <Col className='col-xs-6 col-sm-6 col-md-6 col-lg-6' style={{ height: '2rem', fontSize: '18px' }}>
                                     <Form.Check inline label="Independant"></Form.Check>
@@ -276,7 +329,7 @@ const Category = props => {
                     <Col sm={9}>
                     {/* ----------------------------------------------------------------------------------------------- */}
                     {/* ----------------------------------------------------------------------------------------------- */}
-                        <Results warehouses={warehouses.warehouses}/>
+                        <Results warehouses={warehouseArray}/>
                     {/* ----------------------------------------------------------------------------------------------- */}
                     {/* ----------------------------------------------------------------------------------------------- */}
                     </Col>
