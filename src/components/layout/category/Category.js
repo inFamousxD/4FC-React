@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState, Fragment } from 'react';
 
-import { Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
+import { Collapse, Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import ScrollToTop from '../ScrollToTop';
 import { getWarehouseList } from '../../../actions/warehouses';
@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import AttrSlider from './AttrSlider';
 import Results from './Results';
 import PropTypes from 'prop-types';
+import './Category.css'
 
 const Category = props => {
     const { getWarehouseList, warehouses } = props;
@@ -41,6 +42,7 @@ const Category = props => {
     };
 
     const [warehouseArray, setWarehouseArray] = useState(warehouses.warehouses);
+    const [open, setOpen] = useState(false);
 
     const onChange = e => {
         setSortAttributes({ ...sortAttributes, [e.target.name]: e.target.value });
@@ -164,14 +166,24 @@ const Category = props => {
                 </Row>
                 <Row style={{ borderTop: '1px solid #aaaaaa', paddingTop: '1rem' }}>
                     <Col sm={3}>
-                        <div className='ml-2 mr-2 attribute-sidebar'>
+                        <div className='ml-2 mr-2'>
+                            <Button variant="dark" size="lg" onClick={sortFunction} style={{
+                                width: '100%',
+                                marginBottom: '1rem'
+                            }}>Apply Filters</Button>
+                        </div>
+                        <div className='ml-2 mr-2 adv-filters-btn'>
+                            <Button variant="outline-dark" size="lg" style={{
+                                width: '100%',
+                                marginBottom: '1rem'
+                            }} onClick={() => setOpen(!open)}
+                            aria-controls="example-collapse-text"
+                            aria-expanded={open}>Advanced Filters <i className='fa fa-arrow-down ml-2' aria-hidden="true"></i> </Button>
+                        </div>
+                        
+                        <Collapse in={open}>
+                        <div className='ml-2 mr-2 attribute-sidebar' id='adv-filters'>
                             {/* APPLY FILTERS ------------------------- */}
-                            <div>
-                                <Button variant="dark" size="lg" style={{
-                                    width: '100%',
-                                    marginBottom: '1rem'
-                                }} onClick={sortFunction} >Apply Filters</Button>
-                            </div>
                             <div>
                                 <div style={boldStyle}>Area Covered [ in square feet ]</div>
                                 <Form.Group>
@@ -325,6 +337,7 @@ const Category = props => {
                                 </Row>
                             </Form.Group>
                         </div>
+                        </Collapse>
                     </Col>
                     <Col sm={9}>
                     {/* ----------------------------------------------------------------------------------------------- */}
