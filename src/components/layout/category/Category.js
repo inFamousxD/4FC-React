@@ -6,8 +6,9 @@ import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import ScrollToTop from '../ScrollToTop';
 import { getWarehouseList } from '../../../actions/warehouses';
 import { connect } from 'react-redux'
-import AttrSlider from './AttrSlider';
 import Results from './Results';
+import { InputNumber, InputGroup } from 'rsuite';
+import { Slider, FormControlLabel, Checkbox } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import './Category.css'
 
@@ -25,7 +26,7 @@ const Category = props => {
     const [advancedSort, setAdvancedSort] = useState({
         areaCovered: [0, 10000],
         monthlyRental: [0, 1000],
-        clearHeight: [0, 300],
+        clearHeight: [0, 1000],
         centerHeight: [0, 300],
         safetyPrecautions: {
             waterSprinkler: false,
@@ -48,9 +49,30 @@ const Category = props => {
         setSortAttributes({ ...sortAttributes, [e.target.name]: e.target.value });
     };
 
-    const handleAdvancedSortChange = e => {
-        setAdvancedSort({ ...advancedSort, [e.target.name]: e.target.value })
-    }
+    // Slider States
+    const [areaCov, setAreaCov] = React.useState([0, 10000]);
+    const handleAreaCovChange = (event, newValue) => {
+        setAreaCov(newValue);
+        setAdvancedSort({ ...advancedSort, areaCovered: newValue })
+    };
+
+    const [monthlyRental, setMonthlyRental] = React.useState([0, 1000]);
+    const handleMonthlyRentalChange = (event, newValue) => {
+        setMonthlyRental(newValue);
+        setAdvancedSort({ ...advancedSort, monthlyRental: newValue })
+    };
+
+    const [clearHeight, setClearHeight] = React.useState([0, 1000]);
+    const handleClearHeightChange = (event, newValue) => {
+        setClearHeight(newValue);
+        setAdvancedSort({ ...advancedSort, clearHeight: newValue })
+    };
+
+    const [centerHeight, setCenterHeight] = React.useState([0, 300]);
+    const handleCenterHeightChange = (event, newValue) => {
+        setCenterHeight(newValue);
+        setAdvancedSort({ ...advancedSort, centerHeight: newValue })
+    };
 
     var localities = [];
     warehouses.warehouses.forEach((el) => {
@@ -58,6 +80,13 @@ const Category = props => {
     });
     var localitySet = [...new Set(localities)];
 
+    const [localityState, setLocalityState] = React.useState({});
+    const handleLocalityChange = (event) => {
+        setLocalityState({ ...localityState, [event.target.name]: event.target.checked })
+    };
+
+    console.log(localityState)
+    
     var sorted = [...warehouses.warehouses];
     const sortFunction = () => {
         // Price
@@ -70,7 +99,7 @@ const Category = props => {
         } else if ( sortAttributes.price === 'Relevance') {
             setWarehouseArray(sorted)
         } 
-        // Dick Placement
+        // Dock Placement
         if ( sortAttributes.dockPlacement === 'Dock: Both Sides') {
             sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.dockPlacement === 'Two Sided' })
             setWarehouseArray(sorted)
@@ -85,6 +114,37 @@ const Category = props => {
         } else if ( sortAttributes.flooring === 'Flooring: Others') {
             sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.flooringType !== 'FM2 Grade' })
             setWarehouseArray(sorted)
+        }
+        // ADVANCED SORT
+
+        // Area Covered Slider
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.areaCovered >= advancedSort.areaCovered[0] })
+            setWarehouseArray(sorted)
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.areaCovered <= advancedSort.areaCovered[1] })
+            setWarehouseArray(sorted)
+        // Monthly Rental Slider
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.pricing >= advancedSort.monthlyRental[0] })
+            setWarehouseArray(sorted)
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.pricing <= advancedSort.monthlyRental[1] })
+            setWarehouseArray(sorted)
+        // Clear Height Slider
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.clearHeight >= advancedSort.clearHeight[0] })
+            setWarehouseArray(sorted)
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.clearHeight <= advancedSort.clearHeight[1] })
+            setWarehouseArray(sorted)
+        // Clear Height Slider
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.centerHeight >= advancedSort.centerHeight[0] })
+            setWarehouseArray(sorted)
+        sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.centerHeight <= advancedSort.centerHeight[1] })
+            setWarehouseArray(sorted)
+
+        // Locality Sort
+        for ( let [key, value] of Object.entries(localityState) ) {
+            if ( value ) {
+                console.log(key, value)
+                sorted = sorted.filter((warehouse) => { return warehouse.location.locality === key })
+                setWarehouseArray(sorted)
+            }
         }
     }
 
@@ -181,13 +241,54 @@ const Category = props => {
                             aria-expanded={open}>Advanced Filters <i className='fa fa-arrow-down ml-2' aria-hidden="true"></i> </Button>
                         </div>
                         
-                        <Collapse in={open}>
+                    <Collapse in={open}>
                         <div className='ml-2 mr-2 attribute-sidebar' id='adv-filters'>
                             {/* APPLY FILTERS ------------------------- */}
                             <div>
                                 <div style={boldStyle}>Area Covered [ in square feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider name='areaCovered' bounds={[0, 10000]} step={100} onChange={e => handleAdvancedSortChange(e)}/>
+                                    {/* <AttrSlider name='areaCovered' bounds={[0, 10000]} step={100} onChange={(event) => handleAdvancedSortChange(event)}/> */}
+                                    {/* SLIDER FOR AREA COVERED */}
+                                    <div>
+                                        <Slider
+                                            name='area-covered'
+                                            className="slider-class"
+                                            style={{ marginTop: 16 }}
+                                            value={areaCov}
+                                            min={0}
+                                            step={100}
+                                            max={10000}
+                                            onChange={(event, newValue) => handleAreaCovChange(event, newValue)}
+                                            valueLabelDisplay="auto"
+                                            aria-labelledby="range-slider"
+                                        />
+                                        <InputGroup style={{ marginTop: '1rem' }}>
+                                        <InputNumber
+                                            min={0}
+                                            max={10000}
+                                            step={100}
+                                            value={areaCov[0]}
+                                            onChange={nextValue => {
+                                            const [start, end] = areaCov;
+                                            console.log(start)
+                                            setAreaCov([nextValue, end]);
+                                            }}
+                                        />
+                                        <InputGroup.Addon>to</InputGroup.Addon>
+                                        <InputNumber
+                                            min={0}
+                                            max={10000}
+                                            step={100}
+                                            value={areaCov[1]}
+                                            onChange={nextValue => {
+                                            const [start, end] = areaCov;
+                                            console.log(end)
+                                            setAreaCov([start, nextValue]);
+                                            }}
+                                        />
+                                        </InputGroup>
+                                    </div>
+                                
                                 </Form.Group>
                             </div>
                             <Card className="mt-4 mb-4" style={{ maxHeight: '15rem' }}>
@@ -210,8 +311,18 @@ const Category = props => {
                                 }}> {   
                                         localitySet.map((locality, key) => {
                                             return (
-                                            <div key={key} style={{ marginBottom: '0.5rem' }}>
-                                                <Form.Check inline label={locality} key={key} className="ml-3"/>
+                                            <div key={key} style={{ margin: '0', padding: '0' }}>
+                                                <FormControlLabel
+                                                    control={
+                                                    <Checkbox
+                                                        checked={localityState.locality}
+                                                        onChange={handleLocalityChange}
+                                                        name={locality}
+                                                        color="primary"
+                                                    />
+                                                    }
+                                                    label={locality}
+                                                />
                                             </div>)
                                         })
                                     }
@@ -221,19 +332,135 @@ const Category = props => {
                             <div>
                                 <div style={boldStyle}>Monthly Rental [ per square feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider name='monthlyRental' bounds={[0, 1000]} step={100} onChange={e => handleAdvancedSortChange(e)}/>
+                                    {/* SLIDER FOR AREA COVERED */}
+                                    <div>
+                                        <Slider
+                                            name='area-covered'
+                                            className="slider-class"
+                                            style={{ marginTop: 16 }}
+                                            value={monthlyRental}
+                                            min={0}
+                                            step={10}
+                                            max={1000}
+                                            onChange={(event, newValue) => handleMonthlyRentalChange(event, newValue)}
+                                            valueLabelDisplay="auto"
+                                            aria-labelledby="range-slider"
+                                        />
+                                        <InputGroup style={{ marginTop: '1rem' }}>
+                                        <InputNumber
+                                            min={0}
+                                            max={1000}
+                                            step={10}
+                                            value={monthlyRental[0]}
+                                            onChange={nextValue => {
+                                            const [start, end] = monthlyRental;
+                                            console.log(start)
+                                            setAreaCov([nextValue, end]);
+                                            }}
+                                        />
+                                        <InputGroup.Addon>to</InputGroup.Addon>
+                                        <InputNumber
+                                            min={0}
+                                            max={1000}
+                                            step={10}
+                                            value={monthlyRental[1]}
+                                            onChange={nextValue => {
+                                            const [start, end] = monthlyRental;
+                                            console.log(end)
+                                            setAreaCov([start, nextValue]);
+                                            }}
+                                        />
+                                        </InputGroup>
+                                    </div>
                                 </Form.Group>
                             </div>
                             <div>
                                 <div style={boldStyle}>Clear Height [ in feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider name='clearHeight' bounds={[0, 300]} step={10} onChange={e => handleAdvancedSortChange(e)}/>
+                                    {/* SLIDER FOR AREA COVERED */}
+                                    <div>
+                                        <Slider
+                                            name='area-covered'
+                                            className="slider-class"
+                                            style={{ marginTop: 16 }}
+                                            value={clearHeight}
+                                            min={0}
+                                            step={10}
+                                            max={1000}
+                                            onChange={(event, newValue) => handleClearHeightChange(event, newValue)}
+                                            valueLabelDisplay="auto"
+                                            aria-labelledby="range-slider"
+                                        />
+                                        <InputGroup style={{ marginTop: '1rem' }}>
+                                        <InputNumber
+                                            min={0}
+                                            max={1000}
+                                            step={10}
+                                            value={clearHeight[0]}
+                                            onChange={nextValue => {
+                                            const [start, end] = clearHeight;
+                                            console.log(start)
+                                            setAreaCov([nextValue, end]);
+                                            }}
+                                        />
+                                        <InputGroup.Addon>to</InputGroup.Addon>
+                                        <InputNumber
+                                            min={0}
+                                            max={1000}
+                                            step={10}
+                                            value={clearHeight[1]}
+                                            onChange={nextValue => {
+                                            const [start, end] = clearHeight;
+                                            console.log(end)
+                                            setAreaCov([start, nextValue]);
+                                            }}
+                                        />
+                                        </InputGroup>
+                                    </div>
                                 </Form.Group>
                             </div>
                             <div>
                                 <div style={boldStyle}>Center Height [ in feet ]</div>
                                 <Form.Group>
-                                    <AttrSlider name='centerHeight' bounds={[0, 300]} step={10} onChange={e => handleAdvancedSortChange(e)}/>
+                                <div>
+                                    <Slider
+                                        name='area-covered'
+                                        className="slider-class"
+                                        style={{ marginTop: 16 }}
+                                        value={centerHeight}
+                                        min={0}
+                                        step={10}
+                                        max={300}
+                                        onChange={(event, newValue) => handleCenterHeightChange(event, newValue)}
+                                        valueLabelDisplay="auto"
+                                        aria-labelledby="range-slider"
+                                    />
+                                    <InputGroup style={{ marginTop: '1rem' }}>
+                                    <InputNumber
+                                        min={0}
+                                        max={300}
+                                        step={10}
+                                        value={centerHeight[0]}
+                                        onChange={nextValue => {
+                                        const [start, end] = centerHeight;
+                                        console.log(start)
+                                        setAreaCov([nextValue, end]);
+                                        }}
+                                    />
+                                    <InputGroup.Addon>to</InputGroup.Addon>
+                                    <InputNumber
+                                        min={0}
+                                        max={300}
+                                        step={10}
+                                        value={centerHeight[1]}
+                                        onChange={nextValue => {
+                                        const [start, end] = centerHeight;
+                                        console.log(end)
+                                        setAreaCov([start, nextValue]);
+                                        }}
+                                    />
+                                    </InputGroup>
+                                </div>
                                 </Form.Group>
                             </div>
                             <div>
@@ -336,8 +563,18 @@ const Category = props => {
                                     </Col>
                                 </Row>
                             </Form.Group>
+                            <Form.Group>
+                                <div className='adv-filters-btn'>
+                                    <Button variant="dark" size="lg" onClick={sortFunction} style={{
+                                        width: '100%',
+                                        marginBottom: '1rem'
+                                    }}>Apply Filters</Button>
+                                </div>
+                            </Form.Group>
+                            
                         </div>
-                        </Collapse>
+                    </Collapse>
+                    
                     </Col>
                     <Col sm={9}>
                     {/* ----------------------------------------------------------------------------------------------- */}

@@ -8,6 +8,7 @@ const AttrSlider = ({ name, bounds, step, onChange }) => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
     return (
         <div>
             <Slider
@@ -15,10 +16,10 @@ const AttrSlider = ({ name, bounds, step, onChange }) => {
                 className="slider-class"
                 style={{ marginTop: 16 }}
                 value={value}
-                onChange={handleChange}
                 min={0}
                 step={step}
                 max={bounds[0]+bounds[1]}
+                onChange={handleChange}
                 valueLabelDisplay="auto"
                 aria-labelledby="range-slider"
             />
