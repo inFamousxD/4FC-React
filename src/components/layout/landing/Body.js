@@ -49,10 +49,10 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
                     </Col>
                 </Row>
                </Container>
-               <Container fluid style={{padding: '0px'}}>
+               <Container fluid style={{padding: '0px'}} id='cont' >
                     <Row>
                         <Col sm={4}>
-                            <img style={{objectFit: "cover", height: '80%', width: '900px', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
+                            <img style={{objectFit: "cover", height: '80%', width: '55rem', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
                         </Col>
                         <Col sm={8}>
                         <div style={{ backgroundColor: '#CDD5E450', border: 'none', height: '45rem' }}>
@@ -76,6 +76,7 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
                                                 </Row>
                                                 
                                                 <div className="mt-4">
+                                                    { warehouse.location.locality }{', '}{ warehouse.location.city }<br></br>
                                                     Area covered : { warehouse.warehouseDetails.areaCovered } sq. ft. <br></br>
                                                     Deposit : ₹ { warehouse.warehouseDetails.deposit } (Negotiable)
                                                 </div>

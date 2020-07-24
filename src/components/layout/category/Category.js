@@ -1,20 +1,20 @@
 import React from 'react';
-import { useEffect, useState, Fragment } from 'react';
-
-import { Collapse, Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import ScrollToTop from '../ScrollToTop';
-import { getWarehouseList } from '../../../actions/warehouses';
-import { connect } from 'react-redux'
 import Results from './Results';
+
+import { connect } from 'react-redux'
+import { getWarehouseList } from '../../../actions/warehouses';
 import { InputNumber, InputGroup } from 'rsuite';
+import { useEffect, useState, Fragment } from 'react';
 import { Slider, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Collapse, Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
+
 import PropTypes from 'prop-types';
 import './Category.css'
 
 const Category = props => {
     const { getWarehouseList, warehouses } = props;
-    // const { loading } = warehouses
     const [sortAttributes, setSortAttributes] = useState({
         price: 'Relevance',
         dockPlacement: 'all',
@@ -74,21 +74,27 @@ const Category = props => {
         setAdvancedSort({ ...advancedSort, centerHeight: newValue })
     };
 
-    var localities = [];
+    let localities = [];
     warehouses.warehouses.forEach((el) => {
         localities.push(el.location.locality)
     });
-    var localitySet = [...new Set(localities)];
+    let localitySet = [...new Set(localities)];
+    let localityStateInitital = {};
+    localitySet.forEach((loc) => {
+        localityStateInitital[loc] = true;
+    })
 
-    const [localityState, setLocalityState] = React.useState({});
+    const [localityState, setLocalityState] = React.useState(localityStateInitital);
     const handleLocalityChange = (event) => {
         setLocalityState({ ...localityState, [event.target.name]: event.target.checked })
     };
 
-    console.log(localityState)
-    
     var sorted = [...warehouses.warehouses];
     const sortFunction = () => {
+        // Pull up filters
+        let divWidth = document.getElementById('find-width').clientWidth;
+        divWidth < 800 && setOpen(!open)
+
         // Price
         if ( sortAttributes.price === 'Price: Low to High') {
             sorted = [...sorted].sort((a, b) => a.warehouseDetails.pricing - b.warehouseDetails.pricing )
@@ -139,13 +145,14 @@ const Category = props => {
             setWarehouseArray(sorted)
 
         // Locality Sort
-        for ( let [key, value] of Object.entries(localityState) ) {
-            if ( value ) {
-                console.log(key, value)
-                sorted = sorted.filter((warehouse) => { return warehouse.location.locality === key })
-                setWarehouseArray(sorted)
+        let hold = []
+        Object.keys(localityState).forEach((key) => { 
+            if ( localityState[key] === true ) {
+                hold = hold.concat(sorted.filter((warehouse) => { return warehouse.location.locality === key }))
             }
-        }
+        })
+        sorted = hold;
+        setWarehouseArray(sorted);
     }
 
     useEffect(() => {
@@ -154,7 +161,7 @@ const Category = props => {
 
     return (
         !warehouses.loading ? 
-        <div style={{ backgroundColor: 'white' }}>
+        <div style={{ backgroundColor: 'white' }} id='find-width'>
         {/* ----------------------------------------------------------------------------------------------- */}
         {/* ----------------------------------------------------------------------------------------------- */}
             <ScrollToTop />
@@ -269,8 +276,7 @@ const Category = props => {
                                             step={100}
                                             value={areaCov[0]}
                                             onChange={nextValue => {
-                                            const [start, end] = areaCov;
-                                            console.log(start)
+                                            const [, end] = areaCov;
                                             setAreaCov([nextValue, end]);
                                             }}
                                         />
@@ -281,8 +287,7 @@ const Category = props => {
                                             step={100}
                                             value={areaCov[1]}
                                             onChange={nextValue => {
-                                            const [start, end] = areaCov;
-                                            console.log(end)
+                                            const [start, ] = areaCov;
                                             setAreaCov([start, nextValue]);
                                             }}
                                         />
@@ -309,19 +314,19 @@ const Category = props => {
                                     overflow: 'hidden',
                                     overflowY: 'scroll'
                                 }}> {   
-                                        localitySet.map((locality, key) => {
+                                        localitySet.map((loc, key) => {
                                             return (
                                             <div key={key} style={{ margin: '0', padding: '0' }}>
                                                 <FormControlLabel
                                                     control={
                                                     <Checkbox
-                                                        checked={localityState.locality}
+                                                        checked={localityState[loc]}
                                                         onChange={handleLocalityChange}
-                                                        name={locality}
+                                                        name={loc}
                                                         color="primary"
                                                     />
                                                     }
-                                                    label={locality}
+                                                    label={loc}
                                                 />
                                             </div>)
                                         })
@@ -353,8 +358,7 @@ const Category = props => {
                                             step={10}
                                             value={monthlyRental[0]}
                                             onChange={nextValue => {
-                                            const [start, end] = monthlyRental;
-                                            console.log(start)
+                                            const [, end] = monthlyRental;
                                             setAreaCov([nextValue, end]);
                                             }}
                                         />
@@ -365,8 +369,7 @@ const Category = props => {
                                             step={10}
                                             value={monthlyRental[1]}
                                             onChange={nextValue => {
-                                            const [start, end] = monthlyRental;
-                                            console.log(end)
+                                            const [start, ] = monthlyRental;
                                             setAreaCov([start, nextValue]);
                                             }}
                                         />
@@ -398,8 +401,7 @@ const Category = props => {
                                             step={10}
                                             value={clearHeight[0]}
                                             onChange={nextValue => {
-                                            const [start, end] = clearHeight;
-                                            console.log(start)
+                                            const [, end] = clearHeight;
                                             setAreaCov([nextValue, end]);
                                             }}
                                         />
@@ -410,8 +412,7 @@ const Category = props => {
                                             step={10}
                                             value={clearHeight[1]}
                                             onChange={nextValue => {
-                                            const [start, end] = clearHeight;
-                                            console.log(end)
+                                            const [start, ] = clearHeight;
                                             setAreaCov([start, nextValue]);
                                             }}
                                         />
@@ -442,8 +443,7 @@ const Category = props => {
                                         step={10}
                                         value={centerHeight[0]}
                                         onChange={nextValue => {
-                                        const [start, end] = centerHeight;
-                                        console.log(start)
+                                        const [, end] = centerHeight;
                                         setAreaCov([nextValue, end]);
                                         }}
                                     />
@@ -454,8 +454,7 @@ const Category = props => {
                                         step={10}
                                         value={centerHeight[1]}
                                         onChange={nextValue => {
-                                        const [start, end] = centerHeight;
-                                        console.log(end)
+                                        const [start, ] = centerHeight;
                                         setAreaCov([start, nextValue]);
                                         }}
                                     />
