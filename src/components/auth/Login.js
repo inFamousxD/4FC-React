@@ -41,20 +41,25 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
         return <Redirect to="/" />
     }
     return (
-        <div style={{backgroundColor: 'white', height: '93vh'}}>
+        <div style={{backgroundColor: 'white', height: '100vh'}}>
             <ScrollToTop />
             <div className="auth-class">
             <Container fluid className="ml">
-            <Col>
-                <Row>
-                    <Col sm={8} className="image d-md-table d-none" style={{
+            <Col style={{ margin: '0', padding: '0' }}>
+                <Row style={{ margin: '0', padding: '0' }}>
+                <Col sm={8} className="image d-md-table d-none" style={{
                         position: 'sticky',
                         overflow: 'hidden',
-                        height: '715px'
+                        height: '715px', 
+                        padding: '0', 
+                        margin:'0'
                     }}>
-                        <img height='1000px' style={{objectFit: "cover", backgroundSize: "100%"}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
+                        <img height='1000px' style={{objectFit: "cover", overflow: 'hidden', padding: '0', margin:'0'}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
-                    <Col sm={4}>
+                    <Col sm={4} style={{
+                        overflowY: 'scroll',
+                        overflow: 'hidden'
+                    }}>
                     <div className="row mt-2">
                         <div className="col-md-10 m-auto">
                         <div className="card card-body border-0">

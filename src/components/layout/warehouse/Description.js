@@ -176,7 +176,8 @@ const Description = (object) => {
                 <Col sm={4}>
                 <Card className='side-card mr-5 d-sm-none d-xs-none d-md-block d-lg-block d-xl-block' style={{
                     minWidth: '21rem',
-                    marginLeft: '1rem'
+                    marginLeft: '1rem',
+                    maxHeight: '25rem'
                 }}>
                     <Card.Header>
                         <Row>

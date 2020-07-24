@@ -46,18 +46,20 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
 
     return (
-        <div style={{backgroundColor: 'white', height: '93vh'}}>
+        <div style={{backgroundColor: 'white', height: '100vh'}}>
             <ScrollToTop />
             <div className="auth-class">
             <Container fluid className="ml">
-            <Col>
-                <Row>
+            <Col style={{ margin: '0', padding: '0' }}>
+                <Row style={{ margin: '0', padding: '0' }}>
                     <Col sm={8} className="image d-md-table d-none" style={{
                         position: 'sticky',
                         overflow: 'hidden',
-                        height: '715px'
+                        height: '715px', 
+                        padding: '0', 
+                        margin:'0'
                     }}>
-                        <img height='1000px' style={{objectFit: "cover", overflow: 'hidden'}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
+                        <img height='1000px' style={{objectFit: "cover", overflow: 'hidden', padding: '0', margin:'0'}} width='100%' src={PlaceholderImage} alt='Warehouse'/>
                     </Col>
                     <Col sm={4} style={{
                         overflowY: 'scroll',

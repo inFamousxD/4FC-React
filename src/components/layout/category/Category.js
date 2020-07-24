@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { getWarehouseList } from '../../../actions/warehouses';
 import { InputNumber, InputGroup } from 'rsuite';
 import { useEffect, useState, Fragment } from 'react';
-import { Slider, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Slider, FormControlLabel, Checkbox, Radio, RadioGroup } from '@material-ui/core';
 import { Collapse, Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
 
 import PropTypes from 'prop-types';
@@ -32,10 +32,10 @@ const Category = props => {
             waterSprinkler: false,
             fireHydrant: false
         },
-        environmentalClearance: 'N/A',
-        accessRoadWidth: 'N/A',
-        parkingAvailable: 'N/A',
-        warehouseType: 'N/A'
+        environmentalClearance: 'na',
+        accessRoadWidth: 'na',
+        parkingAvailable: 'na',
+        warehouseType: 'na'
     });
 
     const boldStyle={
@@ -79,21 +79,44 @@ const Category = props => {
         localities.push(el.location.locality)
     });
     let localitySet = [...new Set(localities)];
-    let localityStateInitital = {};
+    let localityStateInitial = {};
     localitySet.forEach((loc) => {
-        localityStateInitital[loc] = true;
+        localityStateInitial[loc] = true;
     })
 
-    const [localityState, setLocalityState] = React.useState(localityStateInitital);
+    let accessRoadWidthInitialState = {
+        '~40 ft.': true,
+        '~60 ft.': true,
+        '60+ ft.': true
+    };
+
+    const [accessRoadWidth, setAccessRoadWidth] = React.useState(accessRoadWidthInitialState);
+    const handleAccessRoadWidthChange = (event) => {
+        setAccessRoadWidth({ ...accessRoadWidth, [event.target.name]: event.target.checked })
+    };
+
+    const [localityState, setLocalityState] = React.useState(localityStateInitial);
     const handleLocalityChange = (event) => {
         setLocalityState({ ...localityState, [event.target.name]: event.target.checked })
     };
 
-    var sorted = [...warehouses.warehouses];
+    const [envClearance, setEnvClearance] = React.useState('na');
+    const handleEnvClearanceChange = (event) => {
+        setEnvClearance(event.target.value);
+        setAdvancedSort({ ...advancedSort, environmentalClearance: event.target.value })
+    };
+
+    const [pkingAvailable, setPkingAvailable] = React.useState('na');
+    const handlePkingAvailableChange = (event) => {
+        setPkingAvailable(event.target.value);
+        setAdvancedSort({ ...advancedSort, parkingAvailable: event.target.value })
+    };
+
+
+    let sorted = [...warehouses.warehouses];
     const sortFunction = () => {
         // Pull up filters
-        let divWidth = document.getElementById('find-width').clientWidth;
-        divWidth < 800 && setOpen(!open)
+        document.getElementById('find-width').clientWidth < 800 && setOpen(!open)
 
         // Price
         if ( sortAttributes.price === 'Price: Low to High') {
@@ -144,14 +167,54 @@ const Category = props => {
         sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.centerHeight <= advancedSort.centerHeight[1] })
             setWarehouseArray(sorted)
 
+        // Env Clearance
+        if ( advancedSort.environmentalClearance === 'yes') {
+            sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.environmentalClearance === true })
+            setWarehouseArray(sorted)
+        } else if ( advancedSort.environmentalClearance === 'no') {
+            sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.environmentalClearance === false })
+            setWarehouseArray(sorted)
+        }
+
+        // Parking Available
+        if ( advancedSort.parkingAvailable === 'yes') {
+            sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.parkingAvailable === true })
+            setWarehouseArray(sorted)
+        } else if ( advancedSort.parkingAvailable === 'no') {
+            sorted = sorted.filter((warehouse) => { console.log(warehouse.amenitiesProvided.parkingAvailable); return warehouse.amenitiesProvided.parkingAvailable === false })
+            setWarehouseArray(sorted)
+        }
+
+        // Access Road Width
+        // let holdAccessRoadWidth = []
+        // Object.keys(accessRoadWidth).forEach((key) => { 
+        //     if ( accessRoadWidth[key] === true ) {
+        //         holdAccessRoadWidth = holdAccessRoadWidth.concat(sorted.filter((warehouse) => { return warehouse.amenitiesProvided.accessRoadWidth === key }))
+        //     }
+        // })
+        // sorted = holdAccessRoadWidth;
+        // setWarehouseArray(sorted);
+
+        let holdAccessRoadWidth = []
+        if ( accessRoadWidth["~40 ft."] === true ) {
+            holdAccessRoadWidth = holdAccessRoadWidth.concat(sorted.filter((warehouse) => { return warehouse.warehouseDetails.accessRoadWidth <= 40 }))
+        } if ( accessRoadWidth["~60 ft."] === true ) {
+            holdAccessRoadWidth = holdAccessRoadWidth.concat(sorted.filter((warehouse) => { return warehouse.warehouseDetails.accessRoadWidth <= 60 && warehouse.warehouseDetails.accessRoadWidth >= 41 }))
+        } if ( accessRoadWidth["60+ ft."] === true ) {
+            holdAccessRoadWidth = holdAccessRoadWidth.concat(sorted.filter((warehouse) => { return warehouse.warehouseDetails.accessRoadWidth >= 61 }))
+        }
+        sorted = holdAccessRoadWidth;
+        console.log(sorted)
+        setWarehouseArray(sorted)
+
         // Locality Sort
-        let hold = []
+        let holdLocalities = []
         Object.keys(localityState).forEach((key) => { 
             if ( localityState[key] === true ) {
-                hold = hold.concat(sorted.filter((warehouse) => { return warehouse.location.locality === key }))
+                holdLocalities = holdLocalities.concat(sorted.filter((warehouse) => { return warehouse.location.locality === key }))
             }
         })
-        sorted = hold;
+        sorted = holdLocalities;
         setWarehouseArray(sorted);
     }
 
@@ -484,17 +547,19 @@ const Category = props => {
                             <div>
                                 <Form.Group>
                                     <div style={boldStyle}>Environmental Clearance</div>
+                                    <RadioGroup aria-label="clearance" name="environmentalClearance" value={envClearance} onChange={handleEnvClearanceChange}>
                                     <Row className='mt-2'>
                                         <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="Yes"></Form.Check>
+                                            <FormControlLabel value="yes"  control={<Radio color='primary'/>} label="Yes" />
                                         </Col>
                                         <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="No"></Form.Check>
+                                            <FormControlLabel value="no"  control={<Radio color='primary'/>} label="No" />
                                         </Col>
                                         <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="N/A"></Form.Check>
+                                            <FormControlLabel value="na"  control={<Radio color='primary'/>} label="N/A" />
                                         </Col>
                                     </Row>
+                                    </RadioGroup>
                                 </Form.Group>
                             </div>
 
@@ -518,37 +583,60 @@ const Category = props => {
                                     </div>
                                 </Card.Body>
                             </Card>
-
-                            <div>
-                                <Form.Group>
-                                    <div style={boldStyle}>Access Road Width</div>
-                                    <Row className='mt-2'>
-                                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="~40 ft."></Form.Check>
-                                        </Col>
-                                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="~60 ft."></Form.Check>
-                                        </Col>
-                                        <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="~60+ ft."></Form.Check>
-                                        </Col>
-                                    </Row>
-                                </Form.Group>
+                            <div >
+                            <div style={boldStyle}>Access Road Width</div>
+                            <FormControlLabel
+                                control={
+                                <Checkbox
+                                    checked={accessRoadWidth["~40 ft."]}
+                                    onChange={handleAccessRoadWidthChange}
+                                    name="~40 ft."
+                                    color="primary"
+                                />
+                                }
+                                label="~40 ft."
+                            />
+                            <FormControlLabel
+                                control={
+                                <Checkbox
+                                    checked={accessRoadWidth["~60 ft."]}
+                                    onChange={handleAccessRoadWidthChange}
+                                    name="~60 ft."
+                                    color="primary"
+                                    style={{ marginLeft: '1.5rem' }}
+                                />
+                                }
+                                label="40~60 ft."
+                            />
+                            <FormControlLabel
+                                control={
+                                <Checkbox
+                                    checked={accessRoadWidth["60+ ft."]}
+                                    onChange={handleAccessRoadWidthChange}
+                                    name="60+ ft."
+                                    color="primary"
+                                    style={{ marginLeft: '1.5rem' }}
+                                />
+                                }
+                                label="60 ft"
+                            />
                             </div>
                             <div>
                                 <Form.Group>
                                     <div style={boldStyle}>Parking Available</div>
+                                    <RadioGroup aria-label="parking" name="parkingAvailable" value={pkingAvailable} onChange={handlePkingAvailableChange}>
                                     <Row className='mt-2'>
                                         <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="Yes"></Form.Check>
+                                            <FormControlLabel value="yes" color="primary" control={<Radio color='primary' />} label="Yes" />
                                         </Col>
                                         <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="No"></Form.Check>
+                                            <FormControlLabel value="no" color="primary" control={<Radio color='primary' />} label="No" />
                                         </Col>
                                         <Col className='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
-                                        <Form.Check inline label="N/A"></Form.Check>
+                                            <FormControlLabel value="na" color="primary" control={<Radio color='primary' />} label="N/A" />
                                         </Col>
                                     </Row>
+                                    </RadioGroup>
                                 </Form.Group>
                             </div>
                             <Form.Group>
