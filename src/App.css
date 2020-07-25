@@ -4,7 +4,7 @@
 
 body{
   font-family: IBM Plex Sans, sans-serif;
-  margin: 0px 5%;
+  margin: 0px 8%;
   background-color: black;
 }
 
@@ -100,4 +100,50 @@ body{
   .side-card-mobile {
       display: block;
   }
+}
+
+@media screen and (max-width: 800px) {
+  .warehouse-details-pc {
+      display: none;
+  }
+  .warehouse-details-mob {
+      display: block;
+      height: 30rem;
+      overflow: hidden;
+      overflow-y: scroll;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .warehouse-details-pc {
+      display: block;
+  }
+  .warehouse-details-mob {
+      display: none;
+      height: 30rem;
+      overflow: hidden;
+      overflow-y: scroll;
+  }
+  .landing-page {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .landing-page {
+    padding-left: 5rem;
+    padding-right: 4rem;
+  }
+}
+
+.wishlist {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.dashboard-div {
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
 }

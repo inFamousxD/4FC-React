@@ -7,14 +7,23 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
 import { Link } from 'react-router-dom';
+import { Slider } from '@material-ui/core';
+import { InputNumber, InputGroup } from 'rsuite';
 
 
 const SearchForm = () => {
+    const boldStyle={
+        fontSize: '18px'
+    };
+    const [areaCov, setAreaCov] = React.useState([0, 10000]);
+    const handleAreaCovChange = (event, newValue) => {
+        setAreaCov(newValue);
+    };
     return (
         <Fragment>
             <Container fluid style={{padding: '0px'}}>
                 <Row>
-                    <Col sm={5} style={{ backgroundColor: 'white' }}>
+                    <Col sm={5} style={{ backgroundColor: 'white' }} className='landing-page'>
                         <Container className="mt-5">
                             <Form>
                                 <Form.Text><h1 style={{fontWeight: '400'}}><b>Find the perfect warehouse for your needs</b></h1></Form.Text>
@@ -41,8 +50,51 @@ const SearchForm = () => {
                                     <Form.Check inline label="Under Construction"></Form.Check>
                                 </Form.Group>     
                                 <Form.Group controlId="formBasicRange" className="mt-4">
-                                    <h5><b>Area Covered</b></h5>
-                                    <Form.Control type="range" />
+                                <div>
+                                    <div style={boldStyle}>Area Covered [ in square feet ]</div>
+                                    <Form.Group>
+                                        {/* <AttrSlider name='areaCovered' bounds={[0, 10000]} step={100} onChange={(event) => handleAdvancedSortChange(event)}/> */}
+                                        {/* SLIDER FOR AREA COVERED */}
+                                        <div>
+                                            <Slider
+                                                name='area-covered'
+                                                className="slider-class"
+                                                style={{ marginTop: 16 }}
+                                                value={areaCov}
+                                                min={0}
+                                                step={100}
+                                                max={10000}
+                                                onChange={(event, newValue) => handleAreaCovChange(event, newValue)}
+                                                valueLabelDisplay="auto"
+                                                aria-labelledby="range-slider"
+                                            />
+                                            <InputGroup style={{ marginTop: '1rem' }}>
+                                            <InputNumber
+                                                min={0}
+                                                max={10000}
+                                                step={100}
+                                                value={areaCov[0]}
+                                                onChange={nextValue => {
+                                                const [, end] = areaCov;
+                                                setAreaCov([nextValue, end]);
+                                                }}
+                                            />
+                                            <InputGroup.Addon>to</InputGroup.Addon>
+                                            <InputNumber
+                                                min={0}
+                                                max={10000}
+                                                step={100}
+                                                value={areaCov[1]}
+                                                onChange={nextValue => {
+                                                const [start, ] = areaCov;
+                                                setAreaCov([start, nextValue]);
+                                                }}
+                                            />
+                                            </InputGroup>
+                                        </div>
+                                    
+                                    </Form.Group>
+                                </div>
                                 </Form.Group>   
                                 <Form.Group className="mt-4">
                                         <Form.Check inline label="Enter locality" style={{ marginBottom: '10px' }}></Form.Check>

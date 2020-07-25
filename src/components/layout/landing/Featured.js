@@ -9,7 +9,7 @@ const Featured = ({ warehouses: { loading, warehouses } }) => {
     return (
         !loading && warehouses ?
         <Fragment>
-            <Container fluid style={{ backgroundColor: '#EFEFEF', paddingTop: '5%', paddingBottom: '5%' }}>  
+            <Container fluid style={{ backgroundColor: '#EFEFEF', paddingTop: '5%', paddingBottom: '5%' }} className='landing-page'>  
                 <h1 style={{marginBottom: '2rem', marginLeft: '1%'}}>Featured Properties</h1>
 
                 <div className="d-flex flex-row flex-nowrap" style={{overflowX: 'scroll', marginLeft: '1%'}}>

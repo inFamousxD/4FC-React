@@ -2,29 +2,35 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../../actions/profile';
+import { getWarehouseList } from '../../../actions/warehouses';
 import Spinner from '../Spinner';
 import Container from 'react-bootstrap/Container';
 import Wishlist from './Wishlist';
 import ScrollToTop from '../ScrollToTop';
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading }, warehouses }) => {
     useEffect(() => {
         getCurrentProfile();
+        getWarehouseList();
     }, [getCurrentProfile]);
 
+    let holdWishlist = [];
+    if (!warehouses.loading && warehouses.warehouses) {
+        user[0].wishlist.forEach((item) => {
+            holdWishlist = holdWishlist.concat( warehouses.warehouses.filter((warehouse) => { return warehouse.identifier === item }) )
+        })
+    }
+
     return loading && profile===null ? <Spinner /> : 
-    <div style={{ backgroundColor: 'white', height: '93vh', overflow: 'hidden'}}>
+    <div style={{ backgroundColor: 'white', height: '93vh'}} className='dashboard-div'>
         <ScrollToTop />
-        <Container>
-            <h1 className='large text-primary'>Dashboard</h1>
-            <div className='lead'>
+        <Container fluid style={{ padding: '0px', margin: '0px'}}>
+            <div>
                 { user && user[0].identity ? 
                 <Fragment>
-                    Logged in as {user[0].identity}
                     { user[0].wishlist.length > 0 ? 
                     <div>
-                        Wishlist present.
-                        <Wishlist wishlist={user[0].wishlist} />
+                        <Wishlist wishlist={holdWishlist} />
                     </div> : // No wishlist
                     <div>
                         Empty wishlist
@@ -40,13 +46,15 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
 
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
+    getWarehouseList: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    warehouses: state.warehouses
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard)
+export default connect(mapStateToProps, { getCurrentProfile, getWarehouseList })(Dashboard)

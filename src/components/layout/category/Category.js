@@ -118,16 +118,6 @@ const Category = props => {
         // Pull up filters
         document.getElementById('find-width').clientWidth < 800 && setOpen(!open)
 
-        // Price
-        if ( sortAttributes.price === 'Price: Low to High') {
-            sorted = [...sorted].sort((a, b) => a.warehouseDetails.pricing - b.warehouseDetails.pricing )
-            setWarehouseArray(sorted)
-        } else if ( sortAttributes.price === 'Price: High to Low') {
-            sorted = [...sorted].sort((a, b) => b.warehouseDetails.pricing - a.warehouseDetails.pricing )
-            setWarehouseArray(sorted)
-        } else if ( sortAttributes.price === 'Relevance') {
-            setWarehouseArray(sorted)
-        } 
         // Dock Placement
         if ( sortAttributes.dockPlacement === 'Dock: Both Sides') {
             sorted = sorted.filter((warehouse) => { return warehouse.warehouseDetails.dockPlacement === 'Two Sided' })
@@ -216,6 +206,17 @@ const Category = props => {
         })
         sorted = holdLocalities;
         setWarehouseArray(sorted);
+
+        // Price
+        if ( sortAttributes.price === 'Price: Low to High') {
+            sorted = [...sorted].sort((a, b) => a.warehouseDetails.pricing - b.warehouseDetails.pricing )
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.price === 'Price: High to Low') {
+            sorted = [...sorted].sort((a, b) => b.warehouseDetails.pricing - a.warehouseDetails.pricing )
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.price === 'Relevance') {
+            setWarehouseArray(sorted)
+        } 
     }
 
     useEffect(() => {

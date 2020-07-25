@@ -1,0 +1,17 @@
+@media screen and (max-width: 800px) {
+    .warehouse-details-pc {
+        display: none;
+    }
+    .warehouse-details-mob {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .warehouse-details-pc {
+        display: block;
+    }
+    .warehouse-details-mob {
+        display: none;
+    }
+}

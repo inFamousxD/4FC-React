@@ -21,8 +21,8 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
     return (
         !loading && warehouses ? 
        <Fragment>
-           <Container fluid style={{borderTop: '1px solid #cccccc', backgroundColor: '#EFEFEF', padding: '0px'}}>
-               <Container fluid style={{ padding: "20px" }}>
+           <Container fluid style={{borderTop: '1px solid #cccccc', backgroundColor: '#EFEFEF', padding: '0px' }}>
+               <Container fluid style={{ padding: "20px" }} className='landing-page'>
                <h1>Discover RealEstate trends in market.</h1>
                 <h5>Custom Text here.</h5>
 
