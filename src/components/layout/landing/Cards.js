@@ -33,8 +33,8 @@ const Cards = ({ warehouse }) => {
                 <Card.Body style={{
                     paddingTop: '0px'
                 }}>
-                    <Link to={{ pathname:'/description', state: { warehouse: warehouse } }} replace>
-                    <Button variant="outline-dark" style={{ borderRadius: '5px' }}>Check Details</Button>
+                    <Link to={{ pathname:`/description/${warehouse.identifier}`, state: { warehouse: warehouse } }}>
+                        <Button variant="outline-dark" onClick={window.scrollTo({top: 0, behavior: 'smooth'})} style={{ borderRadius: '5px' }}>Check Details</Button>
                     </Link>
                 </Card.Body>
             </Card>

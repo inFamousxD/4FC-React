@@ -82,7 +82,7 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
                                                 </div>
                                                 <Row>
                                                     <Col className='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
-                                                        <Link to={{ pathname:'/description', state: { warehouse: warehouse } }}><Button variant="outline-dark" style={{ marginTop: '25px', borderRadius: '5px', maxHeight: '2.4rem', overflow: 'hidden' }}>Details</Button></Link>
+                                                        <Link to={{ pathname:`/description/${warehouse.identifier}`, state: { warehouse: warehouse } }}><Button variant="outline-dark" style={{ marginTop: '25px', borderRadius: '5px', maxHeight: '2.4rem', overflow: 'hidden' }}>Details</Button></Link>
                                                     </Col>
                                                     <Col className='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
                                                         <Button variant="outline-dark" onClick={() => {

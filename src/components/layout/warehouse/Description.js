@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -11,27 +12,80 @@ import LeafletMap from './LeafletMap';
 import Featured from './Featured';
 import ScrollToTop from '../ScrollToTop';
 import Spinner from 'react-bootstrap/Spinner';
+import { addToWishlist } from '../../../actions/profile';
+import { getWarehouse } from '../../../actions/warehouses';
+import { getCurrentProfile } from '../../../actions/profile';
 import Details from './Details';
+// import Button from '@material-ui/core/Button';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import { setAlert } from '../../../actions/alert';
+import Alert from '../../layout/Alert';
+
 import './description.css';
 
 
-const Description = (object) => {
-    if (!object.location.state)
+const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user, loading, isAuthenticated}, match }) => {
+    useEffect(() => { 
+        getWarehouse(match.params.identifier);
+        getCurrentProfile()
+    }, [match, getWarehouse, getCurrentProfile])
+
+    const warehouse = warehouses.warehouse[0]
+    const initialFormData = {
+        name:'',
+        email:'',
+        phone:''
+    }
+    const [formData, setFormData] = React.useState(initialFormData)
+
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+
+    const [open, setOpen] = React.useState(false);
+    console.log(open)
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const addItem = () => {
+        if (!isAuthenticated) {
+            setAlert('Please log in first.')
+        } else {
+            addToWishlist({
+                identity: user[0].identity,
+                warehouseId: warehouse.identifier
+            });
+        }
+    }
+
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    if (!warehouse || warehouses.loading)
         return (<div style={{
             padding: '2% 5%',
             display: 'block',
             backgroundColor: 'white',
             height: '93vh'
-        }}>
-            <h1>Unauthorised access. Return back to <Link to='/'>Home</Link>
- </h1>
+            }}>
+            <h1> Loading </h1>
         </div>)
-    const { warehouse } = object.location.state;
-    console.log(warehouse)
-    return (
+
+    else return (
         warehouse.location.state ? 
         <div style={{ backgroundColor: 'white', overflowX: 'hidden' }}>
             <ScrollToTop location={ warehouse.location }/>
+            <Alert />
             <div>
                 <img height='420px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
             </div>
@@ -51,7 +105,7 @@ const Description = (object) => {
                             </Col>
                             <Col> 
                                 <div className='float-right mt-3'>
-                                <Button style={{borderRadius: '3px'}}>Send Request</Button>
+                                    <Button style={{borderRadius: '3px'}} onClick={handleClickOpen}>Send Request</Button>
                                 </div>
                             </Col>
                         </Row>
@@ -75,7 +129,7 @@ const Description = (object) => {
                                 Interested, but not sure to book?
                             </Col>
                             <Col sm={6}>   
-                                <Button variant='light' style={{
+                                <Button onClick={addItem} variant='light'style={{
                                     paddingLeft: '0px',
                                     paddingRight: '0px'
                                 }}> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
@@ -191,7 +245,7 @@ const Description = (object) => {
                             </Col>
                             <Col> 
                                 <div className='float-right mt-3'>
-                                <Button style={{borderRadius: '3px'}}>Send Request</Button>
+                                <Button style={{borderRadius: '3px'}} onClick={handleClickOpen}>Send Request</Button>
                                 </div>
                             </Col>
                         </Row>
@@ -215,13 +269,62 @@ const Description = (object) => {
                                 Interested, but not sure to book?
                             </Col>
                             <Col sm={6}>   
-                                <Button variant='light'> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
+                                <Button onClick={addItem} variant='light'> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
                             </Col>
                         </Row>
                     </Card.Footer>
                 </Card>
                 </Col>
             </Row>
+            <div>
+                <Dialog fullScreen={fullScreen} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                    <DialogTitle id="form-dialog-title">Send Request</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>
+                        You are currently requesting for '{warehouse.warehouseDetails.name}'. Please fill out the
+                        details below and we will get back to you shortly.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Name"
+                        type="name"
+                        name="name"
+                        fullWidth
+                        onChange={e => onChange(e)}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="name"
+                        label="Email Address"
+                        type="email"
+                        name="email"
+                        fullWidth
+                        onChange={e => onChange(e)}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="Contact"
+                        label="Name"
+                        type="Number"
+                        name="phone"
+                        fullWidth
+                        onChange={e => onChange(e)}
+                    />
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={handleClose} color="primary">
+                        Send Request
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
             <Featured />
         </div> : <div style={{
             padding: '2% 5%',
@@ -234,4 +337,16 @@ const Description = (object) => {
     )
 }
 
-export default Description
+Description.propTypes = {
+    auth: PropTypes.object.isRequired,
+    getWarehouse: PropTypes.func.isRequired,
+    warehouses: PropTypes.object.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    warehouses: state.warehouses
+})
+
+export default connect(mapStateToProps, { getWarehouse, getCurrentProfile })(Description)
