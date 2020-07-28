@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import ScrollToTop from '../ScrollToTop';
 import Results from './Results';
@@ -6,7 +6,6 @@ import Results from './Results';
 import { connect } from 'react-redux'
 import { getWarehouseList } from '../../../actions/warehouses';
 import { InputNumber, InputGroup } from 'rsuite';
-import { useEffect, useState, Fragment } from 'react';
 import { Slider, FormControlLabel, Checkbox, Radio, RadioGroup } from '@material-ui/core';
 import { Collapse, Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button, ButtonGroup } from 'react-bootstrap';
 
@@ -23,6 +22,8 @@ const Category = props => {
         warehouseType: 'all'
     });
 
+    const attributes = props.location.state.attributes;
+    
     const [advancedSort, setAdvancedSort] = useState({
         areaCovered: [0, 10000],
         monthlyRental: [0, 1000],
@@ -42,6 +43,10 @@ const Category = props => {
         fontSize: '18px'
     };
 
+    if (attributes.city !== 'None') {
+        warehouses.warehouses = warehouses.warehouses.filter((warehouse) => { return warehouse.location.city === attributes.city })
+    }
+
     const [warehouseArray, setWarehouseArray] = useState(warehouses.warehouses);
     const [open, setOpen] = useState(false);
 
@@ -50,7 +55,8 @@ const Category = props => {
     };
 
     // Slider States
-    const [areaCov, setAreaCov] = React.useState([0, 10000]);
+    const [areaCov, setAreaCov] = React.useState(attributes.areaCov);
+
     const handleAreaCovChange = (event, newValue) => {
         setAreaCov(newValue);
         setAdvancedSort({ ...advancedSort, areaCovered: newValue })
@@ -76,12 +82,22 @@ const Category = props => {
 
     let localities = [];
     warehouses.warehouses.forEach((el) => {
-        localities.push(el.location.locality)
+        if (attributes.city === 'None')
+            localities.push(el.location.locality)
+        else if (el.location.city === attributes.city) {
+            localities.push(el.location.locality)
+        }
     });
     let localitySet = [...new Set(localities)];
+    
     let localityStateInitial = {};
     localitySet.forEach((loc) => {
-        localityStateInitial[loc] = true;
+        if (attributes.locality === 'None')
+            localityStateInitial[loc] = true;
+        else {
+            localityStateInitial[loc] = false;
+            localityStateInitial[attributes.locality] = true;
+        }
     })
 
     let accessRoadWidthInitialState = {

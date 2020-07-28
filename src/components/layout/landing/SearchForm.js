@@ -11,14 +11,43 @@ import { Slider } from '@material-ui/core';
 import { InputNumber, InputGroup } from 'rsuite';
 
 
-const SearchForm = () => {
+const SearchForm = ({ warehouses: { warehouses } }) => {
     const boldStyle={
         fontSize: '18px'
     };
+
+    let citySet = [];
+    warehouses.forEach((el) => {
+        citySet.push(el.location.city)
+    });
+    citySet = [...new Set(citySet)];
+
+    // ----------------------------------------------------------------------------------------------------------- //
+
+    const [attributes, setAttributes] = React.useState({
+        city: 'None',
+        locality: 'None',
+        areaCov: [0, 10000]
+    })
+
     const [areaCov, setAreaCov] = React.useState([0, 10000]);
     const handleAreaCovChange = (event, newValue) => {
         setAreaCov(newValue);
+        setAttributes({ ...attributes, areaCov: newValue })
     };
+
+    let localities = []
+    let localitySet = []
+    localities = localities.concat(warehouses.filter((warehouse) => { return warehouse.location.city === attributes.city }))
+    localities.forEach((el) => {
+        localitySet.push(el.location.locality)
+    });
+    localitySet = [...new Set(localitySet)];
+
+    const onChange = e => {
+        setAttributes({...attributes, [e.target.name]: e.target.value })
+    }
+
     return (
         <Fragment>
             <Container fluid style={{padding: '0px'}}>
@@ -41,8 +70,13 @@ const SearchForm = () => {
                                 </Form.Group>
                                 <Form.Group className="mt-4">
                                     <Form.Label style={{fontSize: '16px'}}>Choose City</Form.Label>
-                                    <Form.Control as="select">
-                                        <option>Pune</option>
+                                    <Form.Control as="select" name='city' onChange={e => onChange(e)}>
+                                        <option>None</option>
+                                        {
+                                            citySet.map((city, key) => {
+                                                return <option key={key}>{city}</option>
+                                            })
+                                        }
                                     </Form.Control>
                                 </Form.Group>
                                 <Form.Group className="mt-4">
@@ -99,11 +133,16 @@ const SearchForm = () => {
                                 <Form.Group className="mt-4">
                                         <Form.Check inline label="Enter locality" style={{ marginBottom: '10px' }}></Form.Check>
                                         <Form.Check inline label="Guide me" className="ml-3"></Form.Check>
-                                    <Form.Control as="select">
-                                        <option>Pune</option>
+                                    <Form.Control as="select" name='locality' onChange={e => onChange(e)}>
+                                        <option>None</option>
+                                    {
+                                        localitySet.map((locality, key) => {
+                                            return <option key={key}>{locality}</option>
+                                        })
+                                    }
                                     </Form.Control>
                                 </Form.Group>
-                                <Link to='/category'>
+                                <Link to={{ pathname:'/category', state:{attributes} }}>
                                     <Button className="mt-4 mb-5" style={{
                                         borderRadius: '5px'
                                     }}> Search Warehouses</Button>
