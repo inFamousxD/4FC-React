@@ -60,11 +60,15 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                     <ButtonGroup className="mt-3 search-form dual-button">
                                         <Button variant="primary" size="lg" style={{
                                             borderTopLeftRadius: '5px',
-                                            borderBottomLeftRadius: '5px'
+                                            borderBottomLeftRadius: '5px',
+                                            backgroundColor: '#273390',
+                                            border: '1px solid #273390'
                                         }}>READY TO LEASE</Button>
                                         <Button variant="outline-primary" size="lg" style={{
                                             borderTopRightRadius: '5px',
                                             borderBottomRightRadius: '5px',
+                                            color: '#273390',
+                                            border: '1px solid #273390'
                                         }}>BUILT TO SUIT</Button>
                                     </ButtonGroup>
                                 </Form.Group>
@@ -144,7 +148,9 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                 </Form.Group>
                                 <Link to={{ pathname:'/category', state:{attributes} }}>
                                     <Button className="mt-4 mb-5" style={{
-                                        borderRadius: '5px'
+                                        borderRadius: '5px',
+                                        backgroundColor: '#273390',
+                                        border: '0px'
                                     }}> Search Warehouses</Button>
                                 </Link>
                             </Form>

@@ -8,7 +8,11 @@ import { getWarehouseList } from '../../../actions/warehouses';
 import { connect } from 'react-redux';
 
 const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, warehouses } }) => {
-
+    const attributes = {
+        city: 'None',
+        locality: 'None',
+        areaCov: [0, 10000]
+    }
     useEffect(() => {
         getWarehouseList();
     }, [getWarehouseList]);
@@ -25,9 +29,15 @@ const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, war
                     })
                 }
             </div> 
-            <Link to='/category'>
-            <Button style={{marginTop: '1rem', width: '10rem', marginLeft: '1%', borderRadius: '5px'}}>Browse All</Button>
-            </Link>
+            <Link to={{ pathname:'/category', state:{attributes} }}>
+                    <Button className="mt-4 mb-5" style={{
+                        borderRadius: '5px',
+                        backgroundColor: '#273390',
+                        border: '0px',
+                        width: '10rem',
+                        marginLeft: '1%'
+                    }}> Browse All </Button>
+                </Link>
             </Container>
         </Fragment>
     )

@@ -22,7 +22,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
     }
 
     return loading && profile===null ? <Spinner /> : 
-    <div style={{ backgroundColor: 'white', height: '93vh'}} className='dashboard-div'>
+    <div style={{ backgroundColor: 'white', minHeight: '90vh'}} className='dashboard-div'>
         <ScrollToTop />
         <Container fluid style={{ padding: '0px', margin: '0px'}}>
             <div>

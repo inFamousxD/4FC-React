@@ -6,6 +6,11 @@ import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
 
 const Featured = ({ warehouses: { loading, warehouses } }) => {
+    const attributes = {
+        city: 'None',
+        locality: 'None',
+        areaCov: [0, 10000]
+    }
     return (
         !loading && warehouses ?
         <Fragment>
@@ -21,8 +26,14 @@ const Featured = ({ warehouses: { loading, warehouses } }) => {
                         })
                     }
                 </div> 
-                <Link to='/category'>
-                <Button style={{marginTop: '1rem', width: '10rem', marginLeft: '1%', borderRadius: '5px'}}>Browse All</Button>
+                <Link to={{ pathname:'/category', state:{attributes} }}>
+                    <Button className="mt-4 mb-5" style={{
+                        borderRadius: '5px',
+                        backgroundColor: '#273390',
+                        border: '0px',
+                        width: '10rem',
+                        marginLeft: '1%'
+                    }}> Browse All </Button>
                 </Link>
             </Container>
         </Fragment> : <Spinner/>
