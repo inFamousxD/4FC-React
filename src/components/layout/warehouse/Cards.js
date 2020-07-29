@@ -7,28 +7,27 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Cards = ({ warehouse }) => {
-    
     return (
         <Fragment>
-            <Card style={{marginRight: '2rem', marginBottom: '3rem', minWidth: '22.5rem', maxWidth: '23rem'}} className="mobile-card">
+             <Card style={{marginRight: '2rem', marginBottom: '1rem', minWidth: '22rem', maxWidth: '23rem'}} className="mobile-card">
                 <Card.Img variant="top" src={PlaceholderImage} />
-                <Card.Body>
+                <Card.Body style={{ marginBottom: '0px', paddingBottom: '0px' }}>
                     <Card.Title style={{ minHeight: '3rem' }}>
                         <Row>
-                            <Col sm={8}>
-                            { warehouse.warehouseDetails.name }
+                            <Col sm={7}>
+                            <b>{ warehouse.warehouseDetails.name }</b>
                             </Col>
-                            <Col sm={4} style={{float: 'right', color: '#00097F', fontSize: '14px'}}>
-                                ₹ { warehouse.warehouseDetails.pricing }/sq.ft.
+                            <Col sm={5} style={{float: 'right', color: '#273390', fontSize: '20px'}}>
+                                <b>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</b>
                             </Col>
                         </Row>
                     </Card.Title>
                     <Card.Text>
-                        {warehouse.warehouseDetails.address}
+                    { `${warehouse.warehouseDetails.address}, ${warehouse.location.locality}, ${warehouse.location.city}, ${warehouse.location.state}.` }
                     </Card.Text>
                 </Card.Body>
                 <Card.Body>
-                    Deposit: ₹ {warehouse.warehouseDetails.deposit}/-
+                    <b>Deposit</b> : ₹ {warehouse.warehouseDetails.deposit}/-
                 </Card.Body>
                 <Card.Body style={{
                     paddingTop: '0px'

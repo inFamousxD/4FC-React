@@ -68,17 +68,17 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
                                                 <img style={{objectFit: "cover", borderRadius: '50%', height: '100px', width: '100px', position: 'absolute', top: '-50px'}} src={PlaceholderImage} alt='Warehouse'/>
                                                 <Row>
                                                     <Col sm={8} style={{height: '8rem'}}>
-                                                        <h3 className="mt-5">{ warehouse.warehouseDetails.name }</h3>
+                                                        <h3 className="mt-5" style={{fontWeight: 'bold'}}>{ warehouse.warehouseDetails.name }</h3>
                                                     </Col>
                                                     <Col sm={4} style={{float: 'right'}} className='ad-card-pricing'>
-                                                        <div style={{color: '#273390', fontSize: '20px'}}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
+                                                        <div style={{color: '#273390', fontSize: '20px', fontWeight: 'bold'}}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
                                                     </Col>
                                                 </Row>
                                                 
                                                 <div className="mt-4">
                                                     { warehouse.location.locality }{', '}{ warehouse.location.city }<br></br>
-                                                    Area covered : { warehouse.warehouseDetails.areaCovered } sq. ft. <br></br>
-                                                    Deposit : ₹ { warehouse.warehouseDetails.deposit } (Negotiable)
+                                                    <b>Area covered</b> : { warehouse.warehouseDetails.areaCovered } sq. ft. <br></br>
+                                                    <b>Deposit</b> : ₹ { warehouse.warehouseDetails.deposit } (Negotiable)
                                                 </div>
                                                 <Row>
                                                     <Col className='col-xs-8 col-sm-8 col-md-8 col-lg-8'>

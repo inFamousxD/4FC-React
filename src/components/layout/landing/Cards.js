@@ -12,23 +12,23 @@ const Cards = ({ warehouse }) => {
         <Fragment>
              <Card style={{marginRight: '2rem', marginBottom: '1rem', minWidth: '22rem', maxWidth: '23rem'}} className="mobile-card">
                 <Card.Img variant="top" src={PlaceholderImage} />
-                <Card.Body>
+                <Card.Body style={{ marginBottom: '0px', paddingBottom: '0px' }}>
                     <Card.Title style={{ minHeight: '3rem' }}>
                         <Row>
                             <Col sm={7}>
-                            { warehouse.warehouseDetails.name }
+                            <b>{ warehouse.warehouseDetails.name }</b>
                             </Col>
                             <Col sm={5} style={{float: 'right', color: '#273390', fontSize: '20px'}}>
-                                ₹ { warehouse.warehouseDetails.pricing }/sq.ft.
+                                <b>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</b>
                             </Col>
                         </Row>
                     </Card.Title>
                     <Card.Text>
-                        {warehouse.warehouseDetails.address}
+                    { `${warehouse.warehouseDetails.address}, ${warehouse.location.locality}, ${warehouse.location.city}, ${warehouse.location.state}.` }
                     </Card.Text>
                 </Card.Body>
                 <Card.Body>
-                    Deposit: ₹ {warehouse.warehouseDetails.deposit}/-
+                    <b>Deposit</b> : ₹ {warehouse.warehouseDetails.deposit}/-
                 </Card.Body>
                 <Card.Body style={{
                     paddingTop: '0px'

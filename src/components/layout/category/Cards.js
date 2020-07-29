@@ -25,6 +25,7 @@ const Cards = ({ warehouse }) => {
                                     color: '#00097F',
                                     fontSize: '20px',
                                     marginTop: '1%',
+                                    fontWeight: 'bold'
                                 }}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
                             </Col>
                         </Row>
@@ -34,10 +35,10 @@ const Cards = ({ warehouse }) => {
                             height: '5rem',
                             overflow: 'hidden'
                         }}>
-                            Area covered: { warehouse.warehouseDetails.areaCovered } sq.ft. <br />                       
-                            Locality: { warehouse.location.locality ? warehouse.location.locality : 'unspecified' }, {' '}
+                            <b>Area covered</b> : { warehouse.warehouseDetails.areaCovered } sq.ft. <br />                       
+                            <b>Locality</b> : { warehouse.location.locality ? warehouse.location.locality : 'unspecified' }, {' '}
                             { warehouse.location.city ? warehouse.location.city : 'unspecified' } <br />
-                            #id = {warehouse.identifier}
+                            <b>[ id ]</b> : {warehouse.identifier}
                     </Card.Text>
                 </Card.Body>
             </Card>
