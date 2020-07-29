@@ -15,10 +15,10 @@ const Cards = ({ warehouse }) => {
                 <Card.Body>
                     <Card.Title style={{ minHeight: '3rem' }}>
                         <Row>
-                            <Col sm={8}>
+                            <Col sm={7}>
                             { warehouse.warehouseDetails.name }
                             </Col>
-                            <Col sm={4} style={{float: 'right', color: '#00097F', fontSize: '14px'}}>
+                            <Col sm={5} style={{float: 'right', color: '#273390', fontSize: '20px'}}>
                                 ₹ { warehouse.warehouseDetails.pricing }/sq.ft.
                             </Col>
                         </Row>

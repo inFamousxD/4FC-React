@@ -142,8 +142,46 @@ body{
   overflow-y: scroll;
 }
 
+@media screen and (max-width: 800px) {
+  .dashboard-pc {
+    display: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 0px;
+    margin: 0px;
+  }
+  .dashboard-mob {
+    display: block;
+    top: -160px;
+    margin: '0rem 1rem';
+    overflow: hidden;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .dashboard-pc {
+    display: block;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 0px;
+    margin: 0px;
+  }
+  .dashboard-mob {
+    display: none;
+  }
+}
+
 .dashboard-div {
   overflow: hidden;
-  padding: 0px;
-  margin: 0px;
+}
+
+.wishlist-mob {
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.wishlist-pc {
+  overflow: hidden;
+  overflow-y: scroll;
 }
