@@ -175,13 +175,3 @@ body{
 .dashboard-div {
   overflow: hidden;
 }
-
-.wishlist-mob {
-  overflow: hidden;
-  overflow-y: scroll;
-}
-
-.wishlist-pc {
-  overflow: hidden;
-  overflow-y: scroll;
-}
