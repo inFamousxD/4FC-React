@@ -1,16 +1,64 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, Row, Col, Button } from 'react-bootstrap';
 import PlaceholderImage from '../../../image/warehouse_auth.jpg';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getCurrentProfile } from '../../../actions/profile';
+import axios from 'axios';
 
-
-const Cards = ({ warehouse }) => {
+const Cards = ({ warehouse, auth: { user } }) => {
+    const [wishlisted, setWishlisted] = React.useState(true);
+    const handleWishlisted = () => {
+        try {
+            console.log('in dispatch')
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            const body = JSON.stringify({ identity: user[0].identity, warehouseId: warehouse.identifier });
+            // const res = await axios.post(`http://localhost:9000/users/wishlist/add`, body, config);
+            axios.post(`https://d2ptygpwftf1gm.cloudfront.net/users/wishlist/remove`, body, config);
+            setWishlisted(false)
+        } catch (err) {
+            console.log(err)
+        }
+        setWishlisted(false)
+    }
     return (
         <Fragment>
             <Card style={{ marginBottom: '1.5rem', marginLeft: '1.5rem', marginRight: '1.5rem' }}>
                 <Card.Body style={{ padding: '0px', margin: '0px' }}>
-                    <Row>
+                    <Row style={{
+                        marginBottom: '-2.4rem'
+                    }}>
                         <Col sm={4}>
                             <img src={PlaceholderImage} alt={'loading'} style={{ width: '22rem', height: '12rem' }} />
+                            <Button variant='outline-dark' onClick={handleWishlisted} style={{
+                                top: '-3rem',
+                                left: '0.7rem',
+                                position: 'relative',
+                                backgroundColor: '#fff'
+                            }}>
+                                {wishlisted 
+                                ? 
+                                <i className="fa fa-heart" style={{color: 'red'}} aria-hidden="true"></i>
+                                :
+                                <i className="fa fa-heart-o" style={{color: 'red'}} aria-hidden="true"></i>
+                                }
+                            </Button>
+
+                            <Link to={{ pathname:`/description/${warehouse.identifier}`, state: { warehouse: warehouse } }}>
+                            <Button variant='light' style={{
+                                top: '-3rem',
+                                left: '1.4rem',
+                                position: 'relative',
+                                border: '1px solid black'
+                            }}>
+                                Details
+                            </Button>
+                            </Link>
                         </Col>
                         <Col sm={8} >
                             <Row style={{ margin: '1rem 0rem' }}>
@@ -48,4 +96,13 @@ const Cards = ({ warehouse }) => {
     )
 }
 
-export default Cards
+Cards.propTypes = {
+    getCurrentProfile: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+})
+
+export default connect(mapStateToProps, { getCurrentProfile })(Cards)

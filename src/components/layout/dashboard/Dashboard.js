@@ -33,7 +33,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                         <Wishlist wishlist={holdWishlist} />
                     </div> : // No wishlist
                     <div>
-                        Empty wishlist
+                        <Wishlist wishlist={[]} />
                     </div> }
                 </Fragment> : // No profile info
                 <Fragment>

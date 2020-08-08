@@ -9,8 +9,14 @@ const Cards = ({ warehouse }) => {
             <Card style={{ marginTop: '1.5rem', marginBottom: '1.5rem', padding: '0px', borderRadius: '0px', borderLeft: '0px', borderRight: '0px', borderTop: '0px' }}>
                 <Card.Body style={{ padding: '0px', margin: '0px' }}>
                     <Row style={{ margin: '0px', padding: '0px' }}>
-                        <Col sm={4} style={{ margin: '0px', padding: '0px' }}>
+                        <Col sm={4} style={{ margin: '0px', padding: '0px', marginBottom: '-2.4rem' }}>
                             <img src={PlaceholderImage} alt={'loading'} style={{ width: '100%', height: '12rem' }} />
+                            <Button variant='outline-dark' style={{
+                                top: '-3rem',
+                                left: '0.7rem',
+                                position: 'relative',
+                                backgroundColor: '#fff'
+                            }}><i className="fa fa-heart" style={{color: 'red'}} aria-hidden="true"></i></Button>
                         </Col>
                         <Col sm={8} style={{ margin: '0px', padding: '0px' }}>
                             <Row style={{ margin: '0px', padding: '0px' }}>

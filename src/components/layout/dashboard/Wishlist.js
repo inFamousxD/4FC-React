@@ -9,16 +9,16 @@ const Wishlist = ({ wishlist }) => {
         <div>
             <img height='220px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
             <Card style={{ width: '120vh', height: '65vh', margin: '11% 12.5%', position: 'absolute', top: '-4rem', boxShadow: '5px 10px 25px #666' }} className='dashboard-pc'>
-                <Card.Header>
-                    <Row>
-                        <Col sm={6}>
-                            <h2 style={{ fontWeight: 'bold', marginTop: '1rem', marginLeft: '20rem', borderRight: '1px solid black' }}>Your Wishlist</h2>
-                        </Col>
-                        <Col sm={6}>
-                            <h2 style={{ fontWeight: 'bold', marginTop: '1rem' }}>Search Warehouses</h2>
-                        </Col>
-                    </Row>
-                </Card.Header>
+            <Card.Header style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                <Row>
+                    <Col className='col-xs-6 col-sm-6 col-md-6 col-lg-6' style={{ borderRight: '1px solid black' }}>
+                        Your Wishlist
+                    </Col>
+                    <Col className='col-xs-6 col-sm-6 col-md-6 col-lg-6' style={{ color: '#aaa' }}>
+                        Browse Warehouses
+                    </Col>
+                </Row>
+            </Card.Header>
                 <Card.Body className='wishlist-pc'>
                 <Row>
                     <Col>
