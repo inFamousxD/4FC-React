@@ -136,7 +136,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                                         onChange={e => onChange(e)}
                                     />
                                 </Form.Group>
-                                <button className="mt-5 btn btn-secondary btn-block">
+                                <button className="mt-5 btn btn-dark btn-block">
                                     Create a New Account
                                 </button>
                                 <Row style={{marginTop: '2rem'}}>

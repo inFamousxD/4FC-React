@@ -94,7 +94,7 @@ const Login = ({ setAlert, login, isAuthenticated }) => {
                                 <Form.Group controlId="formBasicCheckbox">
                                     <Form.Check type="checkbox" label="Remember Me" />
                                 </Form.Group>
-                                <button className="mt-3 btn btn-secondary btn-block">
+                                <button className="mt-3 btn btn-dark btn-block">
                                     Login to your account
                                 </button>
                                 <Row style={{marginTop: '2rem'}}>
