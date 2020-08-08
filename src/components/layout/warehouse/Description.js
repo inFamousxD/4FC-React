@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -12,7 +13,7 @@ import LeafletMap from './LeafletMap';
 import Featured from './Featured';
 import ScrollToTop from '../ScrollToTop';
 import Spinner from 'react-bootstrap/Spinner';
-import { addToWishlist } from '../../../actions/profile';
+// import { addToWishlist } from '../../../actions/profile';
 import { getWarehouse } from '../../../actions/warehouses';
 import { getCurrentProfile } from '../../../actions/profile';
 import Details from './Details';
@@ -25,18 +26,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { setAlert } from '../../../actions/alert';
 import Alert from '../../layout/Alert';
+import axios from 'axios';
 
 import './description.css';
 
 
 const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user, loading, isAuthenticated}, match }) => {
-    useEffect(() => { 
-        getWarehouse(match.params.identifier);
-        getCurrentProfile()
-    }, [match, getWarehouse, getCurrentProfile])
-
     const warehouse = warehouses.warehouse[0]
     const initialFormData = {
         name:'',
@@ -48,7 +44,6 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
     const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
     const [open, setOpen] = React.useState(false);
-    console.log(open)
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -57,19 +52,39 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
         setOpen(false);
     };
 
+    let initialStatus=false;
+
+    const [wishlistStatus, setWishlistStatus] = React.useState(initialStatus);
+
     const addItem = () => {
-        if (!isAuthenticated) {
-            setAlert('Please log in first.')
+        console.log('In addItem')
+        if (isAuthenticated) {
+            try {
+                console.log('in dispatch')
+                const config = {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                const body = JSON.stringify({ identity: user[0].identity, warehouseId: warehouse.identifier });
+                // const res = await axios.post(`http://localhost:9000/users/wishlist/add`, body, config);
+                axios.post(`https://d2ptygpwftf1gm.cloudfront.net/users/wishlist/add`, body, config);
+                setWishlistStatus(true)
+            } catch (err) {
+                console.log(err)
+            }
         } else {
-            addToWishlist({
-                identity: user[0].identity,
-                warehouseId: warehouse.identifier
-            });
+            return <Redirect to="/" />
         }
     }
 
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+    useEffect(() => { 
+        getWarehouse(match.params.identifier);
+        getCurrentProfile()
+    }, [match, getWarehouse, getCurrentProfile])
 
     if (!warehouse || warehouses.loading)
         return (<div style={{
@@ -132,7 +147,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                                 <Button onClick={addItem} variant='light'style={{
                                     paddingLeft: '0px',
                                     paddingRight: '0px'
-                                }}> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
+                                }}> <i className="fa fa-heart" style={{color: wishlistStatus?'red':'white' , borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
                             </Col>
                         </Row>
                     </Card.Footer>
@@ -269,7 +284,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                                 Interested, but not sure to book?
                             </Col>
                             <Col sm={6}>   
-                                <Button onClick={addItem} variant='light'> <i className="fa fa-heart-o" style={{color:'red', borderRadius: '5px'}} aria-hidden="true"></i> Add to wishlist</Button>
+                                <Button onClick={addItem} variant='light'> <i className="fa fa-heart-o" style={{ color: wishlistStatus?'red':'white', borderRadius : '5px' }} aria-hidden="true"></i> Add to wishlist</Button>
                             </Col>
                         </Row>
                     </Card.Footer>
@@ -281,7 +296,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                     <DialogTitle id="form-dialog-title">Send Request</DialogTitle>
                     <DialogContent>
                     <DialogContentText>
-                        You are currently requesting for '{warehouse.warehouseDetails.name}'. Please fill out the
+                        You are currently requesting for '<b>{warehouse.warehouseDetails.name}</b>'. Please fill out the
                         details below and we will get back to you shortly.
                     </DialogContentText>
                     <TextField
@@ -308,7 +323,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                         autoFocus
                         margin="dense"
                         id="Contact"
-                        label="Name"
+                        label="Contact"
                         type="Number"
                         name="phone"
                         fullWidth
