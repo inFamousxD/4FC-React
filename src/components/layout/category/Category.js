@@ -11,6 +11,8 @@ import { Collapse, Row, Col, Nav, Form, Navbar, Container, Spinner, Card, Button
 
 import PropTypes from 'prop-types';
 import './Category.css'
+import hydrantImg from '../../../image/security-3_2020-08-07/security-3.png'
+import sprinklerImg from '../../../image/security-4_2020-08-07/security-4.png'
 
 const Category = props => {
     const { getWarehouseList, warehouses } = props;
@@ -552,12 +554,16 @@ const Category = props => {
                                         borderTopLeftRadius: '5px',
                                         borderBottomLeftRadius: '5px',
                                         maxWidth: '50%'
-                                    }}>Water Sprinkler</Button>
+                                    }}>
+                                        <img src={sprinklerImg} alt={''}></img><br/>
+                                        Water Sprinkler</Button>
                                     <Button variant="outline-dark" size="lg" style={{
                                         borderTopRightRadius: '5px',
                                         borderBottomRightRadius: '5px',
                                         maxWidth: '50%'
-                                    }}>Fire Hydrant</Button>
+                                    }}>
+                                        <img src={hydrantImg} alt={''}></img><br/>
+                                        Fire Hydrant</Button>
                                 </ButtonGroup>
                             </Form.Group>
                             </div>

@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import AttrSlider from './AttrSlider';
 import { Button, ButtonGroup } from 'react-bootstrap';
 
+
 const Attributes = ({ warehouses: { loading, warehouses } }) => {
 
     const boldStyle={
@@ -80,12 +81,12 @@ const Attributes = ({ warehouses: { loading, warehouses } }) => {
                         borderTopLeftRadius: '5px',
                         borderBottomLeftRadius: '5px',
                         maxWidth: '50%'
-                    }}>Water Sprinkler</Button>
+                    }}><img src={sprinklerImg} alt={''}></img>Water Sprinkler</Button>
                     <Button variant="outline-dark" size="lg" style={{
                         borderTopRightRadius: '5px',
                         borderBottomRightRadius: '5px',
                         maxWidth: '50%'
-                    }}>Fire Hydrant</Button>
+                    }}><img src={hydrantImg} alt={''}></img>Fire Hydrant</Button>
                 </ButtonGroup>
             </Form.Group>
             </div>
