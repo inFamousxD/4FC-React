@@ -36,6 +36,16 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
         setAttributes({ ...attributes, areaCov: newValue })
     };
 
+    const [categoryType, setCategoryType] = React.useState('lease')
+
+    const handleCategoryTypeLease = () => {
+        setCategoryType('lease')
+    }
+
+    const handleCategoryTypeSuit = () => {
+        setCategoryType('suit')
+    }
+
     let localities = []
     let localitySet = []
     localities = localities.concat(warehouses.filter((warehouse) => { return warehouse.location.city === attributes.city }))
@@ -58,17 +68,19 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                 <Form.Text><h1 style={{fontWeight: '400'}}><b>Find the perfect warehouse for your needs</b></h1></Form.Text>
                                 <Form.Group>
                                     <ButtonGroup className="mt-3 search-form dual-button">
-                                        <Button variant="primary" size="lg" style={{
+                                        <Button onClick={handleCategoryTypeLease} size="lg" style={{
                                             borderTopLeftRadius: '5px',
                                             borderBottomLeftRadius: '5px',
-                                            backgroundColor: '#273390',
-                                            border: '1px solid #273390'
+                                            backgroundColor: categoryType === 'lease' ? '#273390' : '#ffffff',
+                                            border: '1px solid #273390',
+                                            color: categoryType === 'lease' ? '#ffffff' : '#273390'
                                         }}>READY TO LEASE</Button>
-                                        <Button variant="outline-primary" size="lg" style={{
+                                        <Button onClick={handleCategoryTypeSuit} size="lg" style={{
                                             borderTopRightRadius: '5px',
                                             borderBottomRightRadius: '5px',
-                                            color: '#273390',
-                                            border: '1px solid #273390'
+                                            color: categoryType === 'suit' ? '#ffffff' : '#273390',
+                                            border: '1px solid #273390',
+                                            backgroundColor: categoryType === 'suit' ? '#273390' : '#ffffff' 
                                         }}>BUILT TO SUIT</Button>
                                     </ButtonGroup>
                                 </Form.Group>
@@ -83,10 +95,18 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                         }
                                     </Form.Control>
                                 </Form.Group>
-                                <Form.Group className="mt-4">
-                                    <Form.Check inline label="Ready to Move"></Form.Check>
-                                    <Form.Check inline label="Under Construction"></Form.Check>
-                                </Form.Group>     
+                                {   
+                                    categoryType === 'lease' ?
+                                        <Form.Group className="mt-4">
+                                            <Form.Check inline label="Ready to Move"></Form.Check>
+                                            <Form.Check inline label="Under Construction"></Form.Check>
+                                        </Form.Group> : 
+                                        <Form.Group className="mt-4">
+                                            <Form.Check inline label="Ready to Move"></Form.Check>
+                                            <Form.Check inline label="Under Construction"></Form.Check>
+                                        </Form.Group>
+                                }
+                                  
                                 <Form.Group controlId="formBasicRange" className="mt-4">
                                 <div>
                                     <div style={boldStyle}>Area Covered [ in square feet ]</div>
@@ -135,8 +155,9 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                 </div>
                                 </Form.Group>   
                                 <Form.Group className="mt-4">
-                                        <Form.Check inline label="Enter locality" style={{ marginBottom: '10px' }}></Form.Check>
-                                        <Form.Check inline label="Guide me" className="ml-3"></Form.Check>
+                                        {/* <Form.Check inline label="Enter locality" style={{ marginBottom: '10px' }}></Form.Check>
+                                        <Form.Check inline label="Guide me" className="ml-3"></Form.Check> */}
+                                    <Form.Label style={{fontSize: '16px'}}>Choose Locality</Form.Label>
                                     <Form.Control as="select" name='locality' onChange={e => onChange(e)}>
                                         <option>None</option>
                                     {
