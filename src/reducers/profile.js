@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from "../actions/types";
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, WISHLIST_UPDATED, WISHLIST_FAILED } from "../actions/types";
 
 const initialState = {
     profile: null,
@@ -11,6 +11,7 @@ export default function(state = initialState, action) {
 
     switch(type) {
         case GET_PROFILE:
+        case WISHLIST_UPDATED:
             return {
                 ...state,
                 profile: payload,
@@ -28,6 +29,12 @@ export default function(state = initialState, action) {
                 ...state,
                 profile: null,
                 loading: false
+            }
+        case WISHLIST_FAILED:
+            return {
+                ...state,
+                loading: false,
+                error: payload
             }
         default: 
             return state
