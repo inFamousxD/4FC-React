@@ -32,7 +32,7 @@ const Featured = ({ getWarehouseList, auth: { user }, warehouses: { loading, war
             <Link to={{ pathname:'/category', state:{attributes} }}>
                     <Button className="mt-4 mb-5" style={{
                         borderRadius: '5px',
-                        backgroundColor: '#273390',
+                        backgroundColor: '#2a55ae',
                         border: '0px',
                         width: '10rem',
                         marginLeft: '1%'

@@ -120,7 +120,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                             </Col>
                             <Col> 
                                 <div className='float-right mt-3'>
-                                    <Button style={{borderRadius: '3px', backgroundColor: '#273390', border: '0px'}} onClick={handleClickOpen}>Send Request</Button>
+                                    <Button style={{borderRadius: '3px', backgroundColor: '#2a55ae', border: '0px'}} onClick={handleClickOpen}>Send Request</Button>
                                 </div>
                             </Col>
                         </Row>
@@ -260,7 +260,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                             </Col>
                             <Col> 
                                 <div className='float-right mt-3'>
-                                <Button style={{borderRadius: '3px', backgroundColor: '#273390', border: '0px'}} onClick={handleClickOpen}>Send Request</Button>
+                                <Button style={{borderRadius: '3px', backgroundColor: '#2a55ae', border: '0px'}} onClick={handleClickOpen}>Send Request</Button>
                                 </div>
                             </Col>
                         </Row>

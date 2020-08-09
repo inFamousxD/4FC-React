@@ -71,16 +71,16 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                         <Button onClick={handleCategoryTypeLease} size="lg" style={{
                                             borderTopLeftRadius: '5px',
                                             borderBottomLeftRadius: '5px',
-                                            backgroundColor: categoryType === 'lease' ? '#273390' : '#ffffff',
-                                            border: '1px solid #273390',
-                                            color: categoryType === 'lease' ? '#ffffff' : '#273390'
+                                            backgroundColor: categoryType === 'lease' ? '#2a55ae' : '#ffffff',
+                                            border: '1px solid #2a55ae',
+                                            color: categoryType === 'lease' ? '#ffffff' : '#2a55ae'
                                         }}>READY TO LEASE</Button>
                                         <Button onClick={handleCategoryTypeSuit} size="lg" style={{
                                             borderTopRightRadius: '5px',
                                             borderBottomRightRadius: '5px',
-                                            color: categoryType === 'suit' ? '#ffffff' : '#273390',
-                                            border: '1px solid #273390',
-                                            backgroundColor: categoryType === 'suit' ? '#273390' : '#ffffff' 
+                                            color: categoryType === 'suit' ? '#ffffff' : '#2a55ae',
+                                            border: '1px solid #2a55ae',
+                                            backgroundColor: categoryType === 'suit' ? '#2a55ae' : '#ffffff' 
                                         }}>BUILT TO SUIT</Button>
                                     </ButtonGroup>
                                 </Form.Group>
@@ -170,7 +170,7 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                 <Link to={{ pathname:'/category', state:{attributes} }}>
                                     <Button className="mt-4 mb-5" style={{
                                         borderRadius: '5px',
-                                        backgroundColor: '#273390',
+                                        backgroundColor: '#2a55ae',
                                         border: '0px'
                                     }}> Search Warehouses</Button>
                                 </Link>

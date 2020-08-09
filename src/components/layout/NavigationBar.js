@@ -35,7 +35,7 @@ const NavigationBar = ({ auth: { isAuthenticated, loading }, logout}) => {
         <Fragment>
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light" style={{minHeight: '9vh'}} >
                 <Navbar.Brand>
-                    {/* <Link to='/' className='link'><b style={{ color: '#273390', fontSize: '24px' }}>4FC-LOGO</b></Link> */}
+                    {/* <Link to='/' className='link'><b style={{ color: '#2a55ae', fontSize: '24px' }}>4FC-LOGO</b></Link> */}
                     <Link to='/' className='link'><img src={logo} alt={'LOGO'}></img></Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
