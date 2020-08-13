@@ -157,6 +157,15 @@ body{
     overflow: hidden;
     overflow-y: scroll;
   }
+  .description-image2 {
+    display: none;
+  }
+  .description-carousel-pc {
+    display: none;
+  }
+  .description-carousel-mob {
+    display: block;
+  }
 }
 
 @media screen and (min-width: 801px) {
@@ -169,6 +178,12 @@ body{
   }
   .dashboard-mob {
     display: none;
+  }
+  .description-carousel-mob {
+    display: none;
+  }
+  .description-carousel-pc {
+    display: block;
   }
 }
 

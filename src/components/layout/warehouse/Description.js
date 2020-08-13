@@ -52,6 +52,32 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
         setOpen(false);
     };
 
+    const [imageCarousel, setImageCarousel] = React.useState({
+        img1 : 2,
+        img2 : 3
+    });
+
+    const handleCarousel = (where) => {
+        if (where === 'left') {
+            if (imageCarousel.img1 === 1)
+                setImageCarousel({ img1: 3, img2: 1 })
+            else if (imageCarousel.img1 === 2)
+                setImageCarousel({ img1: 1, img2: 2 })
+            else {
+                setImageCarousel({ img1: 2, img2: 3 })
+            }
+        }
+        if (where === 'right') {
+            if (imageCarousel.img1 === 1)
+                setImageCarousel({ img1: 2, img2: 3 })
+            else if (imageCarousel.img1 === 2)
+                setImageCarousel({ img1: 3, img2: 1 })
+            else {
+                setImageCarousel({ img1: 1, img2: 2 })
+            }
+        }
+    }
+
     let initialStatus=false;
 
     const [wishlistStatus, setWishlistStatus] = React.useState(initialStatus);
@@ -101,10 +127,36 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
         <div style={{ backgroundColor: 'white', overflowX: 'hidden' }}>
             <ScrollToTop location={ warehouse.location }/>
             <Alert />
-            <div>
-                <img height='420px' style={{objectFit: "cover"}} width='100%' src={warehouseImage} alt='Warehouse'/>
-            </div>
-
+            <Row>
+                <Col sm={6} md={6} lg={6} xl={6} style={{
+                    margin: '0px',
+                    padding: '0px'
+                }}>
+                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={`https://property-images-4fc.s3.ap-south-1.amazonaws.com/4fc-warehouses/0${imageCarousel.img1}.jpg`} alt={warehouseImage}/>
+                </Col>
+                <Col sm={6} md={6} lg={6} xl={6} className='description-image2' style={{
+                    margin: '0px',
+                    padding: '0px'
+                }}>
+                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={`https://property-images-4fc.s3.ap-south-1.amazonaws.com/4fc-warehouses/0${imageCarousel.img2}.jpg`} alt={warehouseImage}/>
+                </Col>
+            </Row>
+            <Row className='description-carousel-pc' style={{
+                top: '-4.5rem',
+                position: 'relative',
+                marginBottom: '-3.5rem'
+            }}>
+                <Button onClick={e => handleCarousel('left')} className="ml-5" variant='light'><i class="fa fa-arrow-left" aria-hidden="true"></i></Button>
+                <Button onClick={e => handleCarousel('right')} className="ml-3" variant='light'><i class="fa fa-arrow-right" aria-hidden="true"></i></Button>
+            </Row>
+            <Row className='description-carousel-mob' style={{
+                top: '-8rem',
+                position: 'relative',
+                marginBottom: '-3.5rem'
+            }}>
+                <Button onClick={e => handleCarousel('left')} className="ml-5" variant='light'><i class="fa fa-arrow-left" aria-hidden="true"></i></Button>
+                <Button onClick={e => handleCarousel('right')} className="ml-3" variant='light'><i class="fa fa-arrow-right" aria-hidden="true"></i></Button>
+            </Row>
             <Row className="card-class">
                 <Col sm={8}>
                 <Card className='side-card-mobile mr-3 ml-3'>
