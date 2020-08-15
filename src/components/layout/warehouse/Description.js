@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
-import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
+// import warehouseImage from '../../../image/warehouse_placeholder1.jpg';
 import Button from 'react-bootstrap/Button';
 import LeafletMap from './LeafletMap';
 import Featured from './Featured';
@@ -109,7 +109,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
 
     useEffect(() => { 
         getWarehouse(match.params.identifier);
-        getCurrentProfile()
+        getCurrentProfile();
     }, [match, getWarehouse, getCurrentProfile])
 
     if (!warehouse || warehouses.loading)
@@ -129,16 +129,14 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
             <Alert />
             <Row>
                 <Col sm={6} md={6} lg={6} xl={6} style={{
-                    margin: '0px',
                     padding: '0px'
                 }}>
-                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={`https://property-images-4fc.s3.ap-south-1.amazonaws.com/4fc-warehouses/0${imageCarousel.img1}.jpg`} alt={warehouseImage}/>
+                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={`https://property-images-4fc.s3.ap-south-1.amazonaws.com/4fc-warehouses/0${imageCarousel.img1}.jpg`} alt={"Unavailable"}/>
                 </Col>
                 <Col sm={6} md={6} lg={6} xl={6} className='description-image2' style={{
-                    margin: '0px',
                     padding: '0px'
                 }}>
-                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={`https://property-images-4fc.s3.ap-south-1.amazonaws.com/4fc-warehouses/0${imageCarousel.img2}.jpg`} alt={warehouseImage}/>
+                    <img height='420px' style={{objectFit: "cover"}} width='100%' src={`https://property-images-4fc.s3.ap-south-1.amazonaws.com/4fc-warehouses/0${imageCarousel.img2}.jpg`} alt={"Unavailable"}/>
                 </Col>
             </Row>
             <Row className='description-carousel-pc' style={{
