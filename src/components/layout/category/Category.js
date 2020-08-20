@@ -21,8 +21,9 @@ const Category = props => {
         dockPlacement: 'all',
         dockCount: 'all',
         flooring: 'all',
-        warehouseType: 'all'
-    });
+        warehouseType: 'all',
+        firstLoad: true
+    });    
 
     const attributes = props.location.state.attributes;
     
@@ -235,6 +236,11 @@ const Category = props => {
         } else if ( sortAttributes.price === 'Relevance') {
             setWarehouseArray(sorted)
         } 
+    }
+
+
+    if (sortAttributes.firstLoad === true && !warehouses.loading) {
+        setSortAttributes({ ...sortAttributes, firstLoad : false })
     }
 
     useEffect(() => {

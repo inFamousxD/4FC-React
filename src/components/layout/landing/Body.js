@@ -52,7 +52,7 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
                <Container fluid style={{padding: '0px'}} id='cont' >
                     <Row>
                         <Col sm={4}>
-                            <img style={{objectFit: "cover", height: '80%', width: '55rem', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} src={PlaceholderImage} alt='Warehouse'/>
+                            <img style={{objectFit: "cover", height: '80%', top: '11%', position: 'absolute', verticalAlign: 'middle', zIndex: '2'}} className='body-image' src={PlaceholderImage} alt='Warehouse'/>
                         </Col>
                         <Col sm={8}>
                         <div style={{ backgroundColor: '#CDD5E450', border: 'none', height: '45rem' }}>

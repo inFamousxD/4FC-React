@@ -185,6 +185,15 @@ body{
   .description-carousel-pc {
     display: block;
   }
+  .body-image {
+    width: 55rem;
+  }
+}
+
+@media screen and (max-width: 1980px) {
+  .body-image {
+    width: 160%;
+  }
 }
 
 .dashboard-div {
