@@ -23,7 +23,7 @@ const Cards = ({ warehouse }) => {
                             <Col sm={5}>
                                 <div style={{
                                     color: '#00097F',
-                                    fontSize: '20px',
+                                    fontSize: '18px',
                                     marginTop: '1%',
                                     fontWeight: 'bold'
                                 }}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
@@ -32,13 +32,12 @@ const Cards = ({ warehouse }) => {
                     </Card.Title>
                     <Card.Text style={{
                             opacity: '0.75',
-                            height: '5rem',
+                            height: '3rem',
                             overflow: 'hidden'
                         }}>
                             <b>Area covered</b> : { warehouse.warehouseDetails.areaCovered } sq.ft. <br />                       
                             <b>Locality</b> : { warehouse.location.locality ? warehouse.location.locality : 'unspecified' }, {' '}
                             { warehouse.location.city ? warehouse.location.city : 'unspecified' } <br />
-                            <b>[ id ]</b> : {warehouse.identifier}
                     </Card.Text>
                 </Card.Body>
             </Card>

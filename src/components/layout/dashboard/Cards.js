@@ -66,7 +66,7 @@ const Cards = ({ warehouse, auth: { user } }) => {
                                     <div style={{ fontSize: '20px', fontWeight: 'bold' }}> { warehouse.warehouseDetails.name } </div>
                                 </Col>
                                 <Col sm={4}>
-                                    <div style={{ fontSize: '13px' }}> Monthly Rental </div> <div style={{ fontSize: '20px', color: '#2a55ae', fontWeight: 'bold' }}> { warehouse.warehouseDetails.pricing } / sq. ft.  </div>
+                                    <div style={{ fontSize: '13px' }}> Monthly Rental </div> <div style={{ fontSize: '17px', color: '#2a55ae', fontWeight: 'bold' }}> { warehouse.warehouseDetails.pricing } / sq. ft.  </div>
                                 </Col>
                                 <Col sm={3}>
                                     <Button variant='primary' style={{ width: '100%', height: '100%', backgroundColor: '#2a55ae', border: '0px' }}>
