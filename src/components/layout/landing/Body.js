@@ -71,7 +71,7 @@ const Body = ({ warehouses: { loading, warehouses }}) => {
                                                         <h3 className="mt-5" style={{fontWeight: 'bold'}}>{ warehouse.warehouseDetails.name }</h3>
                                                     </Col>
                                                     <Col sm={4} style={{float: 'right'}} className='ad-card-pricing'>
-                                                        <div style={{color: '#2a55ae', fontSize: '20px', fontWeight: 'bold'}}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
+                                                        <div style={{color: '#2a55ae', fontSize: '18px', fontWeight: 'bold'}}>₹ { warehouse.warehouseDetails.pricing }/sq.ft.</div>
                                                     </Col>
                                                 </Row>
                                                 
