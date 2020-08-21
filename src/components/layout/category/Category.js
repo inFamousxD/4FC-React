@@ -22,16 +22,15 @@ const Category = props => {
         dockCount: 'all',
         flooring: 'all',
         warehouseType: 'all',
-        firstLoad: true
     });    
 
     const attributes = props.location.state.attributes;
     
     const [advancedSort, setAdvancedSort] = useState({
-        areaCovered: [0, 10000],
+        areaCovered: [0, 3000000],
         monthlyRental: [0, 1000],
-        clearHeight: [0, 1000],
-        centerHeight: [0, 300],
+        clearHeight: [0, 15],
+        centerHeight: [0, 25],
         safetyPrecautions: {
             waterSprinkler: false,
             fireHydrant: false
@@ -71,13 +70,13 @@ const Category = props => {
         setAdvancedSort({ ...advancedSort, monthlyRental: newValue })
     };
 
-    const [clearHeight, setClearHeight] = React.useState([0, 1000]);
+    const [clearHeight, setClearHeight] = React.useState([0, 15]);
     const handleClearHeightChange = (event, newValue) => {
         setClearHeight(newValue);
         setAdvancedSort({ ...advancedSort, clearHeight: newValue })
     };
 
-    const [centerHeight, setCenterHeight] = React.useState([0, 300]);
+    const [centerHeight, setCenterHeight] = React.useState([0, 25]);
     const handleCenterHeightChange = (event, newValue) => {
         setCenterHeight(newValue);
         setAdvancedSort({ ...advancedSort, centerHeight: newValue })
@@ -102,6 +101,23 @@ const Category = props => {
             localityStateInitial[attributes.locality] = true;
         }
     })
+
+    let approvingAuthority = [];
+
+    warehouses.warehouses.forEach((el) => {
+        approvingAuthority.push(el.authority);
+    })
+    let approvingAuthoritySet = [...new Set(approvingAuthority)];
+
+    let approvingAuthorityStateInitial = {};
+    approvingAuthoritySet.forEach((el) => {
+        approvingAuthorityStateInitial[el] = true;
+    })
+
+    const [approvingAuthorityState, setApprovingAuthorityState] = React.useState(approvingAuthorityStateInitial);
+    const handleApprovingAuthorityChange = (event) => {
+        setApprovingAuthorityState({ ...approvingAuthorityState, [event.target.name]: event.target.checked })
+    };
 
     let accessRoadWidthInitialState = {
         '~40 ft.': true,
@@ -148,6 +164,9 @@ const Category = props => {
         // Flooring Type
         if ( sortAttributes.flooring === 'Flooring: FM-2 Grade') {
             sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.flooringType === 'FM2 Grade' })
+            setWarehouseArray(sorted)
+        } else if ( sortAttributes.flooring === 'Flooring: VDF') {
+            sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.flooringType !== 'VDF' })
             setWarehouseArray(sorted)
         } else if ( sortAttributes.flooring === 'Flooring: Others') {
             sorted = sorted.filter((warehouse) => { return warehouse.amenitiesProvided.flooringType !== 'FM2 Grade' })
@@ -226,6 +245,16 @@ const Category = props => {
         sorted = holdLocalities;
         setWarehouseArray(sorted);
 
+        // Approving Authority Sort
+        let holdApprovingAuthorities = []
+        Object.keys(approvingAuthorityState).forEach((key) => { 
+            if ( approvingAuthorityState[key] === true ) {
+                holdApprovingAuthorities = holdApprovingAuthorities.concat(sorted.filter((warehouse) => { return warehouse.authority === key }))
+            }
+        })
+        sorted = holdLocalities;
+        setWarehouseArray(sorted);
+
         // Price
         if ( sortAttributes.price === 'Price: Low to High') {
             sorted = [...sorted].sort((a, b) => a.warehouseDetails.pricing - b.warehouseDetails.pricing )
@@ -236,11 +265,6 @@ const Category = props => {
         } else if ( sortAttributes.price === 'Relevance') {
             setWarehouseArray(sorted)
         } 
-    }
-
-
-    if (sortAttributes.firstLoad === true && !warehouses.loading) {
-        setSortAttributes({ ...sortAttributes, firstLoad : false })
     }
 
     useEffect(() => {
@@ -351,8 +375,8 @@ const Category = props => {
                                             style={{ marginTop: 16 }}
                                             value={areaCov}
                                             min={0}
-                                            step={100}
-                                            max={10000}
+                                            step={500}
+                                            max={3000000}
                                             onChange={(event, newValue) => handleAreaCovChange(event, newValue)}
                                             valueLabelDisplay="auto"
                                             aria-labelledby="range-slider"
@@ -360,8 +384,8 @@ const Category = props => {
                                         <InputGroup style={{ marginTop: '1rem' }}>
                                         <InputNumber
                                             min={0}
-                                            max={10000}
-                                            step={100}
+                                            max={3000000}
+                                            step={500}
                                             value={areaCov[0]}
                                             onChange={nextValue => {
                                             const [, end] = areaCov;
@@ -371,8 +395,8 @@ const Category = props => {
                                         <InputGroup.Addon>to</InputGroup.Addon>
                                         <InputNumber
                                             min={0}
-                                            max={10000}
-                                            step={100}
+                                            max={3000000}
+                                            step={500}
                                             value={areaCov[1]}
                                             onChange={nextValue => {
                                             const [start, ] = areaCov;
@@ -476,8 +500,8 @@ const Category = props => {
                                             style={{ marginTop: 16 }}
                                             value={clearHeight}
                                             min={0}
-                                            step={10}
-                                            max={1000}
+                                            step={1}
+                                            max={15}
                                             onChange={(event, newValue) => handleClearHeightChange(event, newValue)}
                                             valueLabelDisplay="auto"
                                             aria-labelledby="range-slider"
@@ -485,8 +509,8 @@ const Category = props => {
                                         <InputGroup style={{ marginTop: '1rem' }}>
                                         <InputNumber
                                             min={0}
-                                            max={1000}
-                                            step={10}
+                                            max={15}
+                                            step={1}
                                             value={clearHeight[0]}
                                             onChange={nextValue => {
                                             const [, end] = clearHeight;
@@ -496,8 +520,8 @@ const Category = props => {
                                         <InputGroup.Addon>to</InputGroup.Addon>
                                         <InputNumber
                                             min={0}
-                                            max={1000}
-                                            step={10}
+                                            max={15}
+                                            step={1}
                                             value={clearHeight[1]}
                                             onChange={nextValue => {
                                             const [start, ] = clearHeight;
@@ -518,8 +542,8 @@ const Category = props => {
                                         style={{ marginTop: 16 }}
                                         value={centerHeight}
                                         min={0}
-                                        step={10}
-                                        max={300}
+                                        step={1}
+                                        max={25}
                                         onChange={(event, newValue) => handleCenterHeightChange(event, newValue)}
                                         valueLabelDisplay="auto"
                                         aria-labelledby="range-slider"
@@ -527,8 +551,8 @@ const Category = props => {
                                     <InputGroup style={{ marginTop: '1rem' }}>
                                     <InputNumber
                                         min={0}
-                                        max={300}
-                                        step={10}
+                                        max={25}
+                                        step={1}
                                         value={centerHeight[0]}
                                         onChange={nextValue => {
                                         const [, end] = centerHeight;
@@ -538,8 +562,8 @@ const Category = props => {
                                     <InputGroup.Addon>to</InputGroup.Addon>
                                     <InputNumber
                                         min={0}
-                                        max={300}
-                                        step={10}
+                                        max={25}
+                                        step={1}
                                         value={centerHeight[1]}
                                         onChange={nextValue => {
                                         const [start, ] = centerHeight;
@@ -593,23 +617,41 @@ const Category = props => {
                             </div>
 
                             <Card className="mt-4 mb-4" style={{ maxHeight: '15rem' }}>
-                                <Card.Header> Approving Authority</Card.Header>
+                                <Card.Header>
+                                    <Row>
+                                        <Col sm={6}>
+                                            Approving Authorities
+                                        </Col>
+                                        <Col sm={6}>
+                                            <i className="fa fa-search float-right" aria-hidden="true"></i>
+                                        </Col>
+                                    </Row>
+                                </Card.Header>
                                 <Card.Body style={{
                                     fontSize: '16px',
                                     paddingLeft: '10px',
                                     paddingTop: '1rem',
                                     overflow: 'hidden',
                                     overflowY: 'scroll'
-                                }}>
-                                    <div style={{ marginBottom: '0.5rem' }}>
-                                        <Form.Check inline label="Panchayat" className="ml-3"></Form.Check>
-                                    </div>
-                                    <div style={{ marginBottom: '0.5rem' }}>
-                                        <Form.Check inline label="Anekal Planning Authority" className="ml-3"></Form.Check>
-                                    </div>
-                                    <div style={{ marginBottom: '0.5rem' }}>
-                                        <Form.Check inline label="BBMP" className="ml-3"></Form.Check>
-                                    </div>
+                                }}> {   
+                                        approvingAuthoritySet.map((loc, key) => {
+                                            return (
+                                            <div key={key} style={{ margin: '0', padding: '0' }}>
+                                                <FormControlLabel
+                                                    control={
+                                                    <Checkbox
+                                                        checked={approvingAuthorityState[loc]}
+                                                        onChange={handleApprovingAuthorityChange}
+                                                        name={loc}
+                                                        color="primary"
+                                                    />
+                                                    }
+                                                    label={loc}
+                                                />
+                                            </div>)
+                                        })
+                                    }
+                                    
                                 </Card.Body>
                             </Card>
                             <div >
@@ -669,7 +711,7 @@ const Category = props => {
                                 </Form.Group>
                             </div>
                             <Form.Group>
-                                <div style={boldStyle}>Warehouse Type</div>
+                                <div style={boldStyle}>Asset Type</div>
                                 <Row className='mt-2'>
                                     <Col className='col-xs-6 col-sm-6 col-md-6 col-lg-6' style={{ height: '2rem', fontSize: '18px' }}>
                                     <Form.Check inline label="Independant"></Form.Check>

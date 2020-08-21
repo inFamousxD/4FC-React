@@ -25,7 +25,7 @@ const Details = ({ warehouse }) => {
                         <Col sm={3}> <p className='desc-val'> { warehouse.amenitiesProvided.truckCapacity } </p> </Col>
                     </Row>
                     <Row>
-                        <Col sm={3}> <p className='desc-key'> Access Road Width: </p> </Col>
+                        <Col sm={3}> <p className='desc-key'> Number of docks: </p> </Col>
                         <Col sm={3}> <p className='desc-val'> { warehouse.warehouseDetails.accessRoadWidth } </p> </Col>
                         <Col sm={3}> <p className='desc-key'> Distance from Highway: </p> </Col>
                         <Col sm={3}> <p className='desc-val'> 2km </p> </Col>
@@ -96,8 +96,6 @@ const Details = ({ warehouse }) => {
                         <Col sm={3}> <p className='desc-val'> { warehouse.warehouseDetails.areaCovered } sq. ft. </p> </Col>
                     </Row>
                     <Row>
-                        <Col sm={3}> <p className='desc-key'> Access road Width: </p> </Col>
-                        <Col sm={3}> <p className='desc-val'> { warehouse.warehouseDetails.accessRoadWidth } m </p> </Col>
                         <Col sm={3}> <p className='desc-key'> Warehouse Type: </p> </Col>
                         <Col sm={3}> <p className='desc-val'> { warehouse.warehouseType } </p> </Col>
                     </Row>

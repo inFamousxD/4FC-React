@@ -27,10 +27,10 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
     const [attributes, setAttributes] = React.useState({
         city: 'None',
         locality: 'None',
-        areaCov: [0, 10000]
+        areaCov: [0, 3000000]
     })
 
-    const [areaCov, setAreaCov] = React.useState([0, 10000]);
+    const [areaCov, setAreaCov] = React.useState([0, 3000000]);
     const handleAreaCovChange = (event, newValue) => {
         setAreaCov(newValue);
         setAttributes({ ...attributes, areaCov: newValue })
@@ -120,8 +120,8 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                                 style={{ marginTop: 16 }}
                                                 value={areaCov}
                                                 min={0}
-                                                step={100}
-                                                max={10000}
+                                                step={500}
+                                                max={3000000}
                                                 onChange={(event, newValue) => handleAreaCovChange(event, newValue)}
                                                 valueLabelDisplay="auto"
                                                 aria-labelledby="range-slider"
@@ -129,8 +129,8 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                             <InputGroup style={{ marginTop: '1rem' }}>
                                             <InputNumber
                                                 min={0}
-                                                max={10000}
-                                                step={100}
+                                                max={3000000}
+                                                step={500}
                                                 value={areaCov[0]}
                                                 onChange={nextValue => {
                                                 const [, end] = areaCov;
@@ -140,8 +140,8 @@ const SearchForm = ({ warehouses: { warehouses } }) => {
                                             <InputGroup.Addon>to</InputGroup.Addon>
                                             <InputNumber
                                                 min={0}
-                                                max={10000}
-                                                step={100}
+                                                max={3000000}
+                                                step={500}
                                                 value={areaCov[1]}
                                                 onChange={nextValue => {
                                                 const [start, ] = areaCov;
