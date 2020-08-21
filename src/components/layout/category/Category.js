@@ -28,7 +28,7 @@ const Category = props => {
     
     const [advancedSort, setAdvancedSort] = useState({
         areaCovered: [0, 3000000],
-        monthlyRental: [0, 1000],
+        monthlyRental: [0, 10000],
         clearHeight: [0, 15],
         centerHeight: [0, 25],
         safetyPrecautions: {
@@ -64,7 +64,7 @@ const Category = props => {
         setAdvancedSort({ ...advancedSort, areaCovered: newValue })
     };
 
-    const [monthlyRental, setMonthlyRental] = React.useState([0, 1000]);
+    const [monthlyRental, setMonthlyRental] = React.useState([0, 10000]);
     const handleMonthlyRentalChange = (event, newValue) => {
         setMonthlyRental(newValue);
         setAdvancedSort({ ...advancedSort, monthlyRental: newValue })
@@ -449,7 +449,6 @@ const Category = props => {
                             <div>
                                 <div style={boldStyle}>Monthly Rental [ per square feet ]</div>
                                 <Form.Group>
-                                    {/* SLIDER FOR AREA COVERED */}
                                     <div>
                                         <Slider
                                             name='area-covered'
@@ -458,7 +457,7 @@ const Category = props => {
                                             value={monthlyRental}
                                             min={0}
                                             step={10}
-                                            max={1000}
+                                            max={10000}
                                             onChange={(event, newValue) => handleMonthlyRentalChange(event, newValue)}
                                             valueLabelDisplay="auto"
                                             aria-labelledby="range-slider"
@@ -466,7 +465,7 @@ const Category = props => {
                                         <InputGroup style={{ marginTop: '1rem' }}>
                                         <InputNumber
                                             min={0}
-                                            max={1000}
+                                            max={10000}
                                             step={10}
                                             value={monthlyRental[0]}
                                             onChange={nextValue => {
@@ -477,7 +476,7 @@ const Category = props => {
                                         <InputGroup.Addon>to</InputGroup.Addon>
                                         <InputNumber
                                             min={0}
-                                            max={1000}
+                                            max={10000}
                                             step={10}
                                             value={monthlyRental[1]}
                                             onChange={nextValue => {
