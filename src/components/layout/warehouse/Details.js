@@ -19,8 +19,8 @@ const Details = ({ warehouse }) => {
                         <Col sm={3}> <p className='desc-val'> { warehouse.amenitiesProvided.flooringType } </p> </Col>
                     </Row>
                     <Row>
-                        <Col sm={3}> <p className='desc-key'> Flooring Type: </p> </Col>
-                        <Col sm={3}> <p className='desc-val'> FM2 Grade </p> </Col>
+                        <Col sm={3}> <p className='desc-key'> Warehouse Type: </p> </Col>
+                        <Col sm={3}> <p className='desc-val'> { warehouse.warehouseType } </p> </Col>
                         <Col sm={3}> <p className='desc-key'> Truck Capacity: </p> </Col>
                         <Col sm={3}> <p className='desc-val'> { warehouse.amenitiesProvided.truckCapacity } </p> </Col>
                     </Row>
@@ -94,10 +94,6 @@ const Details = ({ warehouse }) => {
                         <Col sm={3}> <p className='desc-val'> { warehouse.amenitiesProvided.safetyPrecaution } </p> </Col>
                         <Col sm={3}> <p className='desc-key'> Area Covered: </p> </Col>
                         <Col sm={3}> <p className='desc-val'> { warehouse.warehouseDetails.areaCovered } sq. ft. </p> </Col>
-                    </Row>
-                    <Row>
-                        <Col sm={3}> <p className='desc-key'> Warehouse Type: </p> </Col>
-                        <Col sm={3}> <p className='desc-val'> { warehouse.warehouseType } </p> </Col>
                     </Row>
                 </Card.Body>
             </Card>

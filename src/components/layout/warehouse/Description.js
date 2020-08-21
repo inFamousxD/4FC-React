@@ -144,16 +144,16 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                 position: 'relative',
                 marginBottom: '-3.5rem'
             }}>
-                <Button onClick={e => handleCarousel('left')} className="ml-5" variant='light'><i class="fa fa-arrow-left" aria-hidden="true"></i></Button>
-                <Button onClick={e => handleCarousel('right')} className="ml-3" variant='light'><i class="fa fa-arrow-right" aria-hidden="true"></i></Button>
+                <Button onClick={e => handleCarousel('left')} className="ml-5" variant='light'><i className="fa fa-arrow-left" aria-hidden="true"></i></Button>
+                <Button onClick={e => handleCarousel('right')} className="ml-3" variant='light'><i className="fa fa-arrow-right" aria-hidden="true"></i></Button>
             </Row>
             <Row className='description-carousel-mob' style={{
                 top: '-8rem',
                 position: 'relative',
                 marginBottom: '-3.5rem'
             }}>
-                <Button onClick={e => handleCarousel('left')} className="ml-5" variant='light'><i class="fa fa-arrow-left" aria-hidden="true"></i></Button>
-                <Button onClick={e => handleCarousel('right')} className="ml-3" variant='light'><i class="fa fa-arrow-right" aria-hidden="true"></i></Button>
+                <Button onClick={e => handleCarousel('left')} className="ml-5" variant='light'><i className="fa fa-arrow-left" aria-hidden="true"></i></Button>
+                <Button onClick={e => handleCarousel('right')} className="ml-3" variant='light'><i className="fa fa-arrow-right" aria-hidden="true"></i></Button>
             </Row>
             <Row className="card-class">
                 <Col sm={8}>
@@ -164,8 +164,10 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                                 <div>
                                     Monthly Rental
                                 </div>
-                                <div style={{fontSize:25}}>
-                                { warehouse.warehouseDetails.pricing } / sq. ft.
+                                <div style={{
+                                    fontSize: '20px'
+                                }}>
+                                { warehouse.warehouseDetails.pricing } / sqft
                                 </div>
                             </Col>
                             <Col> 
@@ -250,37 +252,37 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                                         <ListGroup.Item>
                                             <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
                                                 <Col sm={5}><b>Nearest Highway:</b> </Col>
-                                                <Col sm={7}>Description Placeholder Line</Col>
+                                                <Col sm={7}>{warehouse.location.nearbyLandmarks.nearestHighway.name}{', '}{warehouse.location.nearbyLandmarks.nearestHighway.distance} {' km'}</Col>
                                             </Row>
                                         </ListGroup.Item>
                                         <ListGroup.Item>
                                             <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
                                                 <Col sm={5}><b>Nearest Railway Station:</b> </Col>
-                                                <Col sm={7}>Description Placeholder Line</Col>
+                                                <Col sm={7}>{warehouse.location.nearbyLandmarks.nearestRailwayStation.name}{', '}{warehouse.location.nearbyLandmarks.nearestRailwayStation.distance} {' km'}</Col>
                                             </Row>
                                         </ListGroup.Item>   
                                         <ListGroup.Item>
                                             <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
                                                 <Col sm={5}><b>Nearest Bus Stand:</b> </Col>
-                                                <Col sm={7}>Description Placeholder Line</Col>
+                                                <Col sm={7}>{warehouse.location.nearbyLandmarks.nearestBusStand.name}{', '}{warehouse.location.nearbyLandmarks.nearestBusStand.distance} {' km'}</Col>
                                             </Row>
                                         </ListGroup.Item>
                                         <ListGroup.Item>
                                             <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
                                                 <Col sm={5}><b>Nearest Bank:</b> </Col>
-                                                <Col sm={7}>Description Placeholder Line</Col>
+                                                <Col sm={7}>{warehouse.location.nearbyLandmarks.nearestBank.name}{', '}{warehouse.location.nearbyLandmarks.nearestBank.distance} {' km'}</Col>
                                             </Row>
                                         </ListGroup.Item>
                                         <ListGroup.Item>
                                             <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>
                                                 <Col sm={5}><b>Nearest Petrol Pump:</b> </Col>
-                                                <Col sm={7}>Description Placeholder Line</Col>
+                                                <Col sm={7}>{warehouse.location.nearbyLandmarks.nearestPetrolPump.name}{', '}{warehouse.location.nearbyLandmarks.nearestPetrolPump.distance} {' km'}</Col>
                                             </Row> 
                                         </ListGroup.Item>
                                         <ListGroup.Item>
                                             <Row style={{ minHeight: '2rem', paddingTop: '0.5rem' }}>    
                                                 <Col sm={5}><b>Nearest Park:</b> </Col>
-                                                <Col sm={7}>Description Placeholder Line</Col>
+                                                <Col sm={7}>{warehouse.location.nearbyLandmarks.nearestPark.name}{', '}{warehouse.location.nearbyLandmarks.nearestPark.distance} {' km'}</Col>
                                             </Row>
                                         </ListGroup.Item>
                                     </ListGroup>
@@ -304,8 +306,8 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                                 <div>
                                     Monthly Rental
                                 </div>
-                                <div style={{fontSize:30}}>
-                                { warehouse.warehouseDetails.pricing } / sq. ft.
+                                <div style={{fontSize: '25px'}}>
+                                { warehouse.warehouseDetails.pricing } / sqft
                                 </div>
                             </Col>
                             <Col> 
