@@ -41,10 +41,22 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
     }
     const [formData, setFormData] = React.useState(initialFormData)
 
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+    const onChange = e => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    const autoFill = () => {
+        console.log(user.name)
+        setFormData({
+            name: user[0].name,
+            email: user[0].identity,
+            phone: user[0].contact
+        })
+    }
 
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
+        isAuthenticated && autoFill();
         setOpen(true);
     };
 
@@ -358,6 +370,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                         label="Name"
                         type="name"
                         name="name"
+                        value={formData.name}
                         fullWidth
                         onChange={e => onChange(e)}
                     />
@@ -368,6 +381,7 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                         label="Email Address"
                         type="email"
                         name="email"
+                        value={formData.email}
                         fullWidth
                         onChange={e => onChange(e)}
                     />
@@ -376,8 +390,9 @@ const Description = ({ getWarehouse, getCurrentProfile, warehouses, auth: { user
                         margin="dense"
                         id="Contact"
                         label="Contact"
-                        type="Number"
+                        type="String"
                         name="phone"
+                        value={formData.phone}
                         fullWidth
                         onChange={e => onChange(e)}
                     />
